@@ -1,0 +1,40 @@
+use_frameworks!
+
+platform :ios, '14.0'
+
+def idp_sdk
+  idpSdkVersion = '13.0.0'
+  pod 'IDP', :git => 'git@github.com:UEFADigital/ios-idp-sdk.git', :tag => idpSdkVersion
+end
+
+def gh_core
+  ghCoreVersion = '5.1.3'
+  pod 'GamesLib/Native', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+  pod 'GamesLib/NativeDev', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+  pod 'GamesLib/NativeHostLogin', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+end 
+
+target 'moreorless_Example' do
+  pod 'moreorless', :path => '../'
+
+  idp_sdk
+
+  gh_core  
+
+  pod 'Google-Mobile-Ads-SDK', '~> 10.6.0' 
+
+  target 'moreorless_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+          target.build_configurations.each do |config|
+              config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+              config.build_settings['CODE_SIGN_IDENTITY'] = ''
+          end
+      end
+end
