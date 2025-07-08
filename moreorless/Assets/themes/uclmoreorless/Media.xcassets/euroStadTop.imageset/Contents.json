@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "stadium_top_ipad.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

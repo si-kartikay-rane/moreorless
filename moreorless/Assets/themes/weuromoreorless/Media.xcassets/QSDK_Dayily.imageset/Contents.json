@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "QSDK_Dayily.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Viewport=iPad Portrait, Competition=WEURO, Game=Quiz Arena@3x.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

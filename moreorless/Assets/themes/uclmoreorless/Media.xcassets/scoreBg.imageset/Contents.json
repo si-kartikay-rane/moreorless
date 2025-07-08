@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "UCL_2024-27_UltimateStage_Pitch_RGB_5K 1 (2).png",
+      "idiom" : "iphone"
+    },
+    {
+      "filename" : "iPad Scores Background@3x.png",
+      "idiom" : "ipad"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

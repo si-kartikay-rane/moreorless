@@ -17,7 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //MARK: - Uncomment the following line if you want to mimic the behaviour of GH - APP
         GamingHubCards.setupPOC(competition: 1, environment: .integration)
+        //IDPManager.setup(isSelligentTrackingConsented: false)
+        
+        //MARK: - Uncomment the following line if you want to mimic the behaviour of NTC - APP (Euro Club's APP)
+//
+//        let env = GamingHubEnvironment.preproduction
+//        GamingHubCards.setup(environment: env, clientId: "NTC_APP_IOS", appVersion: "9.1.0", idpKey: env.idpKey, cardsAnalytics: nil, competition: 3, season: nil, locale: nil)
         return true
     }
 
@@ -65,13 +73,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func process(url: URL)->Bool{
-        guard url.absoluteString.contains("moreorless") else { return false }
+        let data =   ["url":url] as [String : Any]
         
-        if CurrentGame == "moreorless" {
+        if CurrentGame == "uclquiz" {
             // the game is already opened
-            NotificationCenter.default.post(name: .ghOpenLink, object: nil, userInfo: ["url":url])
+            NotificationCenter.default.post(name: .ghOpenLink, object: nil, userInfo: data)
         }else{
-            GamingHubCards.open("moreorless", data: ["url":url])
+            GamingHubCards.open("uclquiz", data: data)
         }
         
         return true

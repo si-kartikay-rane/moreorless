@@ -1,27 +1,85 @@
+#use_frameworks!
+#
+#platform :ios, '14.0'
+#
+#def idp_sdk
+#  idpSdkVersion = '13.0.0'
+#  pod 'IDP', :git => 'git@github.com:UEFADigital/ios-idp-sdk.git', :tag => idpSdkVersion
+#end
+#
+#def gh_core
+#  ghCoreVersion = '5.1.3'
+#  pod 'GamesLib/Native', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+#  pod 'GamesLib/NativeDev', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+#  pod 'GamesLib/NativeHostLogin', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+#end 
+#
+#target 'moreorless_Example' do
+#  pod 'moreorless', :path => '../'
+#
+#  idp_sdk
+#
+#  gh_core  
+#
+#  pod 'Google-Mobile-Ads-SDK', '~> 10.6.0' 
+#
+#  target 'moreorless_Tests' do
+#    inherit! :search_paths
+#
+#    
+#  end
+#end
+#
+#post_install do |installer|
+#  installer.pods_project.targets.each do |target|
+#          target.build_configurations.each do |config|
+#              config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+#              config.build_settings['CODE_SIGN_IDENTITY'] = ''
+#          end
+#      end
+#end
+
 use_frameworks!
 
-platform :ios, '14.0'
+platform :ios, '15.0'
 
 def idp_sdk
-  idpSdkVersion = '13.0.0'
-  pod 'IDP', :git => 'git@github.com:UEFADigital/ios-idp-sdk.git', :tag => idpSdkVersion
+  idpSdkVersion = '0.3.0'
+    pod 'IDP', :git => 'git@github.com:UEFADigital/ios-idp-ping-sdk.git', :tag => idpSdkVersion
 end
 
 def gh_core
-  ghCoreVersion = '5.1.3'
+  ghCoreVersion = '6.0.5-beta'
   pod 'GamesLib/Native', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+  pod 'GamesLib/CompetitionFonts', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
   pod 'GamesLib/NativeDev', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
   pod 'GamesLib/NativeHostLogin', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
-end 
+  pod 'GamesLib/SwiftUI', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+  #pod 'GamesLib/UCLThemeFull', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+  pod 'GamesLib/GamingLogin', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
+end
+
+
 
 target 'moreorless_Example' do
   pod 'moreorless', :path => '../'
+  pod 'moreorless/uclquiz', :path => '../'
+  pod 'moreorless/uwclquiz', :path => '../'
+  pod 'moreorless/euroquiz', :path => '../'
+  pod 'moreorless/weuroquiz', :path => '../'
 
+#  pod 'moreorless/uclmoreorless', :path => '../'
+#  pod 'moreorless/uwclmoreorless', :path => '../'
+#  pod 'moreorless/euromoreorless', :path => '../'
+#  pod 'moreorless/weuromoreorless', :path => '../'
   idp_sdk
 
-  gh_core  
+  gh_core
 
-  pod 'Google-Mobile-Ads-SDK', '~> 10.6.0' 
+  pod 'Google-Mobile-Ads-SDK','11.10.0'
+  pod 'Kingfisher'
+  pod 'lottie-ios', '4.4.1'
+  
 
   target 'moreorless_Tests' do
     inherit! :search_paths
@@ -30,11 +88,18 @@ target 'moreorless_Example' do
   end
 end
 
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-          target.build_configurations.each do |config|
-              config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
-              config.build_settings['CODE_SIGN_IDENTITY'] = ''
-          end
-      end
-end
+#post_install do |installer|
+#  xcode_base_version = `xcodebuild -version | grep 'Xcode' | awk '{print $2}' | cut -d . -f 1`
+#
+#  installer.pods_project.targets.each do |target|
+#    target.build_configurations.each do |config|
+#      # For xcode 15+ only
+#      if config.base_configuration_reference && Integer(xcode_base_version) >= 15
+#        xcconfig_path = config.base_configuration_reference.real_path
+#        xcconfig = File.read(xcconfig_path)
+#        xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+#        File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+#      end
+#    end
+#  end
+#end

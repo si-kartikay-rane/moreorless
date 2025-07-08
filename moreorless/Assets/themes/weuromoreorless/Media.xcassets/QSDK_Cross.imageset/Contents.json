@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "cross.svg",
+      "idiom" : "iphone"
+    },
+    {
+      "filename" : "pk-close.svg",
+      "idiom" : "ipad"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

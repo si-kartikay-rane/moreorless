@@ -1,12 +1,13 @@
 //
 //  FeaturedCard.swift
-//  moreorless
+//  QuizeApp
 //
 //  Created by Aurimas Petrevicius on 2021-10-07.
 //
 
 import UIKit
 import GamesLib
+import SwiftUI
 
 public class FeaturedCard: UIViewController {
 
@@ -30,13 +31,13 @@ public class FeaturedCard: UIViewController {
     }
     
     private func refreshViews(){
-        (view.viewWithTag(100) as? UIButton)? .setTitle(GamingHubCards.isLoggedIn ? "loggedin" : "anonoymous", for: .normal)
+        
     }
     
     // MARK: Actions
     
     @IBAction func onCardClicked(_ sender: Any) {
-        GamingHubCards.open(GAMEID, data: nil)
+        GamingHubCards.open(GAME__ID, data: nil)
     }
     
     
@@ -50,8 +51,13 @@ public class FeaturedCard: UIViewController {
     
 }
 
-extension FeaturedCard: GameCard {
+extension FeaturedCard: CompetitionGameCard {
+    public static func viewController(data: [String : Any]?, gameId: String, competition: Int?) -> UIViewController? {
+        return FeaturedCard.card()
+    }
+    
     public class func viewController(data: [String : Any]?) -> UIViewController? {
         return FeaturedCard.card()
     }
 }
+

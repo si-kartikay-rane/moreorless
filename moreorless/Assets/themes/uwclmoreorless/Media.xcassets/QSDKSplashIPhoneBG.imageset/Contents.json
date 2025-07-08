@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "UWCL - Quiz Splash Mobile-1.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "UWCL - Quiz Splash Mobile.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "UWCL - Quiz Splash Mobile@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

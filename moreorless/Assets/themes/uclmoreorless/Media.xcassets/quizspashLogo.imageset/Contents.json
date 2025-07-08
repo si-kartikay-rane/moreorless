@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Game logos.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

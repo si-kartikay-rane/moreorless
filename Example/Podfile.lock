@@ -1,0 +1,116 @@
+PODS:
+  - Alamofire (5.9.1)
+  - BlueConicClient (4.0.2):
+    - BlueConicClient/Core (= 4.0.2)
+  - BlueConicClient/Core (4.0.2)
+  - FRAuth (4.7.0):
+    - FRCore (~> 4.7.0)
+  - FRCore (4.7.0)
+  - GamesLib/CompetitionFonts (6.0.5-beta)
+  - GamesLib/GamingLogin (6.0.5-beta):
+    - IDP
+  - GamesLib/Native (6.0.5-beta):
+    - Alamofire (~> 5.9.1)
+    - GamesLib/Theming
+    - Kingfisher
+    - SwiftyJSON (= 5.0.2)
+  - GamesLib/NativeDev (6.0.5-beta):
+    - GamesLib/NativeHostLogin
+    - Google-Mobile-Ads-SDK
+  - GamesLib/NativeHostLogin (6.0.5-beta):
+    - IDP
+  - GamesLib/SwiftUI (6.0.5-beta)
+  - GamesLib/Theming (6.0.5-beta)
+  - Google-Mobile-Ads-SDK (11.10.0):
+    - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleUserMessagingPlatform (3.0.0)
+  - IDP (0.3.0):
+    - BlueConicClient (= 4.0.2)
+    - FRAuth (= 4.7.0)
+  - Kingfisher (8.3.2)
+  - lottie-ios (4.4.1)
+  - moreorless (0.1.0):
+    - GamesLib/Native
+    - Google-Mobile-Ads-SDK
+    - moreorless/euroquiz (= 0.1.0)
+    - moreorless/uclquiz (= 0.1.0)
+    - moreorless/uwclquiz (= 0.1.0)
+    - moreorless/weuroquiz (= 0.1.0)
+  - moreorless/euroquiz (0.1.0):
+    - GamesLib/Native
+    - Google-Mobile-Ads-SDK
+  - moreorless/uclquiz (0.1.0):
+    - GamesLib/Native
+    - Google-Mobile-Ads-SDK
+  - moreorless/uwclquiz (0.1.0):
+    - GamesLib/Native
+    - Google-Mobile-Ads-SDK
+  - moreorless/weuroquiz (0.1.0):
+    - GamesLib/Native
+    - Google-Mobile-Ads-SDK
+  - SwiftyJSON (5.0.2)
+
+DEPENDENCIES:
+  - "GamesLib/CompetitionFonts (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
+  - "GamesLib/GamingLogin (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
+  - "GamesLib/Native (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
+  - "GamesLib/NativeDev (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
+  - "GamesLib/NativeHostLogin (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
+  - "GamesLib/SwiftUI (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
+  - Google-Mobile-Ads-SDK (= 11.10.0)
+  - "IDP (from `git@github.com:UEFADigital/ios-idp-ping-sdk.git`, tag `0.3.0`)"
+  - Kingfisher
+  - lottie-ios (= 4.4.1)
+  - moreorless (from `../`)
+  - moreorless/euroquiz (from `../`)
+  - moreorless/uclquiz (from `../`)
+  - moreorless/uwclquiz (from `../`)
+  - moreorless/weuroquiz (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - BlueConicClient
+    - FRAuth
+    - FRCore
+    - Google-Mobile-Ads-SDK
+    - GoogleUserMessagingPlatform
+    - Kingfisher
+    - lottie-ios
+    - SwiftyJSON
+
+EXTERNAL SOURCES:
+  GamesLib:
+    :git: "git@github.com:UEFADigital/gaminghub-core-library-ios.git"
+    :tag: 6.0.5-beta
+  IDP:
+    :git: "git@github.com:UEFADigital/ios-idp-ping-sdk.git"
+    :tag: 0.3.0
+  moreorless:
+    :path: "../"
+
+CHECKOUT OPTIONS:
+  GamesLib:
+    :git: "git@github.com:UEFADigital/gaminghub-core-library-ios.git"
+    :tag: 6.0.5-beta
+  IDP:
+    :git: "git@github.com:UEFADigital/ios-idp-ping-sdk.git"
+    :tag: 0.3.0
+
+SPEC CHECKSUMS:
+  Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
+  BlueConicClient: fabb6b8981ab014d830f1a0b51bd40c377432b7a
+  FRAuth: b0cd62c2e0294a19580f75f596062d49ab3172b3
+  FRCore: 1907601f5b6a9390dda3e047e5a4cd8a2eefc802
+  GamesLib: 7f8f8e329ba493f135fd4b83f7358d4066de46b9
+  Google-Mobile-Ads-SDK: 13e6e98edfd78ad8d8a791edb927658cc260a56f
+  GoogleUserMessagingPlatform: f8d0cdad3ca835406755d0a69aa634f00e76d576
+  IDP: 33bf7ce7d7f5e042a66bc1ce8d0ee396aa2125be
+  Kingfisher: 0621d0ac0c78fecb19f6dc5303bde2b52abaf2f5
+  lottie-ios: e047b1d2e6239b787cc5e9755b988869cf190494
+  moreorless: 23968d8cd6cbbc5c8801c3c11e3ec17731997aa1
+  SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
+
+PODFILE CHECKSUM: 59bdca47595384c97ca3d598ece1fda5b0317c18
+
+COCOAPODS: 1.15.2
