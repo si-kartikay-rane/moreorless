@@ -133,7 +133,7 @@ class MLGameViewModel: ObservableObject {
             }
             quizcehckDeepLink(quizid:self.quizID)
         }else{
-            QuizzGameSDk.game.store.setGuestData(data: Gameplaydetail(quizid: self.quizID, score: self.totalPoints, gamedate: "".getCurrentDate(), quiztypeid: self.quizType))
+            MolGameSDk.game.store.setGuestData(data: Gameplaydetail(quizid: self.quizID, score: self.totalPoints, gamedate: "".getCurrentDate(), quiztypeid: self.quizType))
             self.MLResultScore = moreorless.MLResultScore(pctl: nil, rank: nil, rightans: self.streakTotal, totpoints: totalPoints, outofscore: (self.totalquestions * self.perquestionpoint))
             self.calculatePercentageDecrease(originalValue: Double(self.totalquestions * self.perquestionpoint), newValue: Double(self.MLResultScore?.totpoints ?? 0))
         }
@@ -286,6 +286,15 @@ class MLGameViewModel: ObservableObject {
         
     }
     
+//    func settlemetnExit(onSuccess: @escaping((Bool) -> ())){
+//        self.homeModel.SettlementData(quizId: self.quizID, attempt: nextQuestionData?.quAttemptID, GamedayId: self.GamedayId, isExit: 1){ Status in
+//            if Status{
+//                onSuccess(Status)
+//            }else{
+//                onSuccess(true)
+//            }
+//        }
+//    }
   func  updateCard(){
       withAnimation(.easeInOut(duration: 0.5)) {
            //if baseCard.count == self.currentQuestionIndex{

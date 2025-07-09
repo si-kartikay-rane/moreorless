@@ -124,7 +124,7 @@ public struct FeaturedCardSwiftUI: View {
             VStack{
                 KFImage(URL(string: urlavtra(url: viewModel.cardData?.cardImageURL ?? "")))
                     .placeholder {
-                        MOLTheme.getImage(named:QuizImageName.QSDK_Rmedia.name)?
+                        MOLTheme.getImage(named:MolImageName.QSDK_Rmedia.name)?
                             .resizable()
                     }
                     .retry(maxCount: 3, interval: .seconds(5))
@@ -194,7 +194,7 @@ public struct FeaturedCardSwiftUI: View {
 
                 KFImage(URL(string: urlavtra(url: viewModel.cardData?.cardImageURL ?? "")))
                     .placeholder {
-                        MOLTheme.getImage(named:QuizImageName.QSDK_Rmedia.name)?
+                        MOLTheme.getImage(named:MolImageName.QSDK_Rmedia.name)?
                             .resizable()
                     }
                     .retry(maxCount: 3, interval: .seconds(5))

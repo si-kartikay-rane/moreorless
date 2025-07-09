@@ -34,10 +34,10 @@ class LocalDataHelper{
         switch type {
         
         case .Translation:
-            JSONFileHelper().writeToJSONFile(type: type.rawValue, model: QuizzGameSDk.game.store.getTranslations())
+            JSONFileHelper().writeToJSONFile(type: type.rawValue, model: MolGameSDk.game.store.getTranslations())
         case .GuestData:
-            UserDefaultsData.shared.setCodableDataToUserDefaults(codableData: QuizzGameSDk.game.store.getGuestData(), forKey: type.rawValue + (MOLTheme.currentGameID ?? "uclmoreorless"))
-            JSONFileHelper().writeToJSONFile(type: type.rawValue + (MOLTheme.currentGameID ?? "uclmoreorless"), model: QuizzGameSDk.game.store.getGuestData())
+            UserDefaultsData.shared.setCodableDataToUserDefaults(codableData: MolGameSDk.game.store.getGuestData(), forKey: type.rawValue + (MOLTheme.currentGameID ?? "uclmoreorless"))
+            JSONFileHelper().writeToJSONFile(type: type.rawValue + (MOLTheme.currentGameID ?? "uclmoreorless"), model: MolGameSDk.game.store.getGuestData())
         }
     }
     

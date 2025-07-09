@@ -51,7 +51,7 @@ struct QuizStarterView: View {
     var body: some View {
         ZStack {
             if !MoveToHomeView {
-                QuizSplashView()
+                MolSplashView()
             } else {
                 
                 HomeLandingView(stopObserver: $stopObserver)
@@ -86,8 +86,8 @@ struct QuizStarterView: View {
                 }
                 
                 
-                QuizzGameSDk.game.sponsorModel =  nil
-                QuizzGameSDk.game.getSponsorsForGame(gameid: MOLTheme.currentGameID, competitionid: MOLTheme.competitionId)
+                MolGameSDk.game.sponsorModel =  nil
+                MolGameSDk.game.getSponsorsForGame(gameid: MOLTheme.currentGameID, competitionid: MOLTheme.competitionId)
             }
             BusterHelper.shared.updateBuster(type: .LEADERBOARD)
             //Track.shared.screen(screen: screenName.splashScreen, params: [:], replace: nil)
@@ -102,7 +102,7 @@ struct QuizStarterView: View {
             //MARK: Config Api Call
             initAPIs.getConfigData { configData in
                 Constants.configData = configData
-                QuizzGameSDk.game.refreshTranslationData { success, error in
+                MolGameSDk.game.refreshTranslationData { success, error in
                     
                 }
             } onFailure: { message in

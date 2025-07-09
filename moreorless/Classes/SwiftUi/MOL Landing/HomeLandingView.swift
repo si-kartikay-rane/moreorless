@@ -319,9 +319,9 @@ struct HomeLandingView: View {
                     }
                 }) {
                     if MOLTheme.isGamingHubHost {
-                        Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDK_Menu.name) ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_Menu.name) ?? UIImage())
                     } else {
-                        Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDK_NavBack.name) ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_NavBack.name) ?? UIImage())
                     }
                     
                 },
@@ -340,7 +340,7 @@ struct HomeLandingView: View {
                     notificationvm.checkNotificationsPermission()
                 }
                 DispatchQueue.main.async {
-                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
+                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
                 }
            
                 if (GamingHubCards.isLoggedIn) {
@@ -363,7 +363,7 @@ struct HomeLandingView: View {
                     self.viewLoginModel.isLogin =  true
                     self.quizViewModel.isLoading =  true
                     Constants.guid =  ""
-                    QuizzGameSDk.game.store.QuizUser =  nil
+                    MolGameSDk.game.store.QuizUser =  nil
                     NotificationCenter.default.post(name: Notification.Name("Login"), object: nil, userInfo: nil)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
                         self.viewLoginModel.loginUserSession { [self] success, errorMessage in
@@ -428,7 +428,7 @@ struct HomeLandingView: View {
             .popup(isPresented: $notificationvm.notificationPopUp, type: !MOLTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: true) : .default, position: .bottom,dragToDismiss: false ,closeOnTap: false, closeOnTapOutside: false, backgroundColor: .black.opacity(0.4)) {
                 
                 NotificationAlertView(
-                    title: NotificationStrings.notificationCardAlertTitle.getTranslationValue(default: "Never miss a quiz!"), description: NotificationStrings.notificationCardAlertdesc.getTranslationValue(default: "Turn on notifications to get quiz reminders and leaderboard updates."), attributedDescription: nil, icon:  Image(uiImage:MOLTheme.getImage(named:QuizImageName.QSDK_Alert.name) ?? UIImage()), btnHighlightedText: NotificationStrings.notificationalertbuttonOne.getTranslationValue(default: "Turn on notification"), btnNormalText: NotificationStrings.notificationalertbuttonTne.getTranslationValue(default: "Not now"),
+                    title: NotificationStrings.notificationCardAlertTitle.getTranslationValue(default: "Never miss a quiz!"), description: NotificationStrings.notificationCardAlertdesc.getTranslationValue(default: "Turn on notifications to get quiz reminders and leaderboard updates."), attributedDescription: nil, icon:  Image(uiImage:MOLTheme.getImage(named:MolImageName.QSDK_Alert.name) ?? UIImage()), btnHighlightedText: NotificationStrings.notificationalertbuttonOne.getTranslationValue(default: "Turn on notification"), btnNormalText: NotificationStrings.notificationalertbuttonTne.getTranslationValue(default: "Not now"),
                     notificationAlertPopUp: $notificationvm.notificationPopUp, notificationPopUp: $notificationvm.showNotificationChannelPopUp, showToast: $notificationvm.showToast)
             }
         

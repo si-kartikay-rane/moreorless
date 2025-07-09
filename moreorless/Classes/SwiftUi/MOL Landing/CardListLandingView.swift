@@ -37,11 +37,11 @@ struct CardListLandingView: View {
              
              ZStack(alignment:.top){
                  
-                 //ImageView(imageUrl: MolCardListData?.bgimage ?? "", placeholder: MOLTheme.getImage(named:QuizImageName.QSDK_Rmedia.name))
+                 //ImageView(imageUrl: MolCardListData?.bgimage ?? "", placeholder: MOLTheme.getImage(named:MolImageName.QSDK_Rmedia.name))
                  
                  KFImage(URL(string: MolCardListData?.bgimage ?? ""))
                      .placeholder {
-                         MOLTheme.getImage(named:QuizImageName.QSDK_Rmedia.name)?
+                         MOLTheme.getImage(named:MolImageName.QSDK_Rmedia.name)?
                              .resizable()
                      }
                      .retry(maxCount: 3, interval: .seconds(5))
@@ -309,7 +309,7 @@ struct CardListLandingView: View {
          ZStack(alignment:.bottom){
              KFImage(URL(string: MolCardListData?.bgimage ?? ""))
                  .placeholder {
-                     MOLTheme.getImage(named: QuizImageName.QSDK_Rmedia.name)?
+                     MOLTheme.getImage(named: MolImageName.QSDK_Rmedia.name)?
                          .resizable()
                  }
                  .retry(maxCount: 3, interval: .seconds(5))

@@ -20,7 +20,7 @@ class MlGamePlayApi {
         var molCardURL = Constants.configData?.endpoints?.molStartGameCardUrl ?? "/quiz/services/mol/gameplay/v1/{competitionType}/attempt?quizId={quizId}&langCode={languageCode}&isGuestUser={isGuestUser}"
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizid ?? "")
-        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
        // molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
        
         molCardURL =  molCardURL + "&buster=" + Date().timeIntervalSince1970.rounded().toString()
@@ -46,7 +46,7 @@ class MlGamePlayApi {
         
         var molCardURL = configData.endpoints?.molQuestionGameCardUrl ?? "/quiz/services/mol/gameplay/v1/{competitionType}/questions?langCode={languageCode}&isGuestUser={isGuestUser}" 
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
-        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
       //  molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
         let request:MlQuestionAnsrequestModel?
 
@@ -73,7 +73,7 @@ class MlGamePlayApi {
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.attemptId, with: "\(attemptid ?? 0)")
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizid ?? "")
-        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
        // molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
        
         molCardURL =  molCardURL + "&buster=" + Date().timeIntervalSince1970.rounded().toString()
@@ -99,7 +99,7 @@ class MlGamePlayApi {
         timerScoreBoardURL = timerScoreBoardURL.replacingOccurrences(of: NetworkConstants().urlKeys.guid, with: "\(GamingHubCards.user.userId ?? 0)" )
         timerScoreBoardURL = timerScoreBoardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizID)
         timerScoreBoardURL = timerScoreBoardURL.replacingOccurrences(of: NetworkConstants().urlKeys.platformId, with: "\(Constants.appData.platformID)")
-        timerScoreBoardURL = timerScoreBoardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: QuizzGameSDk.game.getAppLanguage())
+        timerScoreBoardURL = timerScoreBoardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: MolGameSDk.game.getAppLanguage())
         timerScoreBoardURL = timerScoreBoardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
         timerScoreBoardURL = timerScoreBoardURL + "&buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD)
         

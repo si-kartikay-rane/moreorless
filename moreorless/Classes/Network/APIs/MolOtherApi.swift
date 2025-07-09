@@ -17,12 +17,12 @@ class MolOtherApi {
         }
         var molCardURL =  ""
         if GamingHubCards.environment.environment == .integration{
-            molCardURL = configData.endpoints?.landingPageQuizCardUrl2 ?? "/quiz/services/card/v1/\(MOLTheme.currentGameID ?? "uclmoreorless")/gamelist?langCode=\(QuizzGameSDk.game.getAppLanguage())&isGuestUser=\(!GamingHubCards.isLoggedIn)"
+            molCardURL = configData.endpoints?.landingPageQuizCardUrl2 ?? "/quiz/services/card/v1/\(MOLTheme.currentGameID ?? "uclmoreorless")/gamelist?langCode=\(MolGameSDk.game.getAppLanguage())&isGuestUser=\(!GamingHubCards.isLoggedIn)"
         }else{
             molCardURL = configData.endpoints?.landingPageQuizCardUrl2 ?? ""
         }
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
-        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
       //  molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
         
         molCardURL = molCardURL + "&buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD)
@@ -44,9 +44,9 @@ class MolOtherApi {
             onFailure?("Couldnt fetch config data")
             return
         }
-        var molCardURL = configData.endpoints?.landingPageQuizCardPointUrl ?? "/quiz/services/card/v2/\(MOLTheme.currentGameID ?? "uclmoreorless")/pending-attempt?langCode=\(QuizzGameSDk.game.getAppLanguage())&platformId={platformId}"
+        var molCardURL = configData.endpoints?.landingPageQuizCardPointUrl ?? "/quiz/services/card/v2/\(MOLTheme.currentGameID ?? "uclmoreorless")/pending-attempt?langCode=\(MolGameSDk.game.getAppLanguage())&platformId={platformId}"
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
-        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.platformId, with: Constants.appData.platformID.description)
        // molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
         
@@ -78,7 +78,7 @@ class MolOtherApi {
            molCardURL =  (configData.endpoints?.guestUserLeaderBoardTopRankingUrlV2 ?? "") + "?buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD)
        }
         //molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
-        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
 //        eotScoreURL = eotScoreURL.replacingOccurrences(of: NetworkConstants().urlKeys.tourId, with: Constants.appData.tourId.toString())
         
         NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: molCardURL, onSuccess: { responseJSON in
@@ -106,7 +106,7 @@ class MolOtherApi {
         }else{
             molCardURL = (configData.endpoints?.guestUserOverViewLeaderBoardUrlV2 ?? "") + ("?buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD))
         }
-        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
         //molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
 //        eotScoreURL = eotScoreURL.replacingOccurrences(of: NetworkConstants().urlKeys.tourId, with: Constants.appData.tourId.toString())
         
@@ -138,7 +138,7 @@ class MolOtherApi {
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.offSet, with: "\(offset ?? 0)")
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.totalCount, with: "\(count ?? 0)")
         molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizType, with: "\(quizId ?? "")")
-        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
         NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: molCardURL, onSuccess: { responseJSON in
             let data:GenericResponseModel<leaderboardRankValue> = NetworkHelper.getDecodedData(from: responseJSON)
             if let value = data.Data.Value{

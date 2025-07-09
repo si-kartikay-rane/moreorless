@@ -12,7 +12,7 @@ public class QuizSDKConnection {
     public init() {}
     
     public func openViewController(from viewController: UIViewController) {
-        let QuizApp =  QuizSplashView()
+        let QuizApp =  MolSplashView()
         viewController.host(component: AnyView(QuizApp), into: viewController.view)
         
     }

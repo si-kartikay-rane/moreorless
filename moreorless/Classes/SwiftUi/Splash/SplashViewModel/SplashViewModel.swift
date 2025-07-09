@@ -12,7 +12,7 @@ class SplashVM:ObservableObject{
     @Published var isLogin:Bool =  false
     
     func loginUserSession(onCompletion: @escaping ((Bool, String?) -> ())){
-        QuizzGameSDk.game.refreshUserLogin { success, error in
+        MolGameSDk.game.refreshUserLogin { success, error in
             onCompletion(success, error)
         }
     }
@@ -22,9 +22,9 @@ class SplashVM:ObservableObject{
         GamingHubCards.logout()
         let defaults = UserDefaults.standard
         guard let gameId = MOLTheme.currentGameID else { return }
-        QuizzGameSDk.game.store.QuizUser =  nil
-        QuizzGameSDk.game.store.cardData = nil
-        QuizzGameSDk.game.store.guestData = []
+        MolGameSDk.game.store.QuizUser =  nil
+        MolGameSDk.game.store.cardData = nil
+        MolGameSDk.game.store.guestData = []
         defaults.removeObject(forKey: "GuestData" + (gameId))
         defaults.removeObject(forKey: "isTutorialVisited")
         defaults.removeObject(forKey: "isMyTeamFilterTooltipVisited")

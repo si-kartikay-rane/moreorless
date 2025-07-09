@@ -204,7 +204,7 @@ public class Game: UIViewController {
             let user = GamingHubCards.user
             userStateLabel.text = "Logged in user: \(user.username)"
         }else{
-            QuizzGameSDk.game.store.QuizUser =  nil
+            MolGameSDk.game.store.QuizUser =  nil
             loginButton.isHidden = false
             userStateLabel.text = nil
         }

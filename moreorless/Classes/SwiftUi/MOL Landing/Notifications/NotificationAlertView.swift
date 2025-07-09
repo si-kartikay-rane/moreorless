@@ -33,7 +33,7 @@ struct NotificationAlertView: View {
                                 showToast = true
                             }) {
                                 VStack{
-                                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                                         .renderingMode(.template)
                                         .resizable()
                                         .foregroundColor(MOLTheme.getColor(named: .QSDK_9E9AA5))

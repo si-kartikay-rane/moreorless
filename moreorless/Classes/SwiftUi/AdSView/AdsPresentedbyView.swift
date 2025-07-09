@@ -60,7 +60,7 @@ struct AdsPresentedbyView: View {
                             HStack(spacing: 10){
                                 KFImage(URL(string: viewModel.ImageUrl ?? ""))
                                     .placeholder {
-                                        MOLTheme.getImage(named:QuizImageName.QPSDKAdsImage.name)?
+                                        MOLTheme.getImage(named:MolImageName.QPSDKAdsImage.name)?
                                             .resizable()
                                     }
                                     .retry(maxCount: 3, interval: .seconds(5))
@@ -80,7 +80,7 @@ struct AdsPresentedbyView: View {
                             
                             KFImage(URL(string: viewModel.ImageUrl ?? ""))
                                 .placeholder {
-                                    MOLTheme.getImage(named:QuizImageName.QPSDKAdsImage.name)?
+                                    MOLTheme.getImage(named:MolImageName.QPSDKAdsImage.name)?
                                         .resizable()
                                 }
                                 .retry(maxCount: 3, interval: .seconds(5))
@@ -99,7 +99,7 @@ struct AdsPresentedbyView: View {
         }
     }
     var PlaceHolder:some View{
-        Image(uiImage:MOLTheme.getImage(named:QuizImageName.QPSDKAdsImage.name) ?? UIImage())
+        Image(uiImage:MOLTheme.getImage(named:MolImageName.QPSDKAdsImage.name) ?? UIImage())
             .resizable()
         .frame(width: 70, height: 50)
         .scaledToFit()
@@ -119,17 +119,17 @@ struct AdsSponsorsView: View {
 struct AdMobBannerView: UIViewRepresentable {
     func makeUIView(context: Context) -> GADBannerView {
         let bannerView = GADBannerView(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        if let adUnitId = Constants.configData?.adBanner?[QuizzGameSDk.game.getAppLanguage()]{
+        if let adUnitId = Constants.configData?.adBanner?[MolGameSDk.game.getAppLanguage()]{
             bannerView.adUnitID = adUnitId
         }
         
-        bannerView.rootViewController = QuizzGameSDk.game.getQuizzerRootViewController()
+        bannerView.rootViewController = MolGameSDk.game.getQuizzerRootViewController()
         let request = GAMRequest()
         request.customTargeting = ["pos": "top"]
         
         /// Set correlator:
         let extras = GADExtras()
-        extras.additionalParameters = ["correlator": QuizzGameSDk.game.QuizzerGenerateRandom16DigitUInt()];
+        extras.additionalParameters = ["correlator": MolGameSDk.game.QuizzerGenerateRandom16DigitUInt()];
         request.register(extras)
         
         bannerView.load(request)

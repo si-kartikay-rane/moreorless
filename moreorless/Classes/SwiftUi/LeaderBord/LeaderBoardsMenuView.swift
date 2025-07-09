@@ -71,14 +71,14 @@ struct LeaderBoardsMenuView: View {
                     AdsSponsorsView().frame(width: MOLTheme.isIpad ? 320 : UIScreen.screenWidth-32)
             }
                 NavigationLink("", destination: LeaderboardView( selectedLeaderBoardType: self.quizViewModel.selectedLeaderBoardType).navigationBarTitleDisplayMode(.inline),isActive:$showLeaderBoardView)
-            }.padding([.top,.bottom], QuizzGameSDk.game.sponsorModel?.imageUrl == nil ? 16 : 0)
+            }.padding([.top,.bottom], MolGameSDk.game.sponsorModel?.imageUrl == nil ? 16 : 0)
             .navigationBarItems(leading:
                                 Button(action: {
                 if  NetworkWrapper.isInternerConnected(){
                     self.presentationMode.wrappedValue.dismiss()
                 }
         }) {
-            Image(uiImage:MOLTheme.getImage(named:QuizImageName.QSDK_NavBack.name) ?? UIImage())
+            Image(uiImage:MOLTheme.getImage(named:MolImageName.QSDK_NavBack.name) ?? UIImage())
                 .imageScale(.large)
                
         }
@@ -93,7 +93,7 @@ struct LeaderBoardsMenuView: View {
             Track.shared.screen(screen: current_screen_name, params: [:], replace: nil)
             Track.shared.trackSponsor(slot: "header", analyticsDomainName: analyticsDomainName, analyticsData: analyticsData)
             self.quizViewModel.LeaderBoardMenufun()
-            MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
+            MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
         }
     }
     
@@ -140,7 +140,7 @@ struct LeaderBoardsMenuView: View {
                                 }else{
                                     Text(Constants.isLogin ? "\("")" : "")
                                 }
-                                Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDK_RightArrow.name) ?? UIImage()).frame(width:24,height: 24)
+                                Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_RightArrow.name) ?? UIImage()).frame(width:24,height: 24)
                             }
                             if(index !=  self.quizViewModel.LeaderBoardMenu.count - 1)
                             {
@@ -164,13 +164,13 @@ struct LeaderBoardsMenuView: View {
     {
         switch quiztype {
         case 1:
-            return QuizImageName.RandomQuizicon.name
+            return MolImageName.RandomQuizicon.name
         case 2:
-            return  QuizImageName.QSDK_Dayily.name
+            return  MolImageName.QSDK_Dayily.name
         case 3:
-            return  QuizImageName.QSDK_MOl.name
+            return  MolImageName.QSDK_MOl.name
         default:
-            return QuizImageName.QSDKLOGO.name
+            return MolImageName.QSDKLOGO.name
         }
     }
 }

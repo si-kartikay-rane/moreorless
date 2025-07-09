@@ -1,5 +1,5 @@
 //
-//  QuizzGameSDk.swift
+//  MolGameSDk.swift
 //  UEFAQuizSDK
 //
 //  Created by Vishal Vijayvargiya on 24/08/23.
@@ -9,10 +9,10 @@ import Foundation
 import SwiftyJSON
 import GamesLib
 
-class QuizzGameSDk {
+class MolGameSDk {
     
-    static var game: QuizzGameSDk = QuizzGameSDk()
-    let store: QuizzGameSDk.Store
+    static var game: MolGameSDk = MolGameSDk()
+    let store: MolGameSDk.Store
     
     private var translationData: JSON?
     //Sponsor
@@ -20,7 +20,7 @@ class QuizzGameSDk {
     
     init() {
         //tourId = "60" //config.tour_id
-        store = QuizzGameSDk.Store()
+        store = MolGameSDk.Store()
     }
     
     private(set) var initAPIs: InitAPIs = {
@@ -41,12 +41,12 @@ class QuizzGameSDk {
     
     func refreshTranslationData(onCompletion: @escaping((Bool, String?) -> ())) {
         //since trans is stored in local storage, refresh it only when there is version change
-//        guard  UserDefaultsData.shared.currentLang != QuizzGameSDk.game.getAppLanguage() else {
+//        guard  UserDefaultsData.shared.currentLang != MolGameSDk.game.getAppLanguage() else {
 //            onCompletion(true,nil)
 //            return
 //        }
         self.initAPIs.getTranslationData { [weak self] response in
-            UserDefaultsData.shared.currentLang = QuizzGameSDk.game.getAppLanguage()
+            UserDefaultsData.shared.currentLang = MolGameSDk.game.getAppLanguage()
             self?.store.setTranslations(data: response)
             LocalDataHelper().saveDataToLocal(type: .Translation)
             //UserDefaultsData.shared.translationVersion = Constants.configData?.apiVersions?.transVersion ?? 1
@@ -102,7 +102,7 @@ class QuizzGameSDk {
 }
 
 
-extension QuizzGameSDk{
+extension MolGameSDk{
     
     func getSponsorsForGame(gameid:String?,competitionid:Int?){
         guard self.sponsorModel == nil else {return}

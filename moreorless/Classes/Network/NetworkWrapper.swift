@@ -218,7 +218,7 @@ class NetworkWrapper: NSObject {
     func getURL(url:String, type: URLType = .BASE_URL) -> URL?{
         var urls = url.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
         urls =  urls.replacingOccurrences(of: NetworkConstants().urlKeys.platformId, with: "\(Constants.appData.platformID)")
-        urls = urls.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        urls = urls.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
         switch type {
         case .BASE_URL:
             //to avoid any mistakes in url as config as urls starting with '/' and without '/' also

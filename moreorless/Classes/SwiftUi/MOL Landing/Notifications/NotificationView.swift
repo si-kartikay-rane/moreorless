@@ -33,7 +33,7 @@ struct NotificationsView: View {
                     Spacer()
                     ZStack(alignment: .top){
                         VStack {
-                            Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_Notification.name : "") ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_Notification.name : "") ?? UIImage())
                                 .resizable()
                             //.scaledToFill()
                         }.frame(width:  96, height:  96)
@@ -45,7 +45,7 @@ struct NotificationsView: View {
                                 Spacer()
                                 Button(action: { notificationsvm.didCloseNotificationCard() }) {
                                     VStack{
-                                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                                             .resizable()
                                             .frame(width: 15, height: 15)
                                     }

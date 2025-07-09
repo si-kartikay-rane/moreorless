@@ -22,7 +22,7 @@ struct MLQuestionAnsView: View {
     @State private var PasstoAnotherView = false
     @Binding var Observer : Bool
     @State var popups = PopupsState()
-    @StateObject var QuizviewModel = QuizViewModel()
+//    @StateObject var QuizviewModel = QuizViewModel()
     @State private var ObserveNotifications = false
     @Binding var PasstoNavigationView:Bool
     @Binding var isActive : Bool
@@ -83,7 +83,7 @@ struct MLQuestionAnsView: View {
                
             }
         }) {
-            Image(uiImage:MOLTheme.getImage(named:QuizImageName.QSDK_NavigationClose.name) ?? UIImage())
+            Image(uiImage:MOLTheme.getImage(named:MolImageName.QSDK_NavigationClose.name) ?? UIImage())
             
         }
         )
@@ -94,9 +94,9 @@ struct MLQuestionAnsView: View {
             self.MLViewModel.cardSelection = self.cardData
             
              if MOLTheme.currentGameID == "uwclmoreorless" || MOLTheme.currentGameID == "uclmoreorless" || MOLTheme.currentGameID == "weuromoreorless"{
-                MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
+                MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
             }else if MOLTheme.currentGameID == "euromoreorless"{
-                MOLTheme.currentnavigation!.style(style: .withBgImageEuro(image: MOLTheme.getImage(named: QuizImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
+                MOLTheme.currentnavigation!.style(style: .withBgImageEuro(image: MOLTheme.getImage(named: MolImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
             } else {
                 MOLTheme.currentnavigation!.style(style: .blue())
             }
@@ -130,14 +130,14 @@ struct MLQuestionAnsView: View {
             }
 //            if self.PasstoNavigationView{
 //                if MOLTheme.currentGameID == "uclmoreorless"{
-//                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
+//                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
 //                }else{
 //                    
 //                }
 //            }
             
         }.popup(isPresented: $popups.showingBottomFirst, type: !MOLTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: true) : .default, position: .bottom, closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
-            ExitBottomPopup(isPresented: $popups.showingBottomFirst, quiztype: self.cardData?.quiztypeid ?? 0,replaceString: "\(self.MLViewModel.currentQuestionIndex)", quizId: self.MLViewModel.quizID, gameType: "mol",viewModel: self.QuizviewModel,MLViewModel: MLViewModel,onDismiss:{
+            ExitBottomPopup(isPresented: $popups.showingBottomFirst, quiztype: self.cardData?.quiztypeid ?? 0,replaceString: "\(self.MLViewModel.currentQuestionIndex)", quizId: self.MLViewModel.quizID, gameType: "mol",/*viewModel: self.QuizviewModel,*/MLViewModel: MLViewModel,onDismiss:{
                 self.PasstoNavigationView =  true
                 self.Observer =  false
 //                self.presentationMode.wrappedValue.dismiss()
@@ -212,7 +212,7 @@ struct MLQuestionAnsView: View {
                     Text(String(describing: MLViewModel.streakTotal))
                         .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
-                    Image(uiImage: MOLTheme.getImage(named: QuizImageName.Ml_Streak.name) ?? UIImage())
+                    Image(uiImage: MOLTheme.getImage(named: MolImageName.Ml_Streak.name) ?? UIImage())
                         .resizable()
                         .frame(width: 24, height: 24)
                 }
@@ -312,13 +312,13 @@ struct MLQuestionAnsView: View {
                 ZStack{
                     if MLViewModel.progress == 0{
                         KFImage(URL(string: MLViewModel.questionCard?.playerimg ?? "https://panenka.uefa.com/panenka/fallback/generic-head.svg")).placeholder {
-                            MOLTheme.getImage(named:QuizImageName.ML_PlayerPlaceholder.name)?
+                            MOLTheme.getImage(named:MolImageName.ML_PlayerPlaceholder.name)?
                                 .resizable()
                         }
                         .retry(maxCount: 3, interval: .seconds(10)).resizable().background(Color.white).clipShape(.circle).scaleEffect(MLViewModel.bodarrprogress == 1 ? 0 : 1)
                     }else{
                         
-                        Image(uiImage: MOLTheme.getImage(named: (self.MLViewModel.isCorrectWronfAns == 1) ? QuizImageName.ML_Correct.name : (self.MLViewModel.isCorrectWronfAns == 0) ? QuizImageName.ML_Incorrect.name : "" ) ?? UIImage()).resizable().clipShape(.circle).scaleEffect(MLViewModel.bodarrprogress == 1 ? 1 : 0)
+                        Image(uiImage: MOLTheme.getImage(named: (self.MLViewModel.isCorrectWronfAns == 1) ? MolImageName.ML_Correct.name : (self.MLViewModel.isCorrectWronfAns == 0) ? MolImageName.ML_Incorrect.name : "" ) ?? UIImage()).resizable().clipShape(.circle).scaleEffect(MLViewModel.bodarrprogress == 1 ? 1 : 0)
                     }
                 }.frame(width:MOLTheme.isIpad ? 80 : 60,height: MOLTheme.isIpad ? 80 : 60).padding(.top,20)
                 
@@ -359,7 +359,7 @@ struct MLQuestionAnsView: View {
                                 self.MLViewModel.loadQuestionsFromJSON(moreless:0)
                                 self.MLViewModel.isAnsAttemptClick =  true
                             }) {
-                                Image(uiImage: MOLTheme.getImage(named: QuizImageName.ML_Sub_off.name) ?? UIImage()).resizable().frame(width: 48,height: 48)
+                                Image(uiImage: MOLTheme.getImage(named: MolImageName.ML_Sub_off.name) ?? UIImage()).resizable().frame(width: 48,height: 48)
                             }.disabled(self.MLViewModel.isAnsAttemptClick)
                             
                             Button(action: {
@@ -368,7 +368,7 @@ struct MLQuestionAnsView: View {
                                 self.MLViewModel.loadQuestionsFromJSON(moreless:1)
                                 self.MLViewModel.isAnsAttemptClick =  true
                             }) {
-                                Image(uiImage: MOLTheme.getImage(named: QuizImageName.ML_Sub_in.name) ?? UIImage()).resizable().frame(width: 48,height: 48)
+                                Image(uiImage: MOLTheme.getImage(named: MolImageName.ML_Sub_in.name) ?? UIImage()).resizable().frame(width: 48,height: 48)
                             }.disabled(self.MLViewModel.isAnsAttemptClick)
                             
                         }
@@ -476,7 +476,7 @@ struct MLQuestionAnsView: View {
                             
                             HStack(alignment: .center, spacing: 6) {
                                 
-                                Image(uiImage:MOLTheme.getImage(named:QuizImageName.ML_addedTime.name) ?? UIImage())//.resizable()
+                                Image(uiImage:MOLTheme.getImage(named:MolImageName.ML_addedTime.name) ?? UIImage())//.resizable()
                                     .frame(width: 16,height: 16)
                                 //let testcase = (viewModel.fiftyFiftyEnabled ? (AppStrings.booster1.getTranslationValue(default: "50-50") + " " + AppStrings.boosteractive.getTranslationValue(default: "active")) :  viewModel.isUsedfityfifty ? (AppStrings.booster1.getTranslationValue(default: "50-50") + " " + AppStrings.boosterplayed.getTranslationValue(default: "played")) : AppStrings.booster1.getTranslationValue(default: "50-50"))
                                 Text("Added time")
@@ -532,7 +532,7 @@ struct MLQuestionAnsView: View {
                         }) {
                             HStack(alignment: .center, spacing: 6) {
                                 
-                                Image(uiImage:MOLTheme.getImage(named:QuizImageName.ML_Switch.name) ?? UIImage())
+                                Image(uiImage:MOLTheme.getImage(named:MolImageName.ML_Switch.name) ?? UIImage())
                                     .frame(width: 16,height: 16)
                                // let testcase = (viewModel.sneakPeakEnabled ? (AppStrings.booster2.getTranslationValue(default: "VRA") + " " + AppStrings.boosteractive.getTranslationValue(default: " active")) : viewModel.isUsedVRA ? (AppStrings.booster2.getTranslationValue(default: "VRA") + " " + AppStrings.boosterplayed.getTranslationValue(default: "Retake played")) : AppStrings.booster2.getTranslationValue(default: "VAR") )
                                 
@@ -599,7 +599,7 @@ struct QuestionComparePlayerCard: View {
         VStack(alignment:.leading,spacing: 0){
             HStack(spacing:8){
                 KFImage(URL(string: playerCardvalue.playerimg ?? "https://panenka.uefa.com/panenka/fallback/generic-head.svg")).placeholder {
-                    MOLTheme.getImage(named:QuizImageName.ML_PlayerPlaceholder.name)?
+                    MOLTheme.getImage(named:MolImageName.ML_PlayerPlaceholder.name)?
                         .resizable()
                 }
                 .retry(maxCount: 3, interval: .seconds(10)).resizable().frame(width: 48,height: 48).background(Color.white).clipShape(.circle)

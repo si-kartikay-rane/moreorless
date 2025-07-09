@@ -180,8 +180,8 @@ class HomeLandingViewModel:ObservableObject{
                         self.HideLoadMore =  false
                     }
                     let  userinfo = data.userInfo ?? []
-                    let selfrank  =  userinfo.first(where: {$0.guid == QuizzGameSDk.game.store.QuizUser?.userGUID})
-                    if selfrank?.guid == QuizzGameSDk.game.store.QuizUser?.userGUID{
+                    let selfrank  =  userinfo.first(where: {$0.guid == MolGameSDk.game.store.QuizUser?.userGUID})
+                    if selfrank?.guid == MolGameSDk.game.store.QuizUser?.userGUID{
                         self.HideSelfRank = true
                     }
                     self.arrayleaderboardRanking = data.userInfo ?? []

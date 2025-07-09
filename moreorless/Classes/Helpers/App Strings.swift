@@ -144,10 +144,10 @@ final class quiztypeTracking{
 }
 
 final class shareURls{
-    static let invitefrnd = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/"
-    static let leaderBoard = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/"
-    static let gamePlay = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/\(MOLTheme.currentGameID ?? "uclmoreorless")"
-    static let scorescreen  = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/"
+    static let invitefrnd = AppBaseURLs.shareDomin + "/\(MolGameSDk.game.getAppLanguage())/"
+    static let leaderBoard = AppBaseURLs.shareDomin + "/\(MolGameSDk.game.getAppLanguage())/"
+    static let gamePlay = AppBaseURLs.shareDomin + "/\(MolGameSDk.game.getAppLanguage())/\(MOLTheme.currentGameID ?? "uclmoreorless")"
+    static let scorescreen  = AppBaseURLs.shareDomin + "/\(MolGameSDk.game.getAppLanguage())/"
     
 }
 

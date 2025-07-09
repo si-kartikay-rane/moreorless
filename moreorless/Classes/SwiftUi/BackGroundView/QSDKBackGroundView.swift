@@ -12,7 +12,7 @@ struct QSDKBackGroundView: View {
         ZStack {
             MOLTheme.getColor(named: .QSDKBackGround_000040)
                 .ignoresSafeArea()
-            Image(uiImage:MOLTheme.getImage(named:QuizImageName.QSDKtrofiBanner.name) ?? UIImage())
+            Image(uiImage:MOLTheme.getImage(named:MolImageName.QSDKtrofiBanner.name) ?? UIImage())
                  .resizable()
                  .scaledToFit()
                  .edgesIgnoringSafeArea(.all)

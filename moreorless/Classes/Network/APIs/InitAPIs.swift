@@ -62,7 +62,7 @@ class InitAPIs {
         request.profilePic = user.avatar.url
         request.favTeamCode = ""
         request.clientId = 1
-        request.gameplaydetail =   self.guestuserdata() ?? [] //QuizzGameSDk.game.store.getGuestData()
+        request.gameplaydetail =   self.guestuserdata() ?? [] //MolGameSDk.game.store.getGuestData()
         
         
         do {
@@ -82,7 +82,7 @@ class InitAPIs {
         NetworkWrapper.shared.POST(type: .DETAIL_BASE_URL, url: loginURL, params: request, onSuccess: { responseJSON in
             
             let data: GenericResponseModel<QUserLoginResponseModel> = NetworkHelper.getDecodedData(from: responseJSON)
-            QuizzGameSDk.game.store.setGuestData(data: nil)
+            MolGameSDk.game.store.setGuestData(data: nil)
             UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
             LocalDataHelper().deleteDataFromLocal(type: .GuestData)
             Constants.isLogin =  GamingHubCards.isLoggedIn

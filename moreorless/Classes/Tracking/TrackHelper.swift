@@ -23,7 +23,7 @@ class Track {
                                          "ua_event_name" : "gaEvent"]
                                          //"screen_name": screenname] //"\(GAMEID)_interaction" : name ?? "-", //"uclmoreorless",
                
-        if let name = QuizzGameSDk.game.sponsorModel?.code {
+        if let name = MolGameSDk.game.sponsorModel?.code {
             eventParams["partners"] = name
         }
         
@@ -56,7 +56,7 @@ class Track {
 
     func screen(screen: String, params: [String: String]?, replace: String? = nil,replace2:String? = nil,quizId:String? = nil, quizTitle:String? = nil, gaPageTitle:String? = nil,gaPageSubType: String? = nil){
         if let config = Constants.configData, let partners = config.pageTrackConstants{
-            let lang = QuizzGameSDk.game.getAppLanguage().uppercased()
+            let lang = MolGameSDk.game.getAppLanguage().uppercased()
 
             //get config track constants
             if replace != nil || replace2 != nil || quizId != nil{
@@ -78,7 +78,7 @@ class Track {
                 eventParams["page_sub_type"] = pageSubType
                 eventParams["screen_name"] = screenName
                 
-                if let name = QuizzGameSDk.game.sponsorModel?.code {
+                if let name = MolGameSDk.game.sponsorModel?.code {
                     eventParams["partners"] = name
                 }
                 GamingHubCards.trackScreen(screenName, parameters: eventParams, domain: screen, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
@@ -86,7 +86,7 @@ class Track {
                 var eventParams = partners[screen] ?? [:]
                 eventParams["page_language"] = lang
                 let screenName = eventParams["page_name"] ?? "-"
-                if let name = QuizzGameSDk.game.sponsorModel?.code {
+                if let name = MolGameSDk.game.sponsorModel?.code {
                     eventParams["sponsor"] = name
                 }
                 eventParams["screen_name"] = screenName
@@ -101,13 +101,13 @@ class Track {
 //MARK: Sponsor tracking
 extension Track{
     func trackSponsor(slot: String,analyticsDomainName: String, analyticsData: TrackingParameters){
-        if let sponsor = QuizzGameSDk.game.sponsorModel{
+        if let sponsor = MolGameSDk.game.sponsorModel{
             GamingHubCards.trackSponsor(name: sponsor.code ?? .empty, creativeName: "exclusive-section" , slot: slot, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
 
         }
     }
     func trackSponsorClick(analyticsDomainName: String, analyticsData: TrackingParameters){
-        if let sponsor = QuizzGameSDk.game.sponsorModel{
+        if let sponsor = MolGameSDk.game.sponsorModel{
             GamingHubCards.trackSponsor(name: sponsor.code ?? .empty, creativeName: "exclusive-section" , domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
         }
     }
@@ -122,7 +122,7 @@ extension Track{
 
         
         if let config = Constants.configData, let partners = config.pageTrackConstants{
-            let lang = QuizzGameSDk.game.getAppLanguage().uppercased()
+            let lang = MolGameSDk.game.getAppLanguage().uppercased()
 
             //get config track constants
             if replace != nil{
@@ -162,7 +162,7 @@ extension Track{
     
     func get_screen_domain_params(screen: String, params: [String: String]?, replace: String? = nil,replace2:String? = nil,quizId:String? = nil, quizTitle:String? = nil, gaPageTitle:String? = nil,gaPageSubType: String? = nil) -> (analyticsDomainName: String, analyticsData: TrackingParameters) {
         if let config = Constants.configData, let partners = config.pageTrackConstants{
-            let lang = QuizzGameSDk.game.getAppLanguage().uppercased()
+            let lang = MolGameSDk.game.getAppLanguage().uppercased()
             
             //get config track constants
             if replace != nil || replace2 != nil || quizId != nil{
@@ -184,7 +184,7 @@ extension Track{
                 eventParams["page_sub_type"] = pageSubType
                 eventParams["screen_name"] = screenName
                 
-                if let name = QuizzGameSDk.game.sponsorModel?.code {
+                if let name = MolGameSDk.game.sponsorModel?.code {
                     eventParams["partners"] = name
                 }
                 let analyticsDomainName = screen
@@ -197,7 +197,7 @@ extension Track{
                 eventParams["page_language"] = lang
                 let screenName = eventParams["page_name"] ?? "-"
                 //                eventParams["lang"] = lang
-                if let name = QuizzGameSDk.game.sponsorModel?.code {
+                if let name = MolGameSDk.game.sponsorModel?.code {
                     //eventParams["partners"] = name
                     eventParams["sponsor"] = name
                 }

@@ -28,7 +28,7 @@ struct NotificationToastView: View {
                 .frame(width: 48, height: 48)
                 .padding(.top, 4)
                 .overlay(
-                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_NotificationClose.name : "") ?? UIImage())
+                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_NotificationClose.name : "") ?? UIImage())
                         .resizable()
                         .frame(width: 24, height: 24)
                 )
@@ -45,7 +45,7 @@ struct NotificationToastView: View {
                     showToast = false
                 }) {
                     VStack{
-                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                             .renderingMode(.template)
                             .resizable()
                             .foregroundColor(MOLTheme.getColor(named: .QSDK_9E9AA5))
@@ -79,7 +79,7 @@ struct NotificationToastView: View {
                     .frame(width: 48, height: 48)
                     .padding(.top, 4)
                     .overlay(
-                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_NotificationClose.name : "") ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_NotificationClose.name : "") ?? UIImage())
                             .resizable()
                             .frame(width: 24, height: 24)
                     )
@@ -96,7 +96,7 @@ struct NotificationToastView: View {
                         showToast = false
                     }) {
                         VStack{
-                            Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                                 .renderingMode(.template)
                                 .resizable()
                                 .foregroundColor(MOLTheme.getColor(named: .QSDK_9E9AA5))

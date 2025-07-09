@@ -9,7 +9,7 @@ import SwiftUI
 import GamesLib
 import Combine
 
-struct QuizSplashView: View {
+struct MolSplashView: View {
 
     @State var addShow:Bool =  false
     @State private var orientation: UIInterfaceOrientation = .unknown
@@ -38,14 +38,14 @@ struct QuizSplashView: View {
                 VStack(alignment: .center) {
                     
                     if MOLTheme.currentGameID == "uwclmoreorless"{
-                        Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashLogo.name) ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MolImageName.quizspashLogo.name) ?? UIImage())
                             .resizable()
                             .frame(width: MOLTheme.currentGameID == "euromoreorless" ? 100.83: 211, height: 149)
                             .scaledToFit()
                             .padding(.top, (MOLTheme.isIpad && !orientation.isLandscape) ? 205 : 133)
                             .padding(.bottom,55)
                         if MOLTheme.currentGameID == "euroquiz"{
-                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.euroQuizView.name) ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MolImageName.euroQuizView.name) ?? UIImage())
                                 .resizable()
                                 .frame(width: 210,height: 210)
                             
@@ -54,7 +54,7 @@ struct QuizSplashView: View {
                     }
                     
 //                    if MOLTheme.currentGameID != "uclmoreorless"{
-//                        Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashLogo.name) ?? UIImage())
+//                        Image(uiImage: MOLTheme.getImage(named: MolImageName.quizspashLogo.name) ?? UIImage())
 //                            .resizable()
 //                            .frame(width: MOLTheme.currentGameID == "euromoreorless" ? 100.83: 211, height: 149)
 //                            .scaledToFit()
@@ -72,7 +72,7 @@ struct QuizSplashView: View {
 //                        }
 //                        
 //                        if MOLTheme.currentGameID == "euromoreorless"{
-//                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.euromoreorlessView.name) ?? UIImage())
+//                            Image(uiImage: MOLTheme.getImage(named: MolImageName.euromoreorlessView.name) ?? UIImage())
 //                                .resizable()
 //                                .frame(width: 210,height: 210)
 //                            
@@ -88,7 +88,7 @@ struct QuizSplashView: View {
                     }
                     if MOLTheme.currentGameID == "uclmoreorless"{
                         if MOLTheme.isIpad{
-                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashLogo.name) ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MolImageName.quizspashLogo.name) ?? UIImage())
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 260,height: 260)
@@ -100,11 +100,11 @@ struct QuizSplashView: View {
                                     .font(.caption)
                             }
                             Spacer()
-                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.euroQuizView.name) ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MolImageName.euroQuizView.name) ?? UIImage())
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 200,height: 200)
-                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.euroStadTop.name) ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MolImageName.euroStadTop.name) ?? UIImage())
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 156)
@@ -114,13 +114,13 @@ struct QuizSplashView: View {
                     if MOLTheme.currentGameID == "weuromoreorless"{
                             
                         if MOLTheme.isIpad{
-                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashIpadLogo.name) ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MolImageName.quizspashIpadLogo.name) ?? UIImage())
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 260,height: 260)
                                 .padding(.top, (MOLTheme.isIpad && !orientation.isLandscape) ? 205 : 100)
                         }else{
-                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashLogo.name) ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MolImageName.quizspashLogo.name) ?? UIImage())
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 210,height: 210)
@@ -138,7 +138,7 @@ struct QuizSplashView: View {
                             }
                         }
                         .padding(.leading,10)
-                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.euroQuizView.name) ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MolImageName.euroQuizView.name) ?? UIImage())
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: MOLTheme.isIpad ? 380 : 300,height: MOLTheme.isIpad ? 380 : 300)
@@ -211,11 +211,11 @@ struct QuizSplashView: View {
     
     private var backgroundImageView: Image {
         if idiom != .pad {
-            return Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDKSplashIPhoneBG.name) ?? UIImage())
+            return Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDKSplashIPhoneBG.name) ?? UIImage())
         } else if orientation.isLandscape && (UIScreen.main.bounds.width > UIScreen.main.bounds.height){
-            return Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDKSplashIPadLandscapeBG.name) ?? UIImage())
+            return Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDKSplashIPadLandscapeBG.name) ?? UIImage())
         } else {
-            return Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDKSplashIPadPortraitBG.name) ?? UIImage())
+            return Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDKSplashIPadPortraitBG.name) ?? UIImage())
         }
     }
 

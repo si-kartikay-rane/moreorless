@@ -133,7 +133,7 @@ struct leaderboardCellview:View{
                                 Text(String(topRanking.level ?? 0))
                                     .font(Font.swiftUICustomFont(customFont: .Champions_Light, size: 8))
                                     .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
-                                    .background(Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDK_PointBg.name) ?? UIImage()))
+                                    .background(Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_PointBg.name) ?? UIImage()))
                                     .lineLimit(1)
                             }.padding(.trailing,5)
                                 .padding(.top,25)
@@ -143,7 +143,7 @@ struct leaderboardCellview:View{
                                     ZStack {
                                         KFImage(URL(string: MOLTheme.urlavtra(url: topranking?[Index].avatar ?? "")))
                                             .placeholder {
-                                                MOLTheme.getImage(named:QuizImageName.QSDK_GamingAvatarRed.name)
+                                                MOLTheme.getImage(named:MolImageName.QSDK_GamingAvatarRed.name)
                                             }
                                             .retry(maxCount: 3, interval: .seconds(5))
                                             .resizable()

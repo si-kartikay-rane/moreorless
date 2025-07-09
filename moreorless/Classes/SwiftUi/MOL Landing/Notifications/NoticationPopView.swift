@@ -26,7 +26,7 @@ struct NoticationPopView: View {
                         HStack {
                             Spacer()
                             Button(action: { notificationPopUp = false }) {
-                                MOLTheme.getImage(named:QuizImageName.QSDK_NotificationPopUpClose.name)?
+                                MOLTheme.getImage(named:MolImageName.QSDK_NotificationPopUpClose.name)?
                                     .foregroundColor(.white)
                                     .frame(width: 24, height: 24)
                                     .background(Color.white.opacity(0.2))
@@ -71,7 +71,7 @@ struct NoticationPopView: View {
                             HStack {
                                 Spacer()
                                 Button(action: { notificationPopUp = false }) {
-                                    MOLTheme.getImage(named:QuizImageName.QSDK_NotificationPopUpClose.name)?
+                                    MOLTheme.getImage(named:MolImageName.QSDK_NotificationPopUpClose.name)?
                                         .foregroundColor(.white)
                                         .frame(width: 24, height: 24)
                                         .background(Color.white.opacity(0.2))
