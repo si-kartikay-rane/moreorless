@@ -39,8 +39,11 @@ Pod::Spec.new do |s|
     }
     
     s.dependency 'GamesLib/Native'
+    s.dependency 'GamesLib/CompetitionFonts'
     # needed for mobilde adds:
     s.dependency 'Google-Mobile-Ads-SDK'
+    s.dependency 'Kingfisher'
+    s.dependency 'lottie-ios'
     
     # s.public_header_files = 'Pod/Classes/**/*.h'
     # s.frameworks = 'UIKit', 'MapKit'
@@ -69,27 +72,27 @@ Pod::Spec.new do |s|
     #  }
     #  end
     
-    s.subspec 'uwclquiz' do |uwcl|
+    s.subspec 'uwclmoreorless' do |uwcl|
         uwcl.resource_bundles = {
-            'uwclquiz' => ['moreorless/Assets/themes/uwclmoreorless/**/*.{xcassets,xib,storyboard,strings,png,json}']
+            'uwclmoreorless' => ['moreorless/Assets/themes/uwclmoreorless/**/*.{xcassets,xib,storyboard,strings,png,json}']
         }
     end
     
-    s.subspec 'uclquiz' do |ucl|
+    s.subspec 'uclmoreorless' do |ucl|
         ucl.resource_bundles = {
-            'uclquiz' => ['moreorless/Assets/themes/uclmoreorless/**/*.{xcassets,xib,storyboard,strings,png,json}']
+            'uclmoreorless' => ['moreorless/Assets/themes/uclmoreorless/**/*.{xcassets,xib,storyboard,strings,png,json}']
         }
     end
     
-    s.subspec 'euroquiz' do |euro|
+    s.subspec 'euromoreorless' do |euro|
         euro.resource_bundles = {
-            'euroquiz' => ['moreorless/Assets/themes/euromoreorless/**/*.{xcassets,xib,storyboard,strings,png,json}']
+            'euromoreorless' => ['moreorless/Assets/themes/euromoreorless/**/*.{xcassets,xib,storyboard,strings,png,json}']
         }
     end
     
-    s.subspec 'weuroquiz' do |weuro|
+    s.subspec 'weuromoreorless' do |weuro|
         weuro.resource_bundles = {
-            'weuroquiz' => ['moreorless/Assets/themes/weuromoreorless/**/*.{xcassets,xib,storyboard,strings,png,json}']
+            'weuromoreorless' => ['moreorless/Assets/themes/weuromoreorless/**/*.{xcassets,xib,storyboard,strings,png,json}']
         }
     end
 end

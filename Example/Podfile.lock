@@ -30,24 +30,39 @@ PODS:
   - Kingfisher (8.3.2)
   - lottie-ios (4.4.1)
   - moreorless (0.1.0):
+    - GamesLib/CompetitionFonts
     - GamesLib/Native
     - Google-Mobile-Ads-SDK
-    - moreorless/euroquiz (= 0.1.0)
-    - moreorless/uclquiz (= 0.1.0)
-    - moreorless/uwclquiz (= 0.1.0)
-    - moreorless/weuroquiz (= 0.1.0)
-  - moreorless/euroquiz (0.1.0):
+    - Kingfisher
+    - lottie-ios
+    - moreorless/euromoreorless (= 0.1.0)
+    - moreorless/uclmoreorless (= 0.1.0)
+    - moreorless/uwclmoreorless (= 0.1.0)
+    - moreorless/weuromoreorless (= 0.1.0)
+  - moreorless/euromoreorless (0.1.0):
+    - GamesLib/CompetitionFonts
     - GamesLib/Native
     - Google-Mobile-Ads-SDK
-  - moreorless/uclquiz (0.1.0):
+    - Kingfisher
+    - lottie-ios
+  - moreorless/uclmoreorless (0.1.0):
+    - GamesLib/CompetitionFonts
     - GamesLib/Native
     - Google-Mobile-Ads-SDK
-  - moreorless/uwclquiz (0.1.0):
+    - Kingfisher
+    - lottie-ios
+  - moreorless/uwclmoreorless (0.1.0):
+    - GamesLib/CompetitionFonts
     - GamesLib/Native
     - Google-Mobile-Ads-SDK
-  - moreorless/weuroquiz (0.1.0):
+    - Kingfisher
+    - lottie-ios
+  - moreorless/weuromoreorless (0.1.0):
+    - GamesLib/CompetitionFonts
     - GamesLib/Native
     - Google-Mobile-Ads-SDK
+    - Kingfisher
+    - lottie-ios
   - SwiftyJSON (5.0.2)
 
 DEPENDENCIES:
@@ -62,10 +77,10 @@ DEPENDENCIES:
   - Kingfisher
   - lottie-ios (= 4.4.1)
   - moreorless (from `../`)
-  - moreorless/euroquiz (from `../`)
-  - moreorless/uclquiz (from `../`)
-  - moreorless/uwclquiz (from `../`)
-  - moreorless/weuroquiz (from `../`)
+  - moreorless/euromoreorless (from `../`)
+  - moreorless/uclmoreorless (from `../`)
+  - moreorless/uwclmoreorless (from `../`)
+  - moreorless/weuromoreorless (from `../`)
 
 SPEC REPOS:
   trunk:
@@ -108,9 +123,9 @@ SPEC CHECKSUMS:
   IDP: 33bf7ce7d7f5e042a66bc1ce8d0ee396aa2125be
   Kingfisher: 0621d0ac0c78fecb19f6dc5303bde2b52abaf2f5
   lottie-ios: e047b1d2e6239b787cc5e9755b988869cf190494
-  moreorless: 23968d8cd6cbbc5c8801c3c11e3ec17731997aa1
+  moreorless: eee9ddb48a1e2f9a5b3efd62461da98aed4af18b
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
 
-PODFILE CHECKSUM: 59bdca47595384c97ca3d598ece1fda5b0317c18
+PODFILE CHECKSUM: 6405799db9051e5f8abdf527fd4584e37bf84d8b
 
 COCOAPODS: 1.15.2

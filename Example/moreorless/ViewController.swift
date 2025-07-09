@@ -21,8 +21,8 @@ import SwiftUI
 
 class ViewController: GHPOCViewController {
     
-    //let platforms = ["moreorless", "uclmoreorless", "euromoreorless", "uwclmoreorless", "weuromoreorless"]
-    let platforms = ["quiz", "uclquiz", "euroquiz", "uwclquiz", "weuroquiz"]
+    let platforms = ["moreorless", "uclmoreorless", "euromoreorless", "uwclmoreorless", "weuromoreorless"]
+//    let platforms = ["quiz", "uclquiz", "euroquiz", "uwclquiz", "weuroquiz"]
     //MARK: - Game initialisation - Select GAMEID
     override var gameId: String {
         platforms[1]

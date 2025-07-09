@@ -63,15 +63,15 @@ end
 
 target 'moreorless_Example' do
   pod 'moreorless', :path => '../'
-  pod 'moreorless/uclquiz', :path => '../'
-  pod 'moreorless/uwclquiz', :path => '../'
-  pod 'moreorless/euroquiz', :path => '../'
-  pod 'moreorless/weuroquiz', :path => '../'
+ # pod 'moreorless/uclquiz', :path => '../'
+ # pod 'moreorless/uwclquiz', :path => '../'
+ # pod 'moreorless/euroquiz', :path => '../'
+ # pod 'moreorless/weuroquiz', :path => '../'
 
-#  pod 'moreorless/uclmoreorless', :path => '../'
-#  pod 'moreorless/uwclmoreorless', :path => '../'
-#  pod 'moreorless/euromoreorless', :path => '../'
-#  pod 'moreorless/weuromoreorless', :path => '../'
+  pod 'moreorless/uclmoreorless', :path => '../'
+  pod 'moreorless/uwclmoreorless', :path => '../'
+  pod 'moreorless/euromoreorless', :path => '../'
+  pod 'moreorless/weuromoreorless', :path => '../'
   idp_sdk
 
   gh_core

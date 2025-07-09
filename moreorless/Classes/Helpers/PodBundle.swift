@@ -8,7 +8,7 @@
 import Foundation
 import GamesLib
 
-let GAME__ID = "uclquiz"
+let GAME__ID = "moreorless"
 
 class PodBundle {
     static var bundle: Bundle = {
