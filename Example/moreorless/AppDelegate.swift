@@ -75,11 +75,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func process(url: URL)->Bool{
         let data =   ["url":url] as [String : Any]
         
-        if CurrentGame == "uclquiz" {
+        if CurrentGame == "uclmoreorless" {
             // the game is already opened
             NotificationCenter.default.post(name: .ghOpenLink, object: nil, userInfo: data)
         }else{
-            GamingHubCards.open("uclquiz", data: data)
+            GamingHubCards.open("uclmoreorless", data: data)
         }
         
         return true

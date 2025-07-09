@@ -17,12 +17,12 @@ class QSDKFeatureCardViewModel:ObservableObject{
     @Published var isLoading:Bool =  true
     func getFeatureCardData(){
         let group = DispatchGroup()
-        QuizzGameSDk.game.sponsorModel =  nil
-        QuizzGameSDk.game.getSponsorsForGame(gameid: QUIZTheme.currentGameID, competitionid: QUIZTheme.competitionId)
+        MolGameSDk.game.sponsorModel =  nil
+        MolGameSDk.game.getSponsorsForGame(gameid: MOLTheme.currentGameID, competitionid: MOLTheme.competitionId)
         initAPIs.getConfigData { configData in
             Constants.configData = configData
             group.enter()
-            QuizzGameSDk.game.refreshTranslationData { success, error in
+            MolGameSDk.game.refreshTranslationData { success, error in
                 group.leave()
             }
             

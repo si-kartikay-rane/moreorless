@@ -1,5 +1,5 @@
 //
-//  QuizNotificationsViewModel.swift
+//  MolNotificationsViewModel.swift
 //  quiz
 //
 //  Created by Milind Trivedi on 21/05/25.
@@ -9,7 +9,7 @@ import Foundation
 import GamesLib
 
 
-class QuizNotificationsViewModel : ObservableObject {
+class MolNotificationsViewModel : ObservableObject {
     
     @Published var showLoader = false
     @Published var showNotificationCard: Bool = false
@@ -23,11 +23,11 @@ class QuizNotificationsViewModel : ObservableObject {
             if self.showNotificationCard {
                 GameNotificationsManager.isNotificationsGranted { [weak self] granted in
                     guard let self = self else { return }
-                    if  QUIZTheme.oldNotifcationPermisstion != granted.rawValue {
-                        QUIZTheme.channels.removeAll()
-                        QUIZTheme.isChannelChangedFromBG = false
+                    if  MOLTheme.oldNotifcationPermisstion != granted.rawValue {
+                        MOLTheme.channels.removeAll()
+                        MOLTheme.isChannelChangedFromBG = false
                         self.setStatusforallChannels(isFromBG: true)
-                        QUIZTheme.oldNotifcationPermisstion = granted.rawValue
+                        MOLTheme.oldNotifcationPermisstion = granted.rawValue
                         self.showLoader = false
                     } else {
                         self.checkNotificationSavedTime()
@@ -45,7 +45,7 @@ class QuizNotificationsViewModel : ObservableObject {
     
     @objc func notificationsChannelStatusChanged() {
         DispatchQueue.main.async {
-            GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+            GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
                 switch result {
                 case.success(let channels):
                     self.showNotificationCard = !channels.allSatisfy({ $0.status == true })
@@ -70,7 +70,7 @@ class QuizNotificationsViewModel : ObservableObject {
                         GameNotificationsManager.isNotificationsGranted { granted in
                             if  granted == .authorized || granted == .provisional {
                                 DispatchQueue.main.async {
-                                    GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+                                    GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
                                         switch result {
                                         case.success(let channels):
                                             //ENABLE ALL CHANNELS
@@ -105,12 +105,12 @@ class QuizNotificationsViewModel : ObservableObject {
     }
     
     func checkNotificationSavedTime() {
-        if QUIZTheme.isChannelChangedFromBG {
-            QUIZTheme.QuizzerNotificationsyncmanager {
+        if MOLTheme.isChannelChangedFromBG {
+            MOLTheme.QuizzerNotificationsyncmanager {
                 let savedDate = UserDefaultsData.shared.notificationPopupDismissTimeStamp
                 guard savedDate == nil else { return }
                 
-                GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+                GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
                     switch result {
                     case.success(let channels):
                         self.showNotificationCard = !channels.allSatisfy({ $0.status == true })
@@ -125,7 +125,7 @@ class QuizNotificationsViewModel : ObservableObject {
         let savedDate = UserDefaultsData.shared.notificationPopupDismissTimeStamp
         guard savedDate == nil else { return }
         
-        GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+        GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
             switch result {
             case.success(let channels):
                 self.showNotificationCard = !channels.allSatisfy({ $0.status == true })
@@ -137,7 +137,7 @@ class QuizNotificationsViewModel : ObservableObject {
     
     func promptUserToEnableChannels() {
         DispatchQueue.main.async {
-            GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+            GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
                 switch result {
                 case .success(let channels):
                     DispatchQueue.main.async { [weak self] in
@@ -146,7 +146,7 @@ class QuizNotificationsViewModel : ObservableObject {
                             GameNotificationsManager.isNotificationsGranted { granted in
                                 if  granted == .authorized || granted == .provisional {
                                     DispatchQueue.main.async {
-                                        GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+                                        GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
                                             guard let self = self else { return }
                                             switch result {
                                             case.success(let channels):
@@ -159,7 +159,7 @@ class QuizNotificationsViewModel : ObservableObject {
                                     }
                                 }else{
                                     DispatchQueue.main.async {
-                                        GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+                                        GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
                                             guard let self = self else { return }
                                             switch result {
                                             case.success(let channels):
@@ -226,7 +226,7 @@ class QuizNotificationsViewModel : ObservableObject {
         GameNotificationsManager.isNotificationsGranted { granted in
             if granted == .authorized || granted == .provisional {
                 dispatchGroup.enter()
-                GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { [weak self] result in
+                GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { [weak self] result in
                     guard let self = self else { return }
 
                     switch result {
@@ -238,9 +238,9 @@ class QuizNotificationsViewModel : ObservableObject {
                                 case .success(let newChannel):
                                     // Channel enabled successfully
                                     if isFromBG {
-                                        QUIZTheme.channels.append(newChannel)
-                                        QUIZTheme.isChannelChangedFromBG = true
-                                        QUIZTheme.QuizzersetChannelFromBGTo = true
+                                        MOLTheme.channels.append(newChannel)
+                                        MOLTheme.isChannelChangedFromBG = true
+                                        MOLTheme.QuizzersetChannelFromBGTo = true
                                     }
                                     break
                                 case .failure(let error):
@@ -254,7 +254,7 @@ class QuizNotificationsViewModel : ObservableObject {
 
                         dispatchGroup.notify(queue: .main) {
                             self.checkNotificationSavedTime()
-                            NotificationCenter.default.post(name: QUIZTheme.RefreshNotificationsChannelSubViews, object: nil)
+                            NotificationCenter.default.post(name: MOLTheme.RefreshNotificationsChannelSubViews, object: nil)
                         }
 
                     case .failure(let error):
@@ -263,7 +263,7 @@ class QuizNotificationsViewModel : ObservableObject {
                 }
             } else {
                 dispatchGroup.enter()
-                GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { [weak self] result in
+                GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { [weak self] result in
                     guard let self = self else { return }
                     
                     switch result {
@@ -277,9 +277,9 @@ class QuizNotificationsViewModel : ObservableObject {
                                 case .success(let newChannel):
                                     // Channel disabled successfully
                                     if isFromBG {
-                                        QUIZTheme.channels.append(newChannel)
-                                        QUIZTheme.isChannelChangedFromBG = true
-                                        QUIZTheme.QuizzersetChannelFromBGTo = false
+                                        MOLTheme.channels.append(newChannel)
+                                        MOLTheme.isChannelChangedFromBG = true
+                                        MOLTheme.QuizzersetChannelFromBGTo = false
                                     }
                                     break
                                 case .failure(let error):
@@ -293,7 +293,7 @@ class QuizNotificationsViewModel : ObservableObject {
                         
                         dispatchGroup.notify(queue: .main) {
                             self.checkNotificationSavedTime()
-                            NotificationCenter.default.post(name: QUIZTheme.RefreshNotificationsChannelSubViews, object: nil)
+                            NotificationCenter.default.post(name: MOLTheme.RefreshNotificationsChannelSubViews, object: nil)
                         }
                         
                     case .failure(let error):
@@ -312,7 +312,7 @@ class QuizNotificationsViewModel : ObservableObject {
             if  granted == .authorized {
                 DispatchQueue.main.async {
                     // ||STEP 3|| Get Game Notification Channels
-                    GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+                    GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
                         switch result {
                         case.success(let channels):
                             ///check channel more then 1 show all channel else first dirrectly enabled
@@ -336,7 +336,7 @@ class QuizNotificationsViewModel : ObservableObject {
             } else {
                 //MARK: - ||STEP 2|| PROMPT USER TO Enable Push Notifications on App
                 
-                GameNotificationsManager.enableSystemNotifications(gameId: QUIZTheme.currentGameID ?? "quiz") { [weak self] result in
+                GameNotificationsManager.enableSystemNotifications(gameId: MOLTheme.currentGameID ?? "quiz") { [weak self] result in
                     guard let self = self else { return }
                     switch result {
                     case .success(let status):
@@ -347,7 +347,7 @@ class QuizNotificationsViewModel : ObservableObject {
                             DispatchQueue.main.async {
                                 //Once user declines to go to settings ask them to enable notification by showing popuop
                                 self.setStatusforallChannels()
-                                GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "quiz") { result in
+                                GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "quiz") { result in
                                     switch result {
                                     case.success(let channels):
                                         

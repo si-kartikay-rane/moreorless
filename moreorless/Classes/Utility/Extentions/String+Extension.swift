@@ -209,14 +209,14 @@ extension String{
 //        guard let translationData = Constants.translationData else {
 //            return self
 //        }
-        guard let translationData = QuizzGameSDk.game.store.getTranslations() else {
+        guard let translationData = MolGameSDk.game.store.getTranslations() else {
             return self
         }
         return translationData[self].stringValue != String.empty ? translationData[self].stringValue : self
     }
     
     func getTranslationValue(default value: String) -> String{
-        guard let translationData = QuizzGameSDk.game.store.getTranslations() else {
+        guard let translationData = MolGameSDk.game.store.getTranslations() else {
             return value.replacingOccurrences(of: "\\n", with: "\n")
         }
         return translationData[self].stringValue != String.empty  ? translationData[self].stringValue.replacingOccurrences(of: "\\n", with: "\n") : value.replacingOccurrences(of: "\\n", with: "\n")

@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 import GamesLib
-let greadiantCardBG = [QUIZTheme.getColor(named: .ML_0929C9),QUIZTheme.getColor(named: .ML_00057D)]
+let greadiantCardBG = [MOLTheme.getColor(named: .ML_0929C9),MOLTheme.getColor(named: .ML_00057D)]
 
 
 struct MLQuestionAnsView: View {
@@ -17,12 +17,12 @@ struct MLQuestionAnsView: View {
     @State var secondcardHiden:Bool =  true
     @StateObject var MLViewModel:MLGameViewModel = MLGameViewModel()
     @State private var isQuizCompleted = false
-    @State var cardData:QuizCardListData? =  nil
+    @State var cardData:MolCardListData? =  nil
     @State private var orientation = UIDeviceOrientation.unknown
     @State private var PasstoAnotherView = false
     @Binding var Observer : Bool
     @State var popups = PopupsState()
-    @StateObject var QuizviewModel = QuizViewModel()
+//    @StateObject var QuizviewModel = QuizViewModel()
     @State private var ObserveNotifications = false
     @Binding var PasstoNavigationView:Bool
     @Binding var isActive : Bool
@@ -30,35 +30,35 @@ struct MLQuestionAnsView: View {
     @State var isSponcerOpen:Bool =  false
     var body: some View {
         ZStack{
-            QUIZTheme.getColor(named: .QSDKButtonTitle00004B).opacity(5.0)
+            MOLTheme.getColor(named: .QSDKButtonTitle00004B).opacity(5.0)
                 .ignoresSafeArea()
             GeometryReader { fullView in
             VStack(spacing:0){
-                AdsPresentedbyView(VerticaleEnable: false,analyticsDomainName: MLViewModel.analyticsDomainName,analyticsData : MLViewModel.analyticsData,  backgroundColor: QUIZTheme.getColor(named: .QSDKSponsorBG00439C)){ isOpen in
+                AdsPresentedbyView(VerticaleEnable: false,analyticsDomainName: MLViewModel.analyticsDomainName,analyticsData : MLViewModel.analyticsData,  backgroundColor: MOLTheme.getColor(named: .QSDKSponsorBG00439C)){ isOpen in
                     self.isSponcerOpen = isOpen
                 }
                 ZStack{
                     ScoreTimerView.blur(radius: MLViewModel.timeUP ? 7.0 : 0.0 )
                     if MLViewModel.timeUP{
                         Text(AppStrings.TIME_S_UP.getTranslationValue(default: "TIME’S UP!"))
-                            .font((QUIZTheme.currentGameID  == "euroquiz") ? .customFont(customFont:  .UEFAEuro_HeavyExtended, size: 20) : .customFont(customFont: .Champions_Display, size: 24) )
-                            .foregroundColor(QUIZTheme.getColor(named: .QSDK_FF16FF))
+                            .font((MOLTheme.currentGameID  == "euromoreorless") ? .customFont(customFont:  .UEFAEuro_HeavyExtended, size: 20) : .customFont(customFont: .Champions_Display, size: 24) )
+                            .foregroundColor(MOLTheme.getColor(named: .QSDK_FF16FF))
                     }
                 }
-                Divider().background(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.3)
-                if QUIZTheme.isIpad {
+                Divider().background(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.3)
+                if MOLTheme.isIpad {
                     Spacer(minLength: (fullView.size.height-654)/2) // This Spacer will push the content to the center on iPad
                 }
                 VStack(spacing:0){
                     Text(MLViewModel.gamedescription)
                         .multilineTextAlignment(.center)
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 16))
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                         .padding([.leading,.trailing],40)
                         .padding([.top,.bottom],20)
                     QuestionAnsAniamtionview
-                }.frame(width: QUIZTheme.isIpad ? 500 : UIScreen.screenWidth)
-                if QUIZTheme.isIpad {
+                }.frame(width: MOLTheme.isIpad ? 500 : UIScreen.screenWidth)
+                if MOLTheme.isIpad {
                     Spacer(minLength: (fullView.size.height-654)/2) // This Spacer will push the content to the center on iPad
                 }
                 VStack(spacing:0){
@@ -66,7 +66,7 @@ struct MLQuestionAnsView: View {
                     AdsSponsorsView()
                     
                         .padding([.leading,.trailing,.bottom],16)
-                    //Divider().background(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.3)
+                    //Divider().background(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.3)
                     // BoosterButton.padding(.bottom,5)
                 }
                 
@@ -83,7 +83,7 @@ struct MLQuestionAnsView: View {
                
             }
         }) {
-            Image(uiImage:QUIZTheme.getImage(named:QuizImageName.QSDK_NavigationClose.name) ?? UIImage())
+            Image(uiImage:MOLTheme.getImage(named:MolImageName.QSDK_NavigationClose.name) ?? UIImage())
             
         }
         )
@@ -93,12 +93,12 @@ struct MLQuestionAnsView: View {
             ObserveNotifications = true
             self.MLViewModel.cardSelection = self.cardData
             
-             if QUIZTheme.currentGameID == "uwclquiz" || QUIZTheme.currentGameID == "uclquiz" || QUIZTheme.currentGameID == "weuroquiz"{
-                QUIZTheme.currentnavigation!.style(style: .withBgImage(image: QUIZTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(QUIZTheme.getColor(named: .QSDK_NavImage051139))))
-            }else if QUIZTheme.currentGameID == "euroquiz"{
-                QUIZTheme.currentnavigation!.style(style: .withBgImageEuro(image: QUIZTheme.getImage(named: QuizImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
+             if MOLTheme.currentGameID == "uwclmoreorless" || MOLTheme.currentGameID == "uclmoreorless" || MOLTheme.currentGameID == "weuromoreorless"{
+                MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
+            }else if MOLTheme.currentGameID == "euromoreorless"{
+                MOLTheme.currentnavigation!.style(style: .withBgImageEuro(image: MOLTheme.getImage(named: MolImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
             } else {
-                QUIZTheme.currentnavigation!.style(style: .blue())
+                MOLTheme.currentnavigation!.style(style: .blue())
             }
             if  !isSponcerOpen{
                 self.initiialSetup()
@@ -119,25 +119,25 @@ struct MLQuestionAnsView: View {
 //                    UserDefaultsData.shared.isMoreLessPlay =  true
 //                }
             }
-            QUIZTheme.navigateTo =  nil
+            MOLTheme.navigateTo =  nil
         }
         .onDisappear {
         
             ObserveNotifications = false
-            if !QUIZTheme.isGamingHubHost && isUserPlayingchangetab && !self.isQuizCompleted && !isSponcerOpen{
+            if !MOLTheme.isGamingHubHost && isUserPlayingchangetab && !self.isQuizCompleted && !isSponcerOpen{
                 self.isActive = false
                 BusterHelper.shared.updateBuster(type: .LEADERBOARD)
             }
 //            if self.PasstoNavigationView{
-//                if QUIZTheme.currentGameID == "uclquiz"{
-//                    QUIZTheme.currentnavigation!.style(style: .withBgImage(image: QUIZTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(QUIZTheme.getColor(named: .QSDK_NavImage051139))))
+//                if MOLTheme.currentGameID == "uclmoreorless"{
+//                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
 //                }else{
 //                    
 //                }
 //            }
             
-        }.popup(isPresented: $popups.showingBottomFirst, type: !QUIZTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: true) : .default, position: .bottom, closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
-            ExitBottomPopup(isPresented: $popups.showingBottomFirst, quiztype: self.cardData?.quiztypeid ?? 0,replaceString: "\(self.MLViewModel.currentQuestionIndex)", quizId: self.MLViewModel.quizID, gameType: "mol",viewModel: self.QuizviewModel,MLViewModel: MLViewModel,onDismiss:{
+        }.popup(isPresented: $popups.showingBottomFirst, type: !MOLTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: true) : .default, position: .bottom, closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
+            ExitBottomPopup(isPresented: $popups.showingBottomFirst, quiztype: self.cardData?.quiztypeid ?? 0,replaceString: "\(self.MLViewModel.currentQuestionIndex)", quizId: self.MLViewModel.quizID, gameType: "mol",/*viewModel: self.QuizviewModel,*/MLViewModel: MLViewModel,onDismiss:{
                 self.PasstoNavigationView =  true
                 self.Observer =  false
 //                self.presentationMode.wrappedValue.dismiss()
@@ -206,29 +206,29 @@ struct MLQuestionAnsView: View {
         HStack{
             VStack(spacing:5){
                 Text(AppStrings.mlStreak.getTranslationValue(default: "Streak"))
-                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
+                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 12))
                 HStack(spacing:2){
                     Text(String(describing: MLViewModel.streakTotal))
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
-                    Image(uiImage: QUIZTheme.getImage(named: QuizImageName.Ml_Streak.name) ?? UIImage())
+                    Image(uiImage: MOLTheme.getImage(named: MolImageName.Ml_Streak.name) ?? UIImage())
                         .resizable()
                         .frame(width: 24, height: 24)
                 }
             }.frame(minWidth: 80)
                 .padding(.all,16)
-            Divider().background(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.3).padding([.top,.bottom],10)
+            Divider().background(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.3).padding([.top,.bottom],10)
             Spacer()
             TimmerView
             Spacer()
-            Divider().background(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.3).padding([.top,.bottom],10)
+            Divider().background(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.3).padding([.top,.bottom],10)
             VStack(spacing:5){
                 Text(AppStrings.mlScore.getTranslationValue(default: "Score"))
-                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
+                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 12))
                 Text(String(describing: MLViewModel.totalPoints) + " " + AppStrings.Pts.getTranslationValue(default: "Pts"))
-                    .foregroundColor(QUIZTheme.getColor(named: QUIZTheme.currentGameID  == "euroquiz" ? .QSDK_CB333B : .QPSDKPrimary))
+                    .foregroundColor(MOLTheme.getColor(named: MOLTheme.currentGameID  == "euromoreorless" ? .QSDK_CB333B : .QPSDKPrimary))
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
             }.frame(minWidth: 80)
                 .padding(.all,16)
@@ -242,17 +242,17 @@ struct MLQuestionAnsView: View {
             
             ZStack {
                 Circle()
-                    .stroke(QUIZTheme.getColor(named: .QSDK_FFFFFF40), lineWidth: 2.5)
+                    .stroke(MOLTheme.getColor(named: .QSDK_FFFFFF40), lineWidth: 2.5)
                     .opacity(0.3)
                 Circle()
                     .trim(from: 0, to: CGFloat(MLViewModel.timerProgress))
-                    .stroke(MLViewModel.isThreeSecondsLeft ? QUIZTheme.getColor(named: .QSDK_CB333B) : QUIZTheme.getColor(named: .QSDK_FF16FF), style: StrokeStyle(lineWidth: 2.5,lineCap: .round))
+                    .stroke(MLViewModel.isThreeSecondsLeft ? MOLTheme.getColor(named: .QSDK_CB333B) : MOLTheme.getColor(named: .QSDK_FF16FF), style: StrokeStyle(lineWidth: 2.5,lineCap: .round))
                 
                     .rotationEffect(.degrees(-90))
                 
                 Text("\(MLViewModel.timeRemaining)")
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 16))
-                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                 
             }
             .frame(width: 40, height: 40)
@@ -312,15 +312,15 @@ struct MLQuestionAnsView: View {
                 ZStack{
                     if MLViewModel.progress == 0{
                         KFImage(URL(string: MLViewModel.questionCard?.playerimg ?? "https://panenka.uefa.com/panenka/fallback/generic-head.svg")).placeholder {
-                            QUIZTheme.getImage(named:QuizImageName.ML_PlayerPlaceholder.name)?
+                            MOLTheme.getImage(named:MolImageName.ML_PlayerPlaceholder.name)?
                                 .resizable()
                         }
                         .retry(maxCount: 3, interval: .seconds(10)).resizable().background(Color.white).clipShape(.circle).scaleEffect(MLViewModel.bodarrprogress == 1 ? 0 : 1)
                     }else{
                         
-                        Image(uiImage: QUIZTheme.getImage(named: (self.MLViewModel.isCorrectWronfAns == 1) ? QuizImageName.ML_Correct.name : (self.MLViewModel.isCorrectWronfAns == 0) ? QuizImageName.ML_Incorrect.name : "" ) ?? UIImage()).resizable().clipShape(.circle).scaleEffect(MLViewModel.bodarrprogress == 1 ? 1 : 0)
+                        Image(uiImage: MOLTheme.getImage(named: (self.MLViewModel.isCorrectWronfAns == 1) ? MolImageName.ML_Correct.name : (self.MLViewModel.isCorrectWronfAns == 0) ? MolImageName.ML_Incorrect.name : "" ) ?? UIImage()).resizable().clipShape(.circle).scaleEffect(MLViewModel.bodarrprogress == 1 ? 1 : 0)
                     }
-                }.frame(width:QUIZTheme.isIpad ? 80 : 60,height: QUIZTheme.isIpad ? 80 : 60).padding(.top,20)
+                }.frame(width:MOLTheme.isIpad ? 80 : 60,height: MOLTheme.isIpad ? 80 : 60).padding(.top,20)
                 
                 if MLViewModel.progress == 1{
                     VStack(alignment:.center,spacing: 12){
@@ -334,15 +334,15 @@ struct MLQuestionAnsView: View {
                         }
                         VStack(alignment:.center,spacing: 0){
                             Text(String(describing:MLViewModel.lastplayervalue))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                                 .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 34))
                                 .multilineTextAlignment(.center)
                             Text(MLViewModel.gameType)
                                 .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
                                 .multilineTextAlignment(.center)
                         }
-                    }.foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                    }.foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                         .padding([.bottom,.leading,.trailing],20)
                 }else{
                     VStack(alignment:.center,spacing: 12){
@@ -350,7 +350,7 @@ struct MLQuestionAnsView: View {
                             .multilineTextAlignment(.center)
                             .frame(height: heightForTwoLines())
                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 20))
-                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                             .padding([.leading,.trailing],20)
                         HStack(spacing:40){
                             Button(action: {
@@ -359,7 +359,7 @@ struct MLQuestionAnsView: View {
                                 self.MLViewModel.loadQuestionsFromJSON(moreless:0)
                                 self.MLViewModel.isAnsAttemptClick =  true
                             }) {
-                                Image(uiImage: QUIZTheme.getImage(named: QuizImageName.ML_Sub_off.name) ?? UIImage()).resizable().frame(width: 48,height: 48)
+                                Image(uiImage: MOLTheme.getImage(named: MolImageName.ML_Sub_off.name) ?? UIImage()).resizable().frame(width: 48,height: 48)
                             }.disabled(self.MLViewModel.isAnsAttemptClick)
                             
                             Button(action: {
@@ -368,7 +368,7 @@ struct MLQuestionAnsView: View {
                                 self.MLViewModel.loadQuestionsFromJSON(moreless:1)
                                 self.MLViewModel.isAnsAttemptClick =  true
                             }) {
-                                Image(uiImage: QUIZTheme.getImage(named: QuizImageName.ML_Sub_in.name) ?? UIImage()).resizable().frame(width: 48,height: 48)
+                                Image(uiImage: MOLTheme.getImage(named: MolImageName.ML_Sub_in.name) ?? UIImage()).resizable().frame(width: 48,height: 48)
                             }.disabled(self.MLViewModel.isAnsAttemptClick)
                             
                         }
@@ -376,14 +376,14 @@ struct MLQuestionAnsView: View {
                     
                 }
             }.frame(maxWidth: .infinity)
-        }.frame(height: QUIZTheme.isIpad ? 266 : 228)
+        }.frame(height: MOLTheme.isIpad ? 266 : 228)
         .cornerRadius(14)
             .overlay(
                 ZStack{
                     BorderPathShape(cornerRadius: 14)
-                        .stroke(QUIZTheme.getColor(named: .ML_borderColor1C2291), lineWidth: 2)
+                        .stroke(MOLTheme.getColor(named: .ML_borderColor1C2291), lineWidth: 2)
                     BorderPathShapeleft(cornerRadius: 14)
-                        .stroke(QUIZTheme.getColor(named: .ML_borderColor1C2291), lineWidth: 2)
+                        .stroke(MOLTheme.getColor(named: .ML_borderColor1C2291), lineWidth: 2)
                 }
             )
     }
@@ -423,7 +423,7 @@ struct MLQuestionAnsView: View {
         case .top:
             // Increase padding for cards at the top
             
-            return QUIZTheme.isIpad ? 60 : 24
+            return MOLTheme.isIpad ? 60 : 24
         case .secondTop:
             return 55
         default:
@@ -457,7 +457,7 @@ struct MLQuestionAnsView: View {
                 Text(AppStrings.yourboosters.getTranslationValue(default: "Your boosters"))
                     .multilineTextAlignment(.leading)
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
+                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
                     .padding(.top,16)
                 HStack(spacing: 10){
                     //if let isavailble =  boosterdata.first(where: {($0.boosterID ?? 0) == 1}) {
@@ -476,7 +476,7 @@ struct MLQuestionAnsView: View {
                             
                             HStack(alignment: .center, spacing: 6) {
                                 
-                                Image(uiImage:QUIZTheme.getImage(named:QuizImageName.ML_addedTime.name) ?? UIImage())//.resizable()
+                                Image(uiImage:MOLTheme.getImage(named:MolImageName.ML_addedTime.name) ?? UIImage())//.resizable()
                                     .frame(width: 16,height: 16)
                                 //let testcase = (viewModel.fiftyFiftyEnabled ? (AppStrings.booster1.getTranslationValue(default: "50-50") + " " + AppStrings.boosteractive.getTranslationValue(default: "active")) :  viewModel.isUsedfityfifty ? (AppStrings.booster1.getTranslationValue(default: "50-50") + " " + AppStrings.boosterplayed.getTranslationValue(default: "played")) : AppStrings.booster1.getTranslationValue(default: "50-50"))
                                 Text("Added time")
@@ -488,26 +488,26 @@ struct MLQuestionAnsView: View {
                             .padding()
                             .conditionalBackground(false,
                                                    trueContent: { view in
-                                view.background(QUIZTheme.getColor(named: .QSDK_FFCD44))
+                                view.background(MOLTheme.getColor(named: .QSDK_FFCD44))
                                     .cornerRadius(14)
                                     .padding(5)
-                                    .background(QUIZTheme.getColor(named: .QSDK_FFCD44).opacity(0.4))
+                                    .background(MOLTheme.getColor(named: .QSDK_FFCD44).opacity(0.4))
                                     .cornerRadius(16.5)
                                     .padding(5)
-                                    .background(QUIZTheme.getColor(named: .QSDK_FFCD44).opacity(0.2))
+                                    .background(MOLTheme.getColor(named: .QSDK_FFCD44).opacity(0.2))
                                     .cornerRadius(16.5)
                                     .foregroundColor(.black)
                                 
                             },
                                                    falseContent: { view in
-                                view.background((QUIZTheme.getColor(named: .QSDK_0D3AFF)))
-                                //view.background(viewModel.isUsedfityfifty ? (QUIZTheme.getColor(named: .QSDK_0D3AFF)) : Color.black.opacity(0.2))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
-                                    //.foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite).opacity((viewModel.sneakPeakEnabled && !viewModel.isUsedfityfifty) ? 0.5 : 1.0))
+                                view.background((MOLTheme.getColor(named: .QSDK_0D3AFF)))
+                                //view.background(viewModel.isUsedfityfifty ? (MOLTheme.getColor(named: .QSDK_0D3AFF)) : Color.black.opacity(0.2))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
+                                    //.foregroundColor(MOLTheme.getColor(named: .QPSDKWhite).opacity((viewModel.sneakPeakEnabled && !viewModel.isUsedfityfifty) ? 0.5 : 1.0))
                                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                                     .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                        .stroke(QUIZTheme.getColor(named: .QPSDKWhite)))
-                                        //.stroke(QUIZTheme.getColor(named: .QPSDKWhite).opacity((viewModel.sneakPeakEnabled && !viewModel.isUsedfityfifty) ? 0.5 : 1.0), lineWidth: viewModel.isUsedfityfifty ? 0 : 1))
+                                        .stroke(MOLTheme.getColor(named: .QPSDKWhite)))
+                                        //.stroke(MOLTheme.getColor(named: .QPSDKWhite).opacity((viewModel.sneakPeakEnabled && !viewModel.isUsedfityfifty) ? 0.5 : 1.0), lineWidth: viewModel.isUsedfityfifty ? 0 : 1))
                             }
                             )
                             
@@ -532,7 +532,7 @@ struct MLQuestionAnsView: View {
                         }) {
                             HStack(alignment: .center, spacing: 6) {
                                 
-                                Image(uiImage:QUIZTheme.getImage(named:QuizImageName.ML_Switch.name) ?? UIImage())
+                                Image(uiImage:MOLTheme.getImage(named:MolImageName.ML_Switch.name) ?? UIImage())
                                     .frame(width: 16,height: 16)
                                // let testcase = (viewModel.sneakPeakEnabled ? (AppStrings.booster2.getTranslationValue(default: "VRA") + " " + AppStrings.boosteractive.getTranslationValue(default: " active")) : viewModel.isUsedVRA ? (AppStrings.booster2.getTranslationValue(default: "VRA") + " " + AppStrings.boosterplayed.getTranslationValue(default: "Retake played")) : AppStrings.booster2.getTranslationValue(default: "VAR") )
                                 
@@ -545,26 +545,26 @@ struct MLQuestionAnsView: View {
                             
                                 .conditionalBackground(false,
                                                        trueContent: { view in
-                                    view.background(QUIZTheme.getColor(named: .QSDK_FFCD44))
+                                    view.background(MOLTheme.getColor(named: .QSDK_FFCD44))
                                         .cornerRadius(14)
                                         .padding(5)
-                                        .background(QUIZTheme.getColor(named: .QSDK_FFCD44).opacity(0.4))
+                                        .background(MOLTheme.getColor(named: .QSDK_FFCD44).opacity(0.4))
                                         .cornerRadius(16.5)
                                         .padding(5)
-                                        .background(QUIZTheme.getColor(named: .QSDK_FFCD44).opacity(0.2))
+                                        .background(MOLTheme.getColor(named: .QSDK_FFCD44).opacity(0.2))
                                         .cornerRadius(16.5)
                                         .foregroundColor(.black)
                                     
                                 },
                                                        falseContent: { view in
-                                    view.background((QUIZTheme.getColor(named: .QSDK_0D3AFF)))
-                                    //view.background(viewModel.isUsedVRA ? (QUIZTheme.getColor(named: .QSDK_0D3AFF)) : Color.black.opacity(0.2))
-                                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
-                                        //.foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite).opacity((viewModel.sneakPeakEnabled && !viewModel.isUsedVRA) ? 0.5 : 1.0))
+                                    view.background((MOLTheme.getColor(named: .QSDK_0D3AFF)))
+                                    //view.background(viewModel.isUsedVRA ? (MOLTheme.getColor(named: .QSDK_0D3AFF)) : Color.black.opacity(0.2))
+                                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
+                                        //.foregroundColor(MOLTheme.getColor(named: .QPSDKWhite).opacity((viewModel.sneakPeakEnabled && !viewModel.isUsedVRA) ? 0.5 : 1.0))
                                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                                         .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                            .stroke(QUIZTheme.getColor(named: .QPSDKWhite)))
-                                            //.stroke(QUIZTheme.getColor(named: .QPSDKWhite).opacity((viewModel.fiftyFiftyEnabled && !viewModel.isUsedVRA) ? 0.5 : 1.0), lineWidth: self.viewModel.isUsedVRA ? 0 : 1))
+                                            .stroke(MOLTheme.getColor(named: .QPSDKWhite)))
+                                            //.stroke(MOLTheme.getColor(named: .QPSDKWhite).opacity((viewModel.fiftyFiftyEnabled && !viewModel.isUsedVRA) ? 0.5 : 1.0), lineWidth: self.viewModel.isUsedVRA ? 0 : 1))
                                 }
                                 )
                         }//.disabled(self.viewModel.isUsedVRA || self.viewModel.fiftyFiftyEnabled )
@@ -576,7 +576,7 @@ struct MLQuestionAnsView: View {
                 
             //}
         }
-        .frame(width: QUIZTheme.isIpad ? 400 : UIScreen.screenWidth)
+        .frame(width: MOLTheme.isIpad ? 400 : UIScreen.screenWidth)
             //.padding(16)
         
     }
@@ -599,7 +599,7 @@ struct QuestionComparePlayerCard: View {
         VStack(alignment:.leading,spacing: 0){
             HStack(spacing:8){
                 KFImage(URL(string: playerCardvalue.playerimg ?? "https://panenka.uefa.com/panenka/fallback/generic-head.svg")).placeholder {
-                    QUIZTheme.getImage(named:QuizImageName.ML_PlayerPlaceholder.name)?
+                    MOLTheme.getImage(named:MolImageName.ML_PlayerPlaceholder.name)?
                         .resizable()
                 }
                 .retry(maxCount: 3, interval: .seconds(10)).resizable().frame(width: 48,height: 48).background(Color.white).clipShape(.circle)
@@ -622,16 +622,16 @@ struct QuestionComparePlayerCard: View {
                         .multilineTextAlignment(.leading)
                     }
                     
-                }.foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                }.foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                 Spacer()
                 VStack(alignment:.center){
                     Text(String(describing:playerCardvalue.value ?? 0))
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 24))
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                         .multilineTextAlignment(.center)
                     Text(gametype)
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
                         .multilineTextAlignment(.center)
                 }
             }.padding([.bottom],6).padding([.leading,.trailing],12)
@@ -639,7 +639,7 @@ struct QuestionComparePlayerCard: View {
         .background(LinearGradient(gradient: Gradient(colors: greadiantCardBG), startPoint: .bottom, endPoint: .top))
         .overlay(
             RoundedCorner(radius: 14, corners: topCornerRadis ? [.topLeft, .topRight] : .allCorners)
-                .stroke(QUIZTheme.getColor(named: .ML_borderColor1C2291), lineWidth: 2)
+                .stroke(MOLTheme.getColor(named: .ML_borderColor1C2291), lineWidth: 2)
         )
     }
 }

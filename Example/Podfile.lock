@@ -6,21 +6,21 @@ PODS:
   - FRAuth (4.7.0):
     - FRCore (~> 4.7.0)
   - FRCore (4.7.0)
-  - GamesLib/CompetitionFonts (6.0.5-beta)
-  - GamesLib/GamingLogin (6.0.5-beta):
+  - GamesLib/CompetitionFonts (6.0.6-beta)
+  - GamesLib/GamingLogin (6.0.6-beta):
     - IDP
-  - GamesLib/Native (6.0.5-beta):
+  - GamesLib/Native (6.0.6-beta):
     - Alamofire (~> 5.9.1)
     - GamesLib/Theming
     - Kingfisher
     - SwiftyJSON (= 5.0.2)
-  - GamesLib/NativeDev (6.0.5-beta):
+  - GamesLib/NativeDev (6.0.6-beta):
     - GamesLib/NativeHostLogin
     - Google-Mobile-Ads-SDK
-  - GamesLib/NativeHostLogin (6.0.5-beta):
+  - GamesLib/NativeHostLogin (6.0.6-beta):
     - IDP
-  - GamesLib/SwiftUI (6.0.5-beta)
-  - GamesLib/Theming (6.0.5-beta)
+  - GamesLib/SwiftUI (6.0.6-beta)
+  - GamesLib/Theming (6.0.6-beta)
   - Google-Mobile-Ads-SDK (11.10.0):
     - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleUserMessagingPlatform (3.0.0)
@@ -66,12 +66,12 @@ PODS:
   - SwiftyJSON (5.0.2)
 
 DEPENDENCIES:
-  - "GamesLib/CompetitionFonts (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
-  - "GamesLib/GamingLogin (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
-  - "GamesLib/Native (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
-  - "GamesLib/NativeDev (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
-  - "GamesLib/NativeHostLogin (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
-  - "GamesLib/SwiftUI (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.5-beta`)"
+  - "GamesLib/CompetitionFonts (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.6-beta`)"
+  - "GamesLib/GamingLogin (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.6-beta`)"
+  - "GamesLib/Native (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.6-beta`)"
+  - "GamesLib/NativeDev (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.6-beta`)"
+  - "GamesLib/NativeHostLogin (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.6-beta`)"
+  - "GamesLib/SwiftUI (from `git@github.com:UEFADigital/gaminghub-core-library-ios.git`, tag `6.0.6-beta`)"
   - Google-Mobile-Ads-SDK (= 11.10.0)
   - "IDP (from `git@github.com:UEFADigital/ios-idp-ping-sdk.git`, tag `0.3.0`)"
   - Kingfisher
@@ -97,7 +97,7 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   GamesLib:
     :git: "git@github.com:UEFADigital/gaminghub-core-library-ios.git"
-    :tag: 6.0.5-beta
+    :tag: 6.0.6-beta
   IDP:
     :git: "git@github.com:UEFADigital/ios-idp-ping-sdk.git"
     :tag: 0.3.0
@@ -107,7 +107,7 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   GamesLib:
     :git: "git@github.com:UEFADigital/gaminghub-core-library-ios.git"
-    :tag: 6.0.5-beta
+    :tag: 6.0.6-beta
   IDP:
     :git: "git@github.com:UEFADigital/ios-idp-ping-sdk.git"
     :tag: 0.3.0
@@ -117,7 +117,7 @@ SPEC CHECKSUMS:
   BlueConicClient: fabb6b8981ab014d830f1a0b51bd40c377432b7a
   FRAuth: b0cd62c2e0294a19580f75f596062d49ab3172b3
   FRCore: 1907601f5b6a9390dda3e047e5a4cd8a2eefc802
-  GamesLib: 7f8f8e329ba493f135fd4b83f7358d4066de46b9
+  GamesLib: 6410f1e48f17e2ccec15e3c65a61bb87f0d0c203
   Google-Mobile-Ads-SDK: 13e6e98edfd78ad8d8a791edb927658cc260a56f
   GoogleUserMessagingPlatform: f8d0cdad3ca835406755d0a69aa634f00e76d576
   IDP: 33bf7ce7d7f5e042a66bc1ce8d0ee396aa2125be
@@ -126,6 +126,6 @@ SPEC CHECKSUMS:
   moreorless: eee9ddb48a1e2f9a5b3efd62461da98aed4af18b
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
 
-PODFILE CHECKSUM: 6405799db9051e5f8abdf527fd4584e37bf84d8b
+PODFILE CHECKSUM: 4d486b12e865eb3dc7484f1f4b07bf13fa09eff2
 
 COCOAPODS: 1.15.2

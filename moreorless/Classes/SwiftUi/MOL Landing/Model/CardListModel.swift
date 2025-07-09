@@ -8,15 +8,15 @@
 import Foundation
 
 class cardListValue: Codable {
-    let quizcard: [QuizCardListData]?
+    let quizcard: [MolCardListData]?
 
-    init(quizcard: [QuizCardListData]?) {
+    init(quizcard: [MolCardListData]?) {
         self.quizcard = quizcard
     }
 }
 
 
-class QuizCardListData: Codable {
+class MolCardListData: Codable {
     let title, quiztype, subtitle: String?
         var isDisable: Int?
         let description: String?

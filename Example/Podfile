@@ -49,7 +49,7 @@ def idp_sdk
 end
 
 def gh_core
-  ghCoreVersion = '6.0.5-beta'
+  ghCoreVersion = '6.0.6-beta'
   pod 'GamesLib/Native', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
   pod 'GamesLib/CompetitionFonts', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion
   pod 'GamesLib/NativeDev', :git => 'git@github.com:UEFADigital/gaminghub-core-library-ios.git', :tag => ghCoreVersion

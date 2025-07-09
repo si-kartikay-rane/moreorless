@@ -10,9 +10,9 @@ import SwiftUI
 struct QSDKBackGroundView: View {
     var body: some View {
         ZStack {
-            QUIZTheme.getColor(named: .QSDKBackGround_000040)
+            MOLTheme.getColor(named: .QSDKBackGround_000040)
                 .ignoresSafeArea()
-            Image(uiImage:QUIZTheme.getImage(named:QuizImageName.QSDKtrofiBanner.name) ?? UIImage())
+            Image(uiImage:MOLTheme.getImage(named:MolImageName.QSDKtrofiBanner.name) ?? UIImage())
                  .resizable()
                  .scaledToFit()
                  .edgesIgnoringSafeArea(.all)

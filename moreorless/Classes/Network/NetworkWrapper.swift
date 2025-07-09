@@ -76,10 +76,11 @@ class NetworkWrapper: NSObject {
           //  print(fullURL)
         }
         AF.request(fullURL, method: .get, headers: HeaderInfo.getHeaderData(type: headerType)).responseJSON { response in
-            if Constants.isLogEnable() {
-//                self.printLog(url: fullURL, response: response)
-                print("response---------\(fullURL)",response)
-            }
+            print("response---------\(fullURL)",response)
+//            if Constants.isLogEnable() {
+////                self.printLog(url: fullURL, response: response)
+//                print("response---------\(fullURL)",response)
+//            }
             
             if type != .CONFIG_BASE_URL{
                 let data = JSON(response.value)
@@ -215,9 +216,9 @@ class NetworkWrapper: NSObject {
     }
     
     func getURL(url:String, type: URLType = .BASE_URL) -> URL?{
-        var urls = url.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+        var urls = url.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
         urls =  urls.replacingOccurrences(of: NetworkConstants().urlKeys.platformId, with: "\(Constants.appData.platformID)")
-        urls = urls.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+        urls = urls.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(MolGameSDk.game.getAppLanguage())")
         switch type {
         case .BASE_URL:
             //to avoid any mistakes in url as config as urls starting with '/' and without '/' also

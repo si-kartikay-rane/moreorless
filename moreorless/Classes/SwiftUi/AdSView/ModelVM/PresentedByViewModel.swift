@@ -24,13 +24,13 @@ class PresentedByViewModel{
     }
     
     func sponcerApiCall(){
-        QuizzGameSDk.game.$sponsorModel.sink { model in
+        MolGameSDk.game.$sponsorModel.sink { model in
             if let sponsor = model {
                 self.ImageUrl = sponsor.imageUrl ?? ""
-                self.SponserIntro = sponsor.introText?[QuizzGameSDk.game.getAppLanguage().uppercased()] ?? ""
+                self.SponserIntro = sponsor.introText?[MolGameSDk.game.getAppLanguage().uppercased()] ?? ""
                 self.colorcode = sponsor.color ?? ""
                 self.textcolor =  sponsor.secondaryColor ?? ""
-                self.linkurl = sponsor.links?[QuizzGameSDk.game.getAppLanguage().uppercased()] ?? ""
+                self.linkurl = sponsor.links?[MolGameSDk.game.getAppLanguage().uppercased()] ?? ""
                 self.Titile = sponsor.name ?? ""
             }
         }.store(in: &cancellables)

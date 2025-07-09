@@ -21,9 +21,9 @@ struct InviteView: View {
                     Text(AppStrings.sharecardmessage.getTranslationValue(default:  "Challenge your friends on Quiz Arena!"))
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                     
-                    if QUIZTheme.isIpad {
+                    if MOLTheme.isIpad {
                         
                         Button(action: {
                             isIpadpresentActivity = true
@@ -33,11 +33,11 @@ struct InviteView: View {
                             
                         }, label: {
                             Text(AppStrings.sharecardinvitefriends.getTranslationValue(default: "Invite friends")).font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                         }).popover(isPresented: $isIpadpresentActivity) {
                         
                             
-                            MNTCustSimplyShareViewController(activityItems: [sharedata?.loadText?.getTranslationValue(default: "") as Any ,URL(string: shareURls.invitefrnd + (QUIZTheme.currentGameID ?? "uclquiz"))!]) { completed, returnedItems, activityError in
+                            MNTCustSimplyShareViewController(activityItems: [sharedata?.loadText?.getTranslationValue(default: "") as Any ,URL(string: shareURls.invitefrnd + (MOLTheme.currentGameID ?? "uclmoreorless"))!]) { completed, returnedItems, activityError in
                                 isIpadpresentActivity = false
                         }
                                 
@@ -53,23 +53,23 @@ struct InviteView: View {
                             
                         }, label: {
                             Text(AppStrings.sharecardinvitefriends.getTranslationValue(default: "Invite friends")).font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                         })
                     }
-                }.padding([.bottom,.top,.leading],QUIZTheme.isIpad ? 16 : 16)
+                }.padding([.bottom,.top,.leading],MOLTheme.isIpad ? 16 : 16)
                 Spacer()
                 VStack {
-                    Image(uiImage: QUIZTheme.getImage(named: QUIZTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_InviteFrnd.name : "") ?? UIImage())
+                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_InviteFrnd.name : "") ?? UIImage())
                         .resizable()
                         //.scaledToFill()
                 }.frame(maxWidth:  72, maxHeight:  72)
-                    .padding([.bottom,.top,.leading],  QUIZTheme.currentGameID == "euroquiz" ? 0 : QUIZTheme.isIpad ? 16 : 16)
+                    .padding([.bottom,.top,.leading],  MOLTheme.currentGameID == "euromoreorless" ? 0 : MOLTheme.isIpad ? 16 : 16)
                     
             }.background(HStack{Spacer()
-                Image(uiImage: QUIZTheme.getImage(named:   QUIZTheme.currentGameID == "euroquiz" ? QuizImageName.QSDK_InviteFrnd.name : "") ?? UIImage()).resizable().frame(width: 216,alignment: .trailing)
+                Image(uiImage: MOLTheme.getImage(named:   MOLTheme.currentGameID == "euromoreorless" ? MolImageName.QSDK_InviteFrnd.name : "") ?? UIImage()).resizable().frame(width: 216,alignment: .trailing)
             })
-            .padding(.trailing, QUIZTheme.currentGameID == "euroquiz" ? 0 :  QUIZTheme.isIpad ? 20 : 16)
-        }.background(ActivityViewPresenter(isPresented: $presentActivity, items: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.invitefrnd + (QUIZTheme.currentGameID ?? "uclquiz"))!]){ completed, returnedItems, activityError in
+            .padding(.trailing, MOLTheme.currentGameID == "euromoreorless" ? 0 :  MOLTheme.isIpad ? 20 : 16)
+        }.background(ActivityViewPresenter(isPresented: $presentActivity, items: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.invitefrnd + (MOLTheme.currentGameID ?? "uclmoreorless"))!]){ completed, returnedItems, activityError in
             presentActivity = false
                      }
         
@@ -83,7 +83,7 @@ struct InviteView: View {
 //        
 //        )
         .frame(maxWidth: .infinity)
-        .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+        .background(MOLTheme.getColor(named: .QSDK_0A0A61))
         .cornerRadius(14)
     }
 }

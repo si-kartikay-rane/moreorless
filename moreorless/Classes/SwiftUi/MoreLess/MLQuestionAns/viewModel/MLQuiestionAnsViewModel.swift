@@ -39,7 +39,7 @@ class MLGameViewModel: ObservableObject {
     @Published var totalquestions:Int = 0
     @Published var perquestionpoint:Int = 0
     @Published var isDisable:Bool = false
-    @Published var cardSelection:QuizCardListData? =  nil
+    @Published var cardSelection:MolCardListData? =  nil
     @Published var timerData: timerData? = nil
     @Published var analyticsDomainName: String = ""
     @Published var analyticsData: TrackingParameters = TrackingParameters([:] as [String: Any?]?)
@@ -65,7 +65,7 @@ class MLGameViewModel: ObservableObject {
                         
                         let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + (self.cardSelection?.gametype ?? "mol"), params: [:], replace: "\(self.baseCard.count+1)",replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.quizType)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                         
-                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                         
                         self.analyticsDomainName = analyticsDomainName
                         self.analyticsData = analyticsData
@@ -89,7 +89,7 @@ class MLGameViewModel: ObservableObject {
                         
                         let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + (self.cardSelection?.gametype ?? "mol"), params: [:], replace: "\(self.baseCard.count+1)",replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.quizType)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                         
-                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                         
                         self.analyticsDomainName = analyticsDomainName
                         self.analyticsData = analyticsData
@@ -133,7 +133,7 @@ class MLGameViewModel: ObservableObject {
             }
             quizcehckDeepLink(quizid:self.quizID)
         }else{
-            QuizzGameSDk.game.store.setGuestData(data: Gameplaydetail(quizid: self.quizID, score: self.totalPoints, gamedate: "".getCurrentDate(), quiztypeid: self.quizType))
+            MolGameSDk.game.store.setGuestData(data: Gameplaydetail(quizid: self.quizID, score: self.totalPoints, gamedate: "".getCurrentDate(), quiztypeid: self.quizType))
             self.MLResultScore = moreorless.MLResultScore(pctl: nil, rank: nil, rightans: self.streakTotal, totpoints: totalPoints, outofscore: (self.totalquestions * self.perquestionpoint))
             self.calculatePercentageDecrease(originalValue: Double(self.totalquestions * self.perquestionpoint), newValue: Double(self.MLResultScore?.totpoints ?? 0))
         }
@@ -286,6 +286,15 @@ class MLGameViewModel: ObservableObject {
         
     }
     
+//    func settlemetnExit(onSuccess: @escaping((Bool) -> ())){
+//        self.homeModel.SettlementData(quizId: self.quizID, attempt: nextQuestionData?.quAttemptID, GamedayId: self.GamedayId, isExit: 1){ Status in
+//            if Status{
+//                onSuccess(Status)
+//            }else{
+//                onSuccess(true)
+//            }
+//        }
+//    }
   func  updateCard(){
       withAnimation(.easeInOut(duration: 0.5)) {
            //if baseCard.count == self.currentQuestionIndex{

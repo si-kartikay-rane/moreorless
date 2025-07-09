@@ -35,10 +35,10 @@ public struct FeaturedCardSwiftUI: View {
         let podBundle =  Bundle(for: FeaturedCard.self)
         let data = podBundle.url(forResource: gameId, withExtension: "bundle")!
         theme_bundle = Bundle(url: data) ?? Bundle.main
-        QUIZTheme.currentBundle =  theme_bundle
-        QUIZTheme.currentGameID =  gameId
-        QUIZTheme.competitionId = competition
-        QUIZTheme.updateViewLayout()
+        MOLTheme.currentBundle =  theme_bundle
+        MOLTheme.currentGameID =  gameId
+        MOLTheme.competitionId = competition
+        MOLTheme.updateViewLayout()
         GamingHubCards.registerFonts(forCompetition: 1) //euro = 3 // ucl = 1
         if let info = self.data?["trackingInfo"] as? [String:Any] {
             index = info["index"] as? Int ?? 0
@@ -61,11 +61,11 @@ public struct FeaturedCardSwiftUI: View {
                 VStack {
                     if viewModel.isLoading {
                         ZStack {
-                            QUIZTheme.getColor(named: .QSDKBackGround_000040).ignoresSafeArea()
+                            MOLTheme.getColor(named: .QSDKBackGround_000040).ignoresSafeArea()
                             ActivityIndicator(isAnimating: $isLoading, style: .large)
                         }
                     } else {
-                        if QUIZTheme.isIpad {
+                        if MOLTheme.isIpad {
                             Button(action: {
                                 if NetworkWrapper.isInternerConnected() {
                                     GamingHubCards.open(gameId ?? "quiz", data: nil)
@@ -114,7 +114,7 @@ public struct FeaturedCardSwiftUI: View {
     }
     
     private func trackingImpression() {
-        GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: QUIZTheme.currentGameID ?? "uclquiz", variant: nil, list: list, brand: brand, index: index)
+        GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclmoreorless", variant: nil, list: list, brand: brand, index: index)
     }
     
     
@@ -124,17 +124,17 @@ public struct FeaturedCardSwiftUI: View {
             VStack{
                 KFImage(URL(string: urlavtra(url: viewModel.cardData?.cardImageURL ?? "")))
                     .placeholder {
-                        QUIZTheme.getImage(named:QuizImageName.QSDK_Rmedia.name)?
+                        MOLTheme.getImage(named:MolImageName.QSDK_Rmedia.name)?
                             .resizable()
                     }
                     .retry(maxCount: 3, interval: .seconds(5))
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
-                    .offset(y: QUIZTheme.currentGameID == "uclquiz" ? 2 : 0)
-                    .clipShape(RoundedCorner(radius:QUIZTheme.currentGameID == "uclquiz" ? 13 : 0, corners: [.topLeft,.topRight]))
+                    .offset(y: MOLTheme.currentGameID == "uclmoreorless" ? 2 : 0)
+                    .clipShape(RoundedCorner(radius:MOLTheme.currentGameID == "uclmoreorless" ? 13 : 0, corners: [.topLeft,.topRight]))
 //                    .overlay(
-//                        LinearGradient(gradient: Gradient(colors: QUIZTheme.currentGameID == "euroquiz" ? [.clear,.clear] : [.clear, .black]),
+//                        LinearGradient(gradient: Gradient(colors: MOLTheme.currentGameID == "euromoreorless" ? [.clear,.clear] : [.clear, .black]),
 //                                       startPoint: .top,
 //                                       endPoint: .bottom).opacity(0.8)
 //                    )
@@ -152,24 +152,24 @@ public struct FeaturedCardSwiftUI: View {
                         .multilineTextAlignment(.leading)
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 20))
                     
-                }.foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                }.foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                 HStack{
                     
                     Button(action: {
                         if  NetworkWrapper.isInternerConnected(){
                             GamingHubCards.open(gameId ?? "quiz", data: nil)
-                            GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: QUIZTheme.currentGameID ?? "uclquiz", variant: nil, list: list, brand: brand, index: index)
+                            GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclmoreorless", variant: nil, list: list, brand: brand, index: index)
                         }
             
                     }, label: {
                         //Text("Browse quizzes")
                         Text(viewModel.cardData?.cardButton?.getTranslationValue(default: "Browse quizzes") ?? "Browse quizzes")
-                            .font(Font.swiftUICustomFont(customFont: QUIZTheme.currentGameID == "weuroquiz" ? .SF_UI_SemiBold : .SF_UI_Bold, size: 14))
+                            .font(Font.swiftUICustomFont(customFont: MOLTheme.currentGameID == "weuromoreorless" ? .SF_UI_SemiBold : .SF_UI_Bold, size: 14))
                            // .frame(height: 32)
                             .padding([.top,.bottom],9)
                             .padding([.leading,.trailing],16)
-                            .background(QUIZTheme.getColor(named: .QPSDKPrimary))
-                            .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
+                            .background(MOLTheme.getColor(named: .QPSDKPrimary))
+                            .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
                             .cornerRadius(10)
                         
                     })
@@ -178,14 +178,14 @@ public struct FeaturedCardSwiftUI: View {
             }
             .frame(maxWidth: .infinity, alignment:.leading)
             .padding(.all,16)
-            .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+            .background(MOLTheme.getColor(named: .QSDK_0A0A61))
         }
-        .background( QUIZTheme.currentGameID == "uclquiz" ? LinearGradient(
+        .background( MOLTheme.currentGameID == "uclmoreorless" ? LinearGradient(
             stops: stops,
             startPoint: .topLeading,
             endPoint: .topTrailing
-        ) : LinearGradient(gradient: Gradient(colors: [QUIZTheme.getColor(named: .QSDK_0A0A61)]), startPoint: .top, endPoint: .bottom))
-        .clipShape(RoundedCorner(radius: QUIZTheme.currentGameID == "uclquiz" ? 10 : 0, corners: [.topLeft,.topRight]))
+        ) : LinearGradient(gradient: Gradient(colors: [MOLTheme.getColor(named: .QSDK_0A0A61)]), startPoint: .top, endPoint: .bottom))
+        .clipShape(RoundedCorner(radius: MOLTheme.currentGameID == "uclmoreorless" ? 10 : 0, corners: [.topLeft,.topRight]))
     }
     
     private var featureCardIpad: some View {
@@ -194,7 +194,7 @@ public struct FeaturedCardSwiftUI: View {
 
                 KFImage(URL(string: urlavtra(url: viewModel.cardData?.cardImageURL ?? "")))
                     .placeholder {
-                        QUIZTheme.getImage(named:QuizImageName.QSDK_Rmedia.name)?
+                        MOLTheme.getImage(named:MolImageName.QSDK_Rmedia.name)?
                             .resizable()
                     }
                     .retry(maxCount: 3, interval: .seconds(5))
@@ -206,7 +206,7 @@ public struct FeaturedCardSwiftUI: View {
                                        startPoint: .top,
                                        endPoint: .bottom).opacity(0.8)
                     )
-                    .offset(y:  QUIZTheme.currentGameID == "uclquiz" ? 2 : 0)
+                    .offset(y:  MOLTheme.currentGameID == "uclmoreorless" ? 2 : 0)
                     .clipShape(RoundedCorner(radius: 16, corners: [.topLeft,.topRight]))
       
             
@@ -221,14 +221,14 @@ public struct FeaturedCardSwiftUI: View {
                         .multilineTextAlignment(.leading)
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 20))
                     
-                }.foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                }.foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                 HStack{
                     
                     Button(action: {
                         
                         if  NetworkWrapper.isInternerConnected(){
                             GamingHubCards.open(gameId ?? "quiz", data: nil)
-                            GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: QUIZTheme.currentGameID ?? "uclquiz", variant: nil, list: list, brand: brand, index: index)
+                            GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclmoreorless", variant: nil, list: list, brand: brand, index: index)
                         }
                         
                     }, label: {
@@ -238,8 +238,8 @@ public struct FeaturedCardSwiftUI: View {
                            // .frame(height: 32)
                             .padding([.top,.bottom],9)
                             .padding([.leading,.trailing],16)
-                            .background(QUIZTheme.getColor(named: .QPSDKPrimary))
-                            .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
+                            .background(MOLTheme.getColor(named: .QPSDKPrimary))
+                            .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
                             .cornerRadius(10)
                         
                     })
@@ -249,12 +249,12 @@ public struct FeaturedCardSwiftUI: View {
                 .padding(.all,32)
             
         }
-        .background( QUIZTheme.currentGameID == "uclquiz" ? LinearGradient(
+        .background( MOLTheme.currentGameID == "uclmoreorless" ? LinearGradient(
             stops: stops,
             startPoint: .topLeading,
             endPoint: .topTrailing
-        ) : LinearGradient(gradient: Gradient(colors: [QUIZTheme.getColor(named: .QSDK_0A0A61)]), startPoint: .top, endPoint: .bottom))
-        .clipShape(RoundedCorner(radius: QUIZTheme.currentGameID == "uclquiz" ? 10 : 0, corners: [.topLeft,.topRight]))
+        ) : LinearGradient(gradient: Gradient(colors: [MOLTheme.getColor(named: .QSDK_0A0A61)]), startPoint: .top, endPoint: .bottom))
+        .clipShape(RoundedCorner(radius: MOLTheme.currentGameID == "uclmoreorless" ? 10 : 0, corners: [.topLeft,.topRight]))
     }
     
     func urlavtra(url:String) -> String{

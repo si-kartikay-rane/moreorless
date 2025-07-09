@@ -44,7 +44,7 @@ struct LeaderBoardLandingView: View {
                     }
                 } label: {
                     Text(AppStrings.Viewallleaderboards.getTranslationValue(default: "view all leaderboards"))
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
                         .padding(.all,16)
                 }
@@ -52,7 +52,7 @@ struct LeaderBoardLandingView: View {
                 NavigationLink("", destination: LeaderBoardsMenuView().navigationBarTitleDisplayMode(.inline),isActive:$showLeaderBoardView )
                 
             }
-            .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+            .background(MOLTheme.getColor(named: .QSDK_0A0A61))
             .cornerRadius(14)
             
             
@@ -105,10 +105,10 @@ struct leaderboardCellview:View{
             
             Text(LeaderboardList?[safe:section]?.leaderboardtitle ?? "")
                 .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 16))
-                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                 .multilineTextAlignment(.leading)
                 .padding([.all],16)
-            Divider().background(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.3)
+            Divider().background(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.3)
             // ScrollView(.vertical){
             VStack(alignment:.leading,spacing:0){
                 ForEach(0..<(topranking?.count ?? 0),id: \.self) { Index in
@@ -119,21 +119,21 @@ struct leaderboardCellview:View{
                         HStack{
                             if (topRanking.guid == Constants.guid){
                                 RoundedRectangle(cornerRadius: 0)
-                                    .fill(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                    .fill(MOLTheme.getColor(named: .QPSDKPrimary))
                                     .frame(width: 3,height: 56)
                             }
                             Text(String(topRanking.rank ?? 0))
                                 .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 14))
                                 .multilineTextAlignment(.leading)
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
                                 .frame(minWidth: (topRanking.guid == Constants.guid) ? 11 : 25)
                                 .padding(.leading, (topRanking.guid == Constants.guid) ? 0 : 5)
                             HStack {
                                 Spacer()
                                 Text(String(topRanking.level ?? 0))
                                     .font(Font.swiftUICustomFont(customFont: .Champions_Light, size: 8))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                                    .background(Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDK_PointBg.name) ?? UIImage()))
+                                    .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                                    .background(Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_PointBg.name) ?? UIImage()))
                                     .lineLimit(1)
                             }.padding(.trailing,5)
                                 .padding(.top,25)
@@ -141,9 +141,9 @@ struct leaderboardCellview:View{
                             
                                 .background(
                                     ZStack {
-                                        KFImage(URL(string: QUIZTheme.urlavtra(url: topranking?[Index].avatar ?? "")))
+                                        KFImage(URL(string: MOLTheme.urlavtra(url: topranking?[Index].avatar ?? "")))
                                             .placeholder {
-                                                QUIZTheme.getImage(named:QuizImageName.QSDK_GamingAvatarRed.name)
+                                                MOLTheme.getImage(named:MolImageName.QSDK_GamingAvatarRed.name)
                                             }
                                             .retry(maxCount: 3, interval: .seconds(5))
                                             .resizable()
@@ -151,9 +151,9 @@ struct leaderboardCellview:View{
                                     } .frame(width: 45.0, height: 45.0)
                                 ) .frame(width: 45.0, height: 45.0)
                             
-                            Text(((topRanking.fullname ?? "").prefix(QUIZTheme.isIpad ? 12 : 8)) + ((topRanking.fullname ?? "").count > (QUIZTheme.isIpad ? 12 : 8) ? ".." : ""))
+                            Text(((topRanking.fullname ?? "").prefix(MOLTheme.isIpad ? 12 : 8)) + ((topRanking.fullname ?? "").count > (MOLTheme.isIpad ? 12 : 8) ? ".." : ""))
                                 .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 16))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                 .lineLimit(1)
                                 .onTapGesture{
                                     if  NetworkWrapper.isInternerConnected(){
@@ -163,20 +163,20 @@ struct leaderboardCellview:View{
                             //}
                             Spacer(minLength: 8)
                             
-                            Text(QUIZTheme.isIpad ? String(topRanking.overallpoints ?? 0)  : String(topRanking.overallpoints ?? 0).prefix( Constants.configData?.leaderboardMaxPointLength ?? 6) + (String(topRanking.overallpoints ?? 0).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : "") )
+                            Text(MOLTheme.isIpad ? String(topRanking.overallpoints ?? 0)  : String(topRanking.overallpoints ?? 0).prefix( Constants.configData?.leaderboardMaxPointLength ?? 6) + (String(topRanking.overallpoints ?? 0).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : "") )
                                 .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 20))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                 .lineLimit(1)
                                 .truncationMode(.tail)
                                 .padding(.trailing,16)
                             
                         }
                         .frame(height:61)
-                        .background((topRanking.guid == Constants.guid) ? (QUIZTheme.getColor(named: .LD_Select_BG)) : Color.clear).ignoresSafeArea()
+                        .background((topRanking.guid == Constants.guid) ? (MOLTheme.getColor(named: .LD_Select_BG)) : Color.clear).ignoresSafeArea()
                         .padding(.bottom, (topRanking.guid == Constants.guid && isLastElement) ? 10 : 0)
                         if(Index !=  (LeaderboardList?[safe:section]?.topranking?.count ?? 0) - 1)
                         {
-                            Divider().background(QUIZTheme.getColor(named: .QPSDKWhite)).padding([.leading,.trailing],8).opacity(0.3)
+                            Divider().background(MOLTheme.getColor(named: .QPSDKWhite)).padding([.leading,.trailing],8).opacity(0.3)
                         }
                     }
                 }
@@ -184,7 +184,7 @@ struct leaderboardCellview:View{
                 .padding(.top,0)
             
         }
-        .background(QUIZTheme.getColor(named: .QSDK_151573))
+        .background(MOLTheme.getColor(named: .QSDK_151573))
         .cornerRadius(14)
         
     }

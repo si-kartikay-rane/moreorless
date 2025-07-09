@@ -32,7 +32,7 @@ struct LeaderboardView: View {
     var body: some View {
         ZStack{
             
-            QUIZTheme.getColor(named: .QSDK_0A0A61).ignoresSafeArea()
+            MOLTheme.getColor(named: .QSDK_0A0A61).ignoresSafeArea()
             if self.quizViewModel.isLoading{
                 
                 ActivityIndicator(isAnimating:$quizViewModel.isLoading, style: .large)
@@ -42,7 +42,7 @@ struct LeaderboardView: View {
                     AdsPresentedbyView(VerticaleEnable: false, analyticsDomainName: self.analyticsDomainName, analyticsData: self.analyticsData)
                     VStack
                     {
-                        if QUIZTheme.currentGameID != "weuroquiz" {
+                        if MOLTheme.currentGameID != "weuromoreorless" {
                             VStack{
                                 HStack{
                                     Text(self.quizViewModel.typeTitle ?? .empty).font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 24))
@@ -53,7 +53,7 @@ struct LeaderboardView: View {
                                 //                            LeaguesOverallStatsDataCell()
                                 
                                 //                            Text("Ends 21 Sep 00:00").font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14)).opacity(0.3)
-                            }.foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                            }.foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                 .padding(.top,24)
                                 .padding(.bottom,16)
                                 .padding(.leading, 10)
@@ -64,18 +64,18 @@ struct LeaderboardView: View {
                             } label: {
                                 Text(AppStrings.Rank.getTranslationValue(default: "Rank"))
                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                     .opacity(0.7)
                                     .frame(maxWidth:40 ,alignment: .leading)
                             }
                             Spacer()
-                            if QUIZTheme.currentGameID == "weuroquiz"{
+                            if MOLTheme.currentGameID == "weuromoreorless"{
                                 Button {
                                     
                                 } label: {
                                     Text(AppStrings.correct_percentage.getTranslationValue(default: "Correct %"))
                                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
-                                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                         .opacity(0.7)
                                         .frame(maxWidth: 60)
                                 }
@@ -85,17 +85,17 @@ struct LeaderboardView: View {
                             } label: {
                                 Text(AppStrings.points_leaderboard.getTranslationValue(default: "Total Pts"))
                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                     .opacity(0.7)
-                                    .frame(maxWidth:75 ,alignment: QUIZTheme.currentGameID == "weuroquiz" ? .center : .trailing)
+                                    .frame(maxWidth:75 ,alignment: MOLTheme.currentGameID == "weuromoreorless" ? .center : .trailing)
                             }
                             
                         }
-                        .padding(.top, QUIZTheme.currentGameID == "weuroquiz" ? 20 : 10)
+                        .padding(.top, MOLTheme.currentGameID == "weuromoreorless" ? 20 : 10)
                         .padding([.leading,.trailing, .bottom],10)
                         
-                        Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.3))
-                    }.padding([.leading,.trailing], QUIZTheme.isIpad ? (QUIZTheme.isLandscape && QUIZTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0)
+                        Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.3))
+                    }.padding([.leading,.trailing], MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0)
                     
                     ListRankview
                     
@@ -106,7 +106,7 @@ struct LeaderboardView: View {
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 }) {
-                    Image(uiImage:QUIZTheme.getImage(named:QuizImageName.QSDK_NavBack.name) ?? UIImage())
+                    Image(uiImage:MOLTheme.getImage(named:MolImageName.QSDK_NavBack.name) ?? UIImage())
                         .imageScale(.large)
                     
                 },trailing:
@@ -116,12 +116,12 @@ struct LeaderboardView: View {
                         //Track.shared.event(event: self.selectedLeaderBoardType?.quiztypeid == 2 ? .leaderboardsharedaily : .leaderboardsharefun, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.quizViewModel.quizType ?? 0)"]  as? String ?? ""),quizId:self.selectedLeaderBoardType?.quizid ?? quizId)
                         
                         
-                        let G4A = QuizzerAnalyticsLeaderboardShare(quizType: QUIZTheme.eventTypeData(title: (self.quizViewModel.gaTitlePassed ?? self.title ), gameType: (self.quizViewModel.gaPageTitle ?? self.title ) ))
+                        let G4A = QuizzerAnalyticsLeaderboardShare(quizType: MOLTheme.eventTypeData(title: (self.quizViewModel.gaTitlePassed ?? self.title ), gameType: (self.quizViewModel.gaPageTitle ?? self.title ) ))
                         
-                        Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(QUIZTheme.quizIDType ?? "") ?? 0 )"]  as? String ?? ""),quizId:self.selectedLeaderBoardType?.quizid ?? quizId, quizTitle: self.quizViewModel.gaTitlePassed, gaPageTitle: self.quizViewModel.gaPageTitle,gaPageSubType: self.quizViewModel.gaPageSubType)
+                        Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(MOLTheme.quizIDType ?? "") ?? 0 )"]  as? String ?? ""),quizId:self.selectedLeaderBoardType?.quizid ?? quizId, quizTitle: self.quizViewModel.gaTitlePassed, gaPageTitle: self.quizViewModel.gaPageTitle,gaPageSubType: self.quizViewModel.gaPageSubType)
                         
                         
-                        if QUIZTheme.isIpad {
+                        if MOLTheme.isIpad {
                             
                             isPresentingiPadActivityView = true
                         } else {
@@ -130,18 +130,18 @@ struct LeaderboardView: View {
                     }
                     
                 }) {
-                    Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDKShare.name) ?? UIImage())
+                    Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDKShare.name) ?? UIImage())
                     
                 }.popover(isPresented: $isPresentingiPadActivityView) {
                     //                MNTCustSimplyShareViewController(activityItems: [sharedata?.modalTitle?.getTranslationValue(default: ""),sharedata?.modalDesc?.getTranslationValue(default: ""),sharedata?.loadText?.getTranslationValue(default: ""),URL(string: shareURls.leaderBoard + "/\(self.quizViewModel.quizType ?? 0)" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!])
-                    MNTCustSimplyShareViewController(activityItems: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.leaderBoard + (QUIZTheme.currentGameID ?? "uclquiz") + screenName.leaderboard
-                                                                                                                                      + "/\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(QUIZTheme.quizIDType ?? "") ?? 0 )" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!])
+                    MNTCustSimplyShareViewController(activityItems: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.leaderBoard + (MOLTheme.currentGameID ?? "uclmoreorless") + screenName.leaderboard
+                                                                                                                                      + "/\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(MOLTheme.quizIDType ?? "") ?? 0 )" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!])
                     
                 }
                                      
                                      
                 ).navigationBarBackButtonHidden()
-                    .navigationBarTitle(QUIZTheme.currentGameID == "weuroquiz" ? "\(self.quizViewModel.typeTitle ?? "")" : AppStrings.Leaderboards.getTranslationValue(default: "Leaderboards"), displayMode: QUIZTheme.currentGameID == "weuroquiz" ? .large : .inline)
+                    .navigationBarTitle(MOLTheme.currentGameID == "weuromoreorless" ? "\(self.quizViewModel.typeTitle ?? "")" : AppStrings.Leaderboards.getTranslationValue(default: "Leaderboards"), displayMode: MOLTheme.currentGameID == "weuromoreorless" ? .large : .inline)
 //                    .navigationTitle(AppStrings.leaderboard_ranking_title.getTranslationValue(default: "Leaderboard"))
                 
             }
@@ -153,7 +153,7 @@ struct LeaderboardView: View {
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         //        .background(ActivityViewPresenter(isPresented: $isPresentingiPhoneActivityView, items: [sharedata?.modalTitle?.getTranslationValue(default: ""),sharedata?.modalDesc?.getTranslationValue(default: ""),sharedata?.loadText?.getTranslationValue(default: ""),URL(string: shareURls.leaderBoard + "/\(self.quizViewModel.quizType ?? 0)" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!]))
-        .background(ActivityViewPresenter(isPresented: $isPresentingiPhoneActivityView, items: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.leaderBoard + (QUIZTheme.currentGameID ?? "uclquiz") + screenName.leaderboard + "/\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(QUIZTheme.quizIDType ?? "") ?? 0 )" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!]))
+        .background(ActivityViewPresenter(isPresented: $isPresentingiPhoneActivityView, items: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.leaderBoard + (MOLTheme.currentGameID ?? "uclmoreorless") + screenName.leaderboard + "/\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(MOLTheme.quizIDType ?? "") ?? 0 )" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!]))
         .navigationBarHidden(false)
         .onAppear{
             self.quizViewModel.LeaderBoardRankList(quizId: self.selectedLeaderBoardType?.quizid ?? quizId  , offset: maxOffset, count: GamingHubCards.isLoggedIn ? Constants.configData?.leaderBoardPagingPerPage ?? 10 : Constants.configData?.leaderBoardPagingPerPageForGuest ?? 50)
@@ -164,22 +164,22 @@ struct LeaderboardView: View {
                     
                     let intvals0 = self.selectedLeaderBoardType?.quiztypeid
                     let intvals1 = self.quizIdType
-                    let intvals2 = QUIZTheme.quizIDType ?? intvals1
+                    let intvals2 = MOLTheme.quizIDType ?? intvals1
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
                         current_screen_name = current_screen_name.replacingOccurrences(of: "{quizType}", with: self.quizViewModel.gameType ?? "")
 
                         
                         
-                        let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:],replace2: (Constants.configData?.quizTypeTrackingKey?["\(intvals0 ?? Int(intvals2) ?? 0)"]  as? String ?? ""),quizId:GamingHubCards.isLoggedIn ? self.selectedLeaderBoardType?.quizid ?? QUIZTheme.quizID ?? quizId : "\(self.selectedLeaderBoardType?.quiztypeid ?? Int(quizId) ?? 0)",quizTitle: self.quizViewModel.gaTitlePassed, gaPageTitle: self.quizViewModel.gaPageTitle, gaPageSubType: self.quizViewModel.gaPageSubType)
+                        let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:],replace2: (Constants.configData?.quizTypeTrackingKey?["\(intvals0 ?? Int(intvals2) ?? 0)"]  as? String ?? ""),quizId:GamingHubCards.isLoggedIn ? self.selectedLeaderBoardType?.quizid ?? MOLTheme.quizID ?? quizId : "\(self.selectedLeaderBoardType?.quiztypeid ?? Int(quizId) ?? 0)",quizTitle: self.quizViewModel.gaTitlePassed, gaPageTitle: self.quizViewModel.gaPageTitle, gaPageSubType: self.quizViewModel.gaPageSubType)
                         
                         
                         
-                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                         self.analyticsDomainName = analyticsDomainName
                         self.analyticsData = analyticsData
                         
-                        Track.shared.screen(screen: current_screen_name, params: [:],replace2: (Constants.configData?.quizTypeTrackingKey?["\(intvals0 ?? Int(intvals2) ?? 0)"]  as? String ?? ""),quizId:GamingHubCards.isLoggedIn ? self.selectedLeaderBoardType?.quizid ?? QUIZTheme.quizID ?? quizId : "\(self.selectedLeaderBoardType?.quiztypeid ?? Int(quizId) ?? 0)",quizTitle: self.quizViewModel.gaTitlePassed, gaPageTitle: self.quizViewModel.gaPageTitle, gaPageSubType: self.quizViewModel.gaPageSubType)
+                        Track.shared.screen(screen: current_screen_name, params: [:],replace2: (Constants.configData?.quizTypeTrackingKey?["\(intvals0 ?? Int(intvals2) ?? 0)"]  as? String ?? ""),quizId:GamingHubCards.isLoggedIn ? self.selectedLeaderBoardType?.quizid ?? MOLTheme.quizID ?? quizId : "\(self.selectedLeaderBoardType?.quiztypeid ?? Int(quizId) ?? 0)",quizTitle: self.quizViewModel.gaTitlePassed, gaPageTitle: self.quizViewModel.gaPageTitle, gaPageSubType: self.quizViewModel.gaPageSubType)
                         
                         Track.shared.trackSponsor(slot: "header", analyticsDomainName: self.analyticsDomainName, analyticsData: self.analyticsData)
                     }
@@ -190,7 +190,7 @@ struct LeaderboardView: View {
                         
                         let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:], replace2: (Constants.configData?.quizTypeTrackingKey?["\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? 0)"]  as? String ?? ""),quizId:self.selectedLeaderBoardType?.quizid ?? quizId, quizTitle: self.quizViewModel.gaTitlePassed, gaPageTitle: self.quizViewModel.gaPageTitle, gaPageSubType: self.quizViewModel.gaPageSubType)
                         
-                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                         self.analyticsDomainName = analyticsDomainName
                         self.analyticsData = analyticsData
                         
@@ -202,19 +202,19 @@ struct LeaderboardView: View {
                 
                 orientation = UIDevice.current.orientation
                 oldorientation = UIDevice.current.orientation
-                if QUIZTheme.currentGameID == "uclquiz" || QUIZTheme.currentGameID == "weuroquiz"{
-                    QUIZTheme.currentnavigation!.style(style: .withBgImage(image: QUIZTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(QUIZTheme.getColor(named: .QSDK_NavImage051139))))
-                }else if QUIZTheme.currentGameID == "uwclquiz" {
-                    QUIZTheme.currentnavigation!.style(style: .withBgImage(image: QUIZTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(QUIZTheme.getColor(named: .QSDK_NavImage051139))))
-                }else if QUIZTheme.currentGameID == "euroquiz"{
-                    QUIZTheme.currentnavigation!.style(style: .withBgImageEuro(image: QUIZTheme.getImage(named: QuizImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
+                if MOLTheme.currentGameID == "uclmoreorless" || MOLTheme.currentGameID == "weuromoreorless"{
+                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
+                }else if MOLTheme.currentGameID == "uwclmoreorless" {
+                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
+                }else if MOLTheme.currentGameID == "euromoreorless"{
+                    MOLTheme.currentnavigation!.style(style: .withBgImageEuro(image: MOLTheme.getImage(named: MolImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
                 } else {
-                    QUIZTheme.currentnavigation!.style(style: .blue())
+                    MOLTheme.currentnavigation!.style(style: .blue())
                 }
                 
                 
-                QUIZTheme.navigateTo = nil
-                QUIZTheme.quizID = nil
+                MOLTheme.navigateTo = nil
+                MOLTheme.quizID = nil
             
             }
         }
@@ -222,7 +222,7 @@ struct LeaderboardView: View {
         .quizOnRotate { newOrientation in
             if !PasstoAnotherView {
                 orientation = newOrientation
-                QUIZTheme.updateViewLayout()
+                MOLTheme.updateViewLayout()
             }
         }
         
@@ -241,33 +241,33 @@ struct LeaderboardView: View {
                         if let item  = self.quizViewModel.arrayleaderboardRanking[safe:index]{
                             VStack(spacing:0){
                                 HStack{
-                                    if (item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID){
+                                    if (item.guid == MolGameSDk.game.store.QuizUser?.userGUID){
                                         RoundedRectangle(cornerRadius: 0)
-                                            .fill(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                            .fill(MOLTheme.getColor(named: .QPSDKPrimary))
                                             .frame(width: 5,height: 56)
                                     }
                                     HStack(spacing:10){
                                         
-                                        Text(QUIZTheme.isIpad ? String(item.rank ?? 0) : String(item.rank ?? 0).prefix(Constants.configData?.leaderboardMaxRankLength ?? 6) + (String(item.rank ?? 0).count > (Constants.configData?.leaderboardMaxRankLength ?? 6) ? ".." : ""))
+                                        Text(MOLTheme.isIpad ? String(item.rank ?? 0) : String(item.rank ?? 0).prefix(Constants.configData?.leaderboardMaxRankLength ?? 6) + (String(item.rank ?? 0).count > (Constants.configData?.leaderboardMaxRankLength ?? 6) ? ".." : ""))
                                             .lineLimit(1)
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 10))
-                                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                             .padding(.trailing,5)
                                         HStack {
                                             Spacer()
                                             Text(String(item.level ?? 0))
                                                 .font(Font.swiftUICustomFont(customFont: .Champions_Light, size: 8))
-                                                .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                                                .background(Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDK_PointBg.name) ?? UIImage()))
+                                                .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                                                .background(Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_PointBg.name) ?? UIImage()))
                                             
                                         }.padding(.trailing,5)
                                             .padding(.top,25)
                                         
                                             .background(
                                                 ZStack {
-                                                    KFImage(URL(string: QUIZTheme.urlavtra(url:(item.avatar ?? ""))))
+                                                    KFImage(URL(string: MOLTheme.urlavtra(url:(item.avatar ?? ""))))
                                                         .placeholder {
-                                                            QUIZTheme.getImage(named:QuizImageName.QSDK_GamingAvatarRed.name)
+                                                            MOLTheme.getImage(named:MolImageName.QSDK_GamingAvatarRed.name)
                                                         }
                                                         .retry(maxCount: 3, interval: .seconds(5))
                                                         .resizable()
@@ -276,37 +276,37 @@ struct LeaderboardView: View {
                                             ) .frame(width: 45.0, height: 45.0)
                                         
                                         HStack(){
-                                            if (item.fullname ?? "").count > (QUIZTheme.isIpad ? 25 : 17){
+                                            if (item.fullname ?? "").count > (MOLTheme.isIpad ? 25 : 17){
                                                 Text(item.fullname ?? "")
                                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
                                                     .multilineTextAlignment(.leading)
                                                     .lineLimit(1)
                                                     .truncationMode(.middle)
-                                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
-                                                    .frame(width:QUIZTheme.isIpad ? 155 : 140)
+                                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
+                                                    .frame(width:MOLTheme.isIpad ? 155 : 140)
                                                     .padding(.vertical, 1)
                                             }else{
                                                 Text(item.fullname ?? "")
                                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                                     .lineLimit(1)
                                                     .padding(.vertical, 1)
                                             }
-                                            if (item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID){
+                                            if (item.guid == MolGameSDk.game.store.QuizUser?.userGUID){
                                                 
                                                 Text("(You)")
                                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
-                                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.7))
+                                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.7))
                                             }
                                             
                                         }.frame(maxWidth:.infinity ,alignment: .leading)
-                                        if QUIZTheme.currentGameID == "weuroquiz"{
+                                        if MOLTheme.currentGameID == "weuromoreorless"{
                                             Button {
                                                 
                                             } label: {
                                                 Text("\(item.correctaccuracy ?? 0)")
                                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                                     .frame(alignment: .center)
                                             }
                                             .frame(maxWidth: 50)
@@ -315,26 +315,26 @@ struct LeaderboardView: View {
                                             
                                         } label: {
                                             if let overpo = item.overallpoints{
-                                                if QUIZTheme.currentGameID != "weuroquiz"{
+                                                if MOLTheme.currentGameID != "weuromoreorless"{
                                                     Spacer()
                                                 }
-                                                Text(QUIZTheme.isIpad ? String(overpo) : String(overpo).prefix(Constants.configData?.leaderboardMaxPointLength ?? 6) + (String(overpo).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : ""))
+                                                Text(MOLTheme.isIpad ? String(overpo) : String(overpo).prefix(Constants.configData?.leaderboardMaxPointLength ?? 6) + (String(overpo).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : ""))
                                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                             }else{
                                                 Text("")
                                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                             }
                                         }
                                         .frame(maxWidth: 75)
                                     }.padding([.top,.bottom],5).padding([.leading,.trailing],10)
-                                }.padding(.trailing,(item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ? 0 : 0)
+                                }.padding(.trailing,(item.guid == MolGameSDk.game.store.QuizUser?.userGUID) ? 0 : 0)
                                 
-                                Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.3))
+                                Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.3))
                             }
-                            .background((item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ? (QUIZTheme.getColor(named: .LD_Select_BG)) : Color.clear).ignoresSafeArea()
-                            .padding([.leading,.trailing],(item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ? QUIZTheme.isIpad ? (QUIZTheme.isLandscape && QUIZTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0 : QUIZTheme.isIpad ? (QUIZTheme.isLandscape && QUIZTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0)
+                            .background((item.guid == MolGameSDk.game.store.QuizUser?.userGUID) ? (MOLTheme.getColor(named: .LD_Select_BG)) : Color.clear).ignoresSafeArea()
+                            .padding([.leading,.trailing],(item.guid == MolGameSDk.game.store.QuizUser?.userGUID) ? MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0 : MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0)
                             
                         }
                     }
@@ -354,7 +354,7 @@ struct LeaderboardView: View {
                 
                 
             }
-            if QUIZTheme.currentGameID == "weuroquiz"{
+            if MOLTheme.currentGameID == "weuromoreorless"{
                 Spacer()
                 AdsSponsorsView()
                     .frame(width: 320)
@@ -379,14 +379,14 @@ struct LeaderboardView: View {
                         .lineLimit(1)
                         .truncationMode(.middle)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                         .padding()
                 }.clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                     .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .stroke(QUIZTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
+                        .stroke(MOLTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
                 
-            }.frame(width:QUIZTheme.isIpad ? 200 : UIScreen.screenWidth - 32)
-                .padding([.leading,.trailing], QUIZTheme.isIpad ? 52 : 16).padding([.top,.bottom], 14)
+            }.frame(width:MOLTheme.isIpad ? 200 : UIScreen.screenWidth - 32)
+                .padding([.leading,.trailing], MOLTheme.isIpad ? 52 : 16).padding([.top,.bottom], 14)
         }
     }
     
@@ -411,32 +411,32 @@ struct SelfUserRank : View {
                 if let item  = selfRankData?[safe:index]{
                     VStack(spacing:0){
                         HStack{
-                            if (item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID){
+                            if (item.guid == MolGameSDk.game.store.QuizUser?.userGUID){
                                 RoundedRectangle(cornerRadius: 0)
-                                    .fill(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                    .fill(MOLTheme.getColor(named: .QPSDKPrimary))
                                     .frame(width: 5,height: 56)
                             }
                             HStack(spacing:10){
-                                Text(QUIZTheme.isIpad ? String(item.rank ?? 0) : String(item.rank ?? 0).prefix(Constants.configData?.leaderboardMaxRankLength ?? 6) + (String(item.rank ?? 0).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : ""))
+                                Text(MOLTheme.isIpad ? String(item.rank ?? 0) : String(item.rank ?? 0).prefix(Constants.configData?.leaderboardMaxRankLength ?? 6) + (String(item.rank ?? 0).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : ""))
                                     .lineLimit(1)
                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 10))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                     .padding(.trailing,5)
                                 
                                 HStack {
                                     Spacer()
                                     Text(String(item.level ?? 0))
                                         .font(Font.swiftUICustomFont(customFont: .Champions_Light, size: 8))
-                                        .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                                        .background(Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDK_PointBg.name) ?? UIImage()))
+                                        .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                                        .background(Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_PointBg.name) ?? UIImage()))
                                     
                                 }.padding(.trailing,5)
                                     .padding(.top,25)
                                     .background(
                                         ZStack {
-                                            KFImage(URL(string: QUIZTheme.urlavtra(url:(item.avatar ?? ""))))
+                                            KFImage(URL(string: MOLTheme.urlavtra(url:(item.avatar ?? ""))))
                                                 .placeholder {
-                                                    QUIZTheme.getImage(named:QuizImageName.QSDK_GamingAvatarRed.name)
+                                                    MOLTheme.getImage(named:MolImageName.QSDK_GamingAvatarRed.name)
                                                 }.retry(maxCount: 3, interval: .seconds(5))
                                                 .resizable()
                                                 .frame(width: 45.0, height: 45.0)
@@ -445,13 +445,13 @@ struct SelfUserRank : View {
                                 
                                 fullNameView(item: item)
                                 
-                                if QUIZTheme.currentGameID == "weuroquiz"{
+                                if MOLTheme.currentGameID == "weuromoreorless"{
                                     Button {
                                         
                                     } label: {
                                         Text("\(item.correctaccuracy ?? 0)")
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                             .frame(alignment: .center)
                                     }
                                     .frame(maxWidth: 50)
@@ -461,9 +461,9 @@ struct SelfUserRank : View {
                                     
                                 } label: {
                                     if let overpo = item.overallpoints{
-                                        Text(QUIZTheme.isIpad ? String(overpo) : String(overpo).prefix(Constants.configData?.leaderboardMaxPointLength ?? 6) + (String(overpo).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : ""))
+                                        Text(MOLTheme.isIpad ? String(overpo) : String(overpo).prefix(Constants.configData?.leaderboardMaxPointLength ?? 6) + (String(overpo).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : ""))
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                             .frame(alignment: .trailing)
                                             .frame(maxWidth: 75)
                                     }else{
@@ -474,10 +474,10 @@ struct SelfUserRank : View {
                             }.padding([.top,.bottom],5).padding([.leading,.trailing],10)
                         }.padding(.trailing,(item.selfrank == 1) ? 0 : 0)
                         
-                        Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.3))
+                        Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.3))
                     }
-                    .background((item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ? (QUIZTheme.getColor(named: .QSDK_151573)) : Color.clear).ignoresSafeArea()
-                    .padding([.leading,.trailing],(item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ?QUIZTheme.isIpad ? (isLandscape && QUIZTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0 : QUIZTheme.isIpad ? (isLandscape && QUIZTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0)
+                    .background((item.guid == MolGameSDk.game.store.QuizUser?.userGUID) ? (MOLTheme.getColor(named: .QSDK_151573)) : Color.clear).ignoresSafeArea()
+                    .padding([.leading,.trailing],(item.guid == MolGameSDk.game.store.QuizUser?.userGUID) ?MOLTheme.isIpad ? (isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0 : MOLTheme.isIpad ? (isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0)
                 }
             }
         }
@@ -494,26 +494,26 @@ struct fullNameView : View {
     var body: some View {
         
         HStack(){
-            if (item?.fullname ?? "").count > (QUIZTheme.isIpad ? 25 : 17){
+            if (item?.fullname ?? "").count > (MOLTheme.isIpad ? 25 : 17){
                 Text(item?.fullname ?? "")
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                     .lineLimit(1)
-                    .frame(width:QUIZTheme.isIpad ? 155 : 140)
+                    .frame(width:MOLTheme.isIpad ? 155 : 140)
                     .padding(.vertical, 1)
                 
             }else{
                 Text(item?.fullname ?? "")
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                     .lineLimit(1)
                     .padding(.vertical, 1)
             }
-            if (item?.guid == QuizzGameSDk.game.store.QuizUser?.userGUID){
+            if (item?.guid == MolGameSDk.game.store.QuizUser?.userGUID){
                 
                 Text("(You)")
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
-                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.7))
+                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.7))
             }
             
         }.frame(maxWidth:.infinity ,alignment: .leading)
@@ -586,7 +586,7 @@ struct LeaguesOverallStatsCarouselHighScorerView: View {
                         HStack{
                             VStack(alignment: .leading) {
                                 HStack(alignment: .top) {
-                                    QUIZTheme.getImage(named:QuizImageName.QSDK_icon_crown.name)?
+                                    MOLTheme.getImage(named:MolImageName.QSDK_icon_crown.name)?
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 12.0, height: 12.0)
@@ -603,7 +603,7 @@ struct LeaguesOverallStatsCarouselHighScorerView: View {
                                     .multilineTextAlignment(.leading)
                             }
                             Spacer()
-                            QUIZTheme.getImage(named:QuizImageName.QSDK_icon_crown.name)?
+                            MOLTheme.getImage(named:MolImageName.QSDK_icon_crown.name)?
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 18.0, height: 18.0)
@@ -621,10 +621,10 @@ struct LeaguesOverallStatsCarouselHighScorerView: View {
                     .padding()
                     Spacer()
                 }
-                .background(QUIZTheme.getColor(named: .QSDK_0D3AFF))
+                .background(MOLTheme.getColor(named: .QSDK_0D3AFF))
                 .cornerRadius(14.0)
             }.frame(height: 154)
-//            .background(QUIZTheme.getColor(named: .QSDK_151573)//hex: "#0D1E62"
+//            .background(MOLTheme.getColor(named: .QSDK_151573)//hex: "#0D1E62"
 //                        
 ////                .overlay(
 ////                    Image.appImageNamed("LeaguesStatsBG")
@@ -658,14 +658,14 @@ struct leaderboardCardList: View {
             HStack {
                 Text(selectedOption)
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 16))
-                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                 Spacer()
-                Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDK_RightArrow.name) ?? UIImage())
+                Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_RightArrow.name) ?? UIImage())
                     .rotationEffect(.degrees(90))
             }
             .padding(.horizontal, 15)
             .frame(height: 45)
-            .background(QUIZTheme.getColor(named: .QSDK_151573))
+            .background(MOLTheme.getColor(named: .QSDK_151573))
             .cornerRadius(10)
         }
     }
@@ -715,7 +715,7 @@ struct MNTCustSimplyShareViewController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIActivityViewController {
         print(activityItems)
         let filteredActivityItems: [Any] = activityItems.compactMap { item in
-            if let activity = item as? String, activity == QUIZTheme.QuizScreenShotKey {
+            if let activity = item as? String, activity == MOLTheme.QuizScreenShotKey {
                 return TakeScreenShotforQuiz()
             } else if let text = item as? String {
                 return text

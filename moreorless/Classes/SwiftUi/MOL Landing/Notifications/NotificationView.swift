@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NotificationsView: View {
-    @ObservedObject var notificationsvm : QuizNotificationsViewModel
+    @ObservedObject var notificationsvm : MolNotificationsViewModel
     
     var body: some View {
             ZStack {
@@ -18,14 +18,14 @@ struct NotificationsView: View {
                         Text(NotificationStrings.notificationcardTitle.getTranslationValue(default: "Never miss a Daily Quiz"))
                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
                             .multilineTextAlignment(.leading)
-                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                         
                         Button {
                             notificationsvm.didClickNotificationPermission()
                         } label: {
                             Text(NotificationStrings.notificationCardbutton.getTranslationValue(default: "Turn on notifications"))
                                 .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                         }
                         
                     }
@@ -33,11 +33,11 @@ struct NotificationsView: View {
                     Spacer()
                     ZStack(alignment: .top){
                         VStack {
-                            Image(uiImage: QUIZTheme.getImage(named: QUIZTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_Notification.name : "") ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_Notification.name : "") ?? UIImage())
                                 .resizable()
                             //.scaledToFill()
                         }.frame(width:  96, height:  96)
-                            .padding(.trailing, QUIZTheme.currentGameID == "euroquiz" ? 0 :  QUIZTheme.isIpad ? 20 : 16)
+                            .padding(.trailing, MOLTheme.currentGameID == "euromoreorless" ? 0 :  MOLTheme.isIpad ? 20 : 16)
                     }
                     .overlay(
                         VStack{
@@ -45,12 +45,12 @@ struct NotificationsView: View {
                                 Spacer()
                                 Button(action: { notificationsvm.didCloseNotificationCard() }) {
                                     VStack{
-                                        Image(uiImage: QUIZTheme.getImage(named: QUIZTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? MolImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                                             .resizable()
                                             .frame(width: 15, height: 15)
                                     }
                                     .frame(width: 24, height: 24)
-                                    .background(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
+                                    .background(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
                                     .clipShape(Circle())
                                 }
                                 .padding([.top, .trailing], 8)
@@ -61,7 +61,7 @@ struct NotificationsView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: 112)
-            .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+            .background(MOLTheme.getColor(named: .QSDK_0A0A61))
             .cornerRadius(14)
     }
 }

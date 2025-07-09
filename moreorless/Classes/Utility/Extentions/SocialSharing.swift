@@ -24,7 +24,7 @@ struct ActivityViewPresenter: UIViewControllerRepresentable {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                 let filteredActivityItems: [Any] = {
                     let result: [Any] = items.enumerated().compactMap { index, item in
-                        if let activity = item as? String, activity == QUIZTheme.QuizScreenShotKey {
+                        if let activity = item as? String, activity == MOLTheme.QuizScreenShotKey {
                             // If the activity matches, remove it and add a screenshot
                             if let img = TakeScreenShotforQuiz() {
                                 return img

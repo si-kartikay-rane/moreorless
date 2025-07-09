@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum QuizImageName:String{
+enum MolImageName:String{
     case QPSDKBackGroundImage = "BG"
     case QPSDKAdsImage = "QPSDKAdsPSL"
     case QSDKtrofiBanner = "trofiBanner"

@@ -14,7 +14,7 @@ struct ExitBottomPopup: View {
     var quizId : String
     var gameType: String
     @State private var current_screen_name = "/quiz-gameplay-"
-    @State var viewModel = QuizViewModel()
+//    @State var viewModel = QuizViewModel()
     @State var MLViewModel = MLGameViewModel()
     @State var userClickYes:Bool = false
     var onDismiss: () -> Void
@@ -24,7 +24,7 @@ struct ExitBottomPopup: View {
             if userClickYes {
                 ActivityIndicator(isAnimating:$userClickYes, style: .large)
             }
-            if QUIZTheme.isIpad{
+            if MOLTheme.isIpad{
                 HStack{
                     
                     buttonView
@@ -36,7 +36,7 @@ struct ExitBottomPopup: View {
                 VStack {
                     Spacer(minLength: 10)
                     buttonView
-                    if !QUIZTheme.isGamingHubHost{
+                    if !MOLTheme.isGamingHubHost{
                         
                         VStack{}.frame(height: 50)
                     }
@@ -58,7 +58,7 @@ struct ExitBottomPopup: View {
                     Button(action: {
                         isPresented = false
                     }, label: {
-                        Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDK_Cross.name) ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDK_Cross.name) ?? UIImage())
                             //.resizable()
                             .frame(width: 32, height: 32)
 
@@ -71,30 +71,30 @@ struct ExitBottomPopup: View {
                     Text(AppStrings.exit_title.getTranslationValue(default: "Exit quiz?"))
                         .multilineTextAlignment(.leading)
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 20))
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
 
                     Text(AppStrings.exit_sub_title.getTranslationValue(default: "If you resume the quiz later, this question will be skipped."))
                         .multilineTextAlignment(.leading)
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 16))
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
 
-                    if QUIZTheme.isIpad{
+                    if MOLTheme.isIpad{
                         HStack{
 
                             Button(action: {
                                 isPresented = false
                                 if gameType == "mol"{
-                                    let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
+                                    let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
                                     Track.shared.event(G4A: ga4, name: current_screen_name + (MLViewModel.cardSelection?.gametype ?? "mol"), params: nil, replaceString: "\(MLViewModel.currentQuestionIndex+1)", quizId: self.MLViewModel.quizID,quizTitle: MLViewModel.cardSelection?.gatitle, gaPageTitle: MLViewModel.cardSelection?.gaPageTitle)
                                 }else{
-                                    let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
-                                    Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
+//                                    let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
+//                                    Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
                                 }
                             }, label: {
                                 Text(AppStrings.exitNo.getTranslationValue(default: "No, continue"))
                                     .frame(maxWidth: .infinity,maxHeight: 20)
                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                             }).buttonStyle(.secondary(borderWidth: 1))
 
                             Button(action: {
@@ -102,15 +102,15 @@ struct ExitBottomPopup: View {
                                     userClickYes = true
                                     if GamingHubCards.isLoggedIn {
                                        if self.gameType != "mol"{
-                                            self.viewModel.settlemetnExit(){ isdismiss in
-                                                isPresented = !isdismiss
-                                                let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
-                                                Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
-                                                onDismiss()
-                                                userClickYes =  false
-                                            }
+//                                            self.viewModel.settlemetnExit(){ isdismiss in
+//                                                isPresented = !isdismiss
+////                                                let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
+////                                                Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
+//                                                onDismiss()
+//                                                userClickYes =  false
+//                                            }
                                        }else{
-                                           let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
+                                           let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
                                            Track.shared.event(G4A: ga4, name: current_screen_name + (MLViewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(MLViewModel.currentQuestionIndex+1)", quizId: self.MLViewModel.quizID,quizTitle: MLViewModel.cardSelection?.gatitle, gaPageTitle: MLViewModel.cardSelection?.gaPageTitle)
                                            MLViewModel.exitapicall(){ onSuccess in
                                                if onSuccess{
@@ -127,11 +127,11 @@ struct ExitBottomPopup: View {
                                         userClickYes =  false
                                         isPresented = false
                                         if gameType == "mol"{
-                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
+                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
                                             Track.shared.event(G4A: ga4, name: current_screen_name + (MLViewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(MLViewModel.currentQuestionIndex+1)", quizId: self.MLViewModel.quizID,quizTitle: MLViewModel.cardSelection?.gatitle, gaPageTitle: MLViewModel.cardSelection?.gaPageTitle)
                                         }else{
-                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
-                                            Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
+//                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
+//                                            Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
                                         }
                                         onDismiss()
                                     }
@@ -149,16 +149,16 @@ struct ExitBottomPopup: View {
                                     userClickYes = true
                                     if GamingHubCards.isLoggedIn {
                                         if self.gameType != "mol"{
-                                            self.viewModel.settlemetnExit(){ isdismiss in
-                                                isPresented = !isdismiss
-                                                let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
-                                                Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
-                                                onDismiss()
-                                                userClickYes =  false
-                                               
-                                            }
+//                                            self.viewModel.settlemetnExit(){ isdismiss in
+//                                                isPresented = !isdismiss
+////                                                let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
+////                                                Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
+//                                                onDismiss()
+//                                                userClickYes =  false
+//                                               
+//                                            }
                                         }else{
-                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
+                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
                                             Track.shared.event(G4A: ga4, name: current_screen_name + (MLViewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(MLViewModel.currentQuestionIndex+1)", quizId: self.MLViewModel.quizID,quizTitle: MLViewModel.cardSelection?.gatitle, gaPageTitle: MLViewModel.cardSelection?.gatitle)
                                             
                                             MLViewModel.exitapicall(){ onSuccess in
@@ -176,11 +176,11 @@ struct ExitBottomPopup: View {
                                         userClickYes =  false
                                         isPresented = false
                                         if gameType == "mol"{
-                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
+                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
                                             Track.shared.event(G4A: ga4, name: current_screen_name + (MLViewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(MLViewModel.currentQuestionIndex+1)", quizId: self.MLViewModel.quizID,quizTitle: MLViewModel.cardSelection?.gatitle, gaPageTitle: MLViewModel.cardSelection?.gaPageTitle)
                                         }else{
-                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
-                                            Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: MLViewModel.cardSelection?.gaPageTitle)
+//                                            let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
+//                                            Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: MLViewModel.cardSelection?.gaPageTitle)
                                         }
                                         onDismiss()
                                     }
@@ -195,28 +195,28 @@ struct ExitBottomPopup: View {
                                 isPresented = false
                                 
                                 if gameType == "mol"{
-                                    let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
+                                    let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: MLViewModel.cardSelection?.gatitle ?? "", gameType: MLViewModel.cardSelection?.gaPageTitle ?? "mol"))
                                     Track.shared.event(G4A: ga4, name: current_screen_name + (MLViewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(MLViewModel.currentQuestionIndex+1)", quizId: self.MLViewModel.quizID,quizTitle: MLViewModel.cardSelection?.gatitle, gaPageTitle: MLViewModel.cardSelection?.gaPageTitle)
                                 }else{
-                                    let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:QUIZTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
-                                    Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
+//                                    let ga4 = QuizzerAnalyticsExitModalQuitQuiz(quizType:MOLTheme.eventTypeData(title: viewModel.cardSelection?.gatitle ?? "", gameType: viewModel.cardSelection?.gaPageTitle ?? "quiz"))
+//                                    Track.shared.event(G4A: ga4, name: current_screen_name +  (viewModel.cardSelection?.gametype ?? "quiz"), params: nil, replaceString: "\(viewModel.jsonIndex+1)", quizId: self.viewModel.quizID,quizTitle: viewModel.cardSelection?.gatitle, gaPageTitle: viewModel.cardSelection?.gaPageTitle)
                                 }
                             }, label: {
                                 Text(AppStrings.exitNo.getTranslationValue(default: "No, continue"))
                                     .frame(maxWidth: .infinity,maxHeight: 20)
                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                             }).buttonStyle(.secondary(borderWidth: 1))
                         }
                         
                     }
-                }.padding([.leading,.trailing],QUIZTheme.isIpad ? 32 : 12)
-                 .padding(.bottom,QUIZTheme.isIpad ? 52 : 32)
+                }.padding([.leading,.trailing],MOLTheme.isIpad ? 32 : 12)
+                 .padding(.bottom,MOLTheme.isIpad ? 52 : 32)
             }
 
         }.ignoresSafeArea()
-        .background(QUIZTheme.getColor(named: .QSDK_151573))
-        .quizCornerRadius(16.0, corners: QUIZTheme.isIpad ? .allCorners : [.topLeft,.topRight])
+        .background(MOLTheme.getColor(named: .QSDK_151573))
+        .quizCornerRadius(16.0, corners: MOLTheme.isIpad ? .allCorners : [.topLeft,.topRight])
         //.padding([.leading,.trailing],20)
         
     }

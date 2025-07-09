@@ -15,7 +15,7 @@ struct Constants {
             guard let config = configData else {
                 return
             }
-           Constants.appData.platformID = QUIZTheme.isIpad ? 4 : 2
+           Constants.appData.platformID = MOLTheme.isIpad ? 4 : 2
 //            Constants.appData.tourId = config.tourID ?? 0
             
         }
@@ -24,7 +24,7 @@ struct Constants {
     static var guid = ""
     static var appData = AppData()
     struct AppData {
-        var platformID : Int = QUIZTheme.isIpad ? 4 : 2
+        var platformID : Int = MOLTheme.isIpad ? 4 : 2
         var tourId: Int = 1
     }
 }
@@ -32,7 +32,7 @@ struct Constants {
 extension Constants {
     
     static func isLogEnable() -> Bool {
-        if CommandLine.arguments.contains(where: {$0 == "quiz"}) {
+        if CommandLine.arguments.contains(where: {$0 == "moreorless"}) {
             return true
         } else {
             return false
@@ -40,6 +40,6 @@ extension Constants {
     }
     
     static func print(_ items: Any..., separator: String = " ", terminator: String = ",\n") {
-        GameLogger.print(items,domain: "quiz")
+        GameLogger.print(items,domain: "moreorless")
     }
 }

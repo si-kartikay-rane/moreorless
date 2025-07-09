@@ -14,7 +14,7 @@ struct MlScoreBoard: View {
     @StateObject var viewModel =  MLGameViewModel()
     @StateObject private var viewLoginModel = SplashVM()
     @State private var playAgain = false
-    @State var cardData:QuizCardListData? = nil
+    @State var cardData:MolCardListData? = nil
     @State private var orientation = UIDevice.current.orientation
     @Binding  var Observer:Bool
     @State private var PasstoAnotherView = false
@@ -55,12 +55,12 @@ struct MlScoreBoard: View {
             //            let timerdata = viewModel.timerData
             //            let isHrLeftValid : Bool = timerdata?.nextQuizHrLeft != nil && timerdata?.nextQuizHrLeft != 0
             //            let isMinLeftValid : Bool = timerdata?.nextQuizMinLeft != nil && timerdata?.nextQuizMinLeft != 0
-            QUIZTheme.getColor(named: .QSDK_0A0A61).ignoresSafeArea()
+            MOLTheme.getColor(named: .QSDK_0A0A61).ignoresSafeArea()
             VStack(spacing:0){
                 AdsPresentedbyView(VerticaleEnable: false, analyticsDomainName: self.analyticsDomainName, analyticsData: self.analyticsData)
                 ZStack{
                     BackgroundView
-                    if QUIZTheme.isIpad{
+                    if MOLTheme.isIpad{
                         quizIpadBg
                     }else{
                         quizIphoneBg
@@ -69,20 +69,20 @@ struct MlScoreBoard: View {
                 VStack(spacing:12){
                     
                     if viewModel.isDisable && GamingHubCards.isLoggedIn{
-                        if QUIZTheme.isIpad{
+                        if MOLTheme.isIpad{
                             loggedInQuizIpad
                         }else{
                             loggedInQuizIphone
                         }
                     }else{
-                        if QUIZTheme.isIpad{
+                        if MOLTheme.isIpad{
                             loggedOutQuizIpad
                         }else{
                             loggedOutQuizIphone
                         }
                     }
                     
-                }.frame(width: QUIZTheme.isIpad ? 400 : UIScreen.screenWidth-32)
+                }.frame(width: MOLTheme.isIpad ? 400 : UIScreen.screenWidth-32)
                     .padding([.vertical],12)
                 
                     .padding([.horizontal],16)
@@ -96,7 +96,7 @@ struct MlScoreBoard: View {
         }.ignoresSafeArea(.keyboard, edges: .bottom)
             .overlay(
                 
-                isPresentingiPhoneActivityView ? ActivityViewPresenter(isPresented: $isPresentingiPhoneActivityView, items: [loadText.getTranslationValue(default: "") as Any,URL(string: shareURls.scorescreen + (QUIZTheme.currentGameID ?? "uclquiz"))!, QUIZTheme.QuizScreenShotKey
+                isPresentingiPhoneActivityView ? ActivityViewPresenter(isPresented: $isPresentingiPhoneActivityView, items: [loadText.getTranslationValue(default: "") as Any,URL(string: shareURls.scorescreen + (MOLTheme.currentGameID ?? "uclmoreorless"))!, MOLTheme.QuizScreenShotKey
                                                                                                                              
                                                                                                                             ])
                 { completed, returnedItems, activityError in
@@ -116,7 +116,7 @@ struct MlScoreBoard: View {
                             
                             viewModel.isHiddenLottie =  true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
-                                if QUIZTheme.isIpad {
+                                if MOLTheme.isIpad {
                                     isPresentingiPadActivityView = true
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                                         viewModel.isHiddenLottie =  false
@@ -131,18 +131,18 @@ struct MlScoreBoard: View {
                             
                             //Track.shared.event(event:  cardData?.quiztypeid != 2 ? .shareresultfun : .shareresultdaily, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
                             
-                            let G4A = QuizzerAnalyticsShareResults(quizType: QUIZTheme.eventTypeData(title: cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
+                            let G4A = QuizzerAnalyticsShareResults(quizType: MOLTheme.eventTypeData(title: cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
                             Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle ?? "-")
                             
                         }
                         
                     }) {
-                        Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDKShare.name) ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MolImageName.QSDKShare.name) ?? UIImage())
                         
                     }
                     .popover(isPresented: $isPresentingiPadActivityView) {
                         
-                        MNTCustSimplyShareViewController(activityItems: [loadText.getTranslationValue(default: "") as Any,URL(string: shareURls.scorescreen + (QUIZTheme.currentGameID ?? "uclquiz"))!, QUIZTheme.QuizScreenShotKey]){ completed, returnedItems, activityError in
+                        MNTCustSimplyShareViewController(activityItems: [loadText.getTranslationValue(default: "") as Any,URL(string: shareURls.scorescreen + (MOLTheme.currentGameID ?? "uclmoreorless"))!, MOLTheme.QuizScreenShotKey]){ completed, returnedItems, activityError in
                             isPresentingiPadActivityView = false
                             viewModel.isHiddenLottie = false
                         }
@@ -154,7 +154,7 @@ struct MlScoreBoard: View {
                 if !Observer {
                     orientation = newOrientation
                 }
-                QUIZTheme.updateViewLayout()
+                MOLTheme.updateViewLayout()
             }
         
             .onAppear{
@@ -165,12 +165,12 @@ struct MlScoreBoard: View {
                 self.loadText = self.sharedata?.loadText?.replacingOccurrences(of: NetworkConstants().urlKeys.quizType, with: "\(self.cardData?.quiztypeid ?? 0)") ?? ""
                 BusterHelper.shared.updateBuster(type: .LEADERBOARD)
                 
-                 if QUIZTheme.currentGameID == "uwclquiz" || QUIZTheme.currentGameID == "uclquiz" {
-                    QUIZTheme.currentnavigation!.style(style: .withBgImage(image: QUIZTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(QUIZTheme.getColor(named: .QSDK_NavImage051139))))
-                }else if QUIZTheme.currentGameID == "euroquiz"{
-                    QUIZTheme.currentnavigation!.style(style: .withBgImageEuro(image: QUIZTheme.getImage(named: QuizImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
+                 if MOLTheme.currentGameID == "uwclmoreorless" || MOLTheme.currentGameID == "uclmoreorless" {
+                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: MolImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
+                }else if MOLTheme.currentGameID == "euromoreorless"{
+                    MOLTheme.currentnavigation!.style(style: .withBgImageEuro(image: MOLTheme.getImage(named: MolImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
                 } else {
-                    QUIZTheme.currentnavigation!.style(style: .blue())
+                    MOLTheme.currentnavigation!.style(style: .blue())
                 }
                 
                 orientation = UIDevice.current.orientation
@@ -181,7 +181,7 @@ struct MlScoreBoard: View {
                 self.analyticsDomainName = analyticsDomainName
                 self.analyticsData = analyticsData
                 
-                GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                 
                 self.analyticsDomainName = analyticsDomainName
                 self.analyticsData = analyticsData
@@ -189,9 +189,9 @@ struct MlScoreBoard: View {
                 Track.shared.screen(screen: current_screen_name, params: [:], replace2: (Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: cardData?.qzQuizMasterid ?? "",quizTitle: cardData?.gatitle, gaPageTitle: self.cardData?.gaPageTitle)
                 
                 Track.shared.trackSponsor(slot: "header", analyticsDomainName: analyticsDomainName, analyticsData: analyticsData)
-                if QuizzGameSDk.game.sponsorModel?.imageUrl == nil {
+                if MolGameSDk.game.sponsorModel?.imageUrl == nil {
                     //Ad Hide Height
-                    if QUIZTheme.isIpad {
+                    if MOLTheme.isIpad {
                         if (744...1023).contains(UIScreen.screenWidth) {
                             self.Lottie_Height_iPad = 575
                         } else {
@@ -204,7 +204,7 @@ struct MlScoreBoard: View {
                     
                 } else {
                     //AD show Height
-                    if QUIZTheme.isIpad {
+                    if MOLTheme.isIpad {
                         if (744...1023).contains(UIScreen.screenWidth) {
                             self.Lottie_Height_iPad = 475
                         } else {
@@ -250,7 +250,7 @@ struct MlScoreBoard: View {
             //            let isHrLeftValid : Bool = timerdata?.nextQuizHrLeft != nil && timerdata?.nextQuizHrLeft != 0
             //            let isMinLeftValid : Bool = timerdata?.nextQuizMinLeft != nil && timerdata?.nextQuizMinLeft != 0
             
-            if orientation.isLandscape || QUIZTheme.sizeChnage{
+            if orientation.isLandscape || MOLTheme.sizeChnage{
                 VStack{
                     TitleView.frame(width: 400).padding([.vertical],32)
                     HStack(spacing:32){
@@ -285,7 +285,7 @@ struct MlScoreBoard: View {
                             }
                         }
                     }.padding(.all,16)
-                        .frame(width: QUIZTheme.isIpad ? 400 : UIScreen.screenWidth)
+                        .frame(width: MOLTheme.isIpad ? 400 : UIScreen.screenWidth)
                 }
             }
         }
@@ -308,7 +308,7 @@ struct MlScoreBoard: View {
                     }
                 }
             }.padding(.all,16)
-                .frame(width: QUIZTheme.isIpad ? 400 : UIScreen.screenWidth)
+                .frame(width: MOLTheme.isIpad ? 400 : UIScreen.screenWidth)
         }
         
     }
@@ -324,7 +324,7 @@ struct MlScoreBoard: View {
                     
                     //                                    Track.shared.event(event: .playagian, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
                     //
-                    let G4A = QuizzerAnalyticsPlayAgain(quizType: QUIZTheme.eventTypeData(title: cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
+                    let G4A = QuizzerAnalyticsPlayAgain(quizType: MOLTheme.eventTypeData(title: cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
                     
                     Track.shared.event(G4A: G4A, name: current_screen_name + (self.cardData?.gametype ?? "mol"), params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID,quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                     
@@ -337,8 +337,8 @@ struct MlScoreBoard: View {
                         .padding()
                     
                 }
-                .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                .background(QUIZTheme.getColor(named: .QPSDKPrimary))
+                .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                .background(MOLTheme.getColor(named: .QPSDKPrimary))
                 .cornerRadius(14)
             }.frame(maxWidth: .infinity)
             
@@ -350,9 +350,9 @@ struct MlScoreBoard: View {
                     
                     //                                    Track.shared.event(event:  cardData?.quiztypeid != 2 ? .gotoarenafunlogin : .gotoarenadailylogin, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
                     //
-                    QuizzGameSDk.game.store.setGuestData(data: nil)
-                    UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (QUIZTheme.currentGameID ?? "uclquiz"))
-                    let G4A = QuizzerAnalyticsGoToQuizArena(quizType: QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
+                    MolGameSDk.game.store.setGuestData(data: nil)
+                    UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
+                    let G4A = QuizzerAnalyticsGoToQuizArena(quizType: MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
                     Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                     
                 }
@@ -361,14 +361,14 @@ struct MlScoreBoard: View {
                     Text(AppStrings.result_go_back_button_text_3.getTranslationValue(default: "Go to Quiz Arena"))
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_SemiBold, size: 14))
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                         .padding()
                 }.clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                     .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .stroke(QUIZTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
+                        .stroke(MOLTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
                 
             }.frame(maxWidth: .infinity)
-                .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+                .background(MOLTheme.getColor(named: .QSDK_0A0A61))
         }
     }
     
@@ -382,7 +382,7 @@ struct MlScoreBoard: View {
                     
                     //                                    Track.shared.event(event: .playagian, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
                     //
-                    let G4A = QuizzerAnalyticsPlayAgain(quizType: QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
+                    let G4A = QuizzerAnalyticsPlayAgain(quizType: MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
                     Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                     
                 }
@@ -394,8 +394,8 @@ struct MlScoreBoard: View {
                         .padding()
                     
                 }
-                .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                .background(QUIZTheme.getColor(named: .QPSDKPrimary))
+                .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                .background(MOLTheme.getColor(named: .QPSDKPrimary))
                 .cornerRadius(14)
             }.frame(maxWidth: .infinity)
             
@@ -407,9 +407,9 @@ struct MlScoreBoard: View {
                     
                     //                                    Track.shared.event(event:  cardData?.quiztypeid != 2 ? .gotoarenafunlogin : .gotoarenadailylogin, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
                     //
-                    QuizzGameSDk.game.store.setGuestData(data: nil)
-                    UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (QUIZTheme.currentGameID ?? "uclquiz"))
-                    let G4A = QuizzerAnalyticsGoToQuizArena(quizType: QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
+                    MolGameSDk.game.store.setGuestData(data: nil)
+                    UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
+                    let G4A = QuizzerAnalyticsGoToQuizArena(quizType: MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
                     Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                     
                 }
@@ -418,14 +418,14 @@ struct MlScoreBoard: View {
                     Text(AppStrings.result_go_back_button_text_3.getTranslationValue(default: "Go to Quiz Arena"))
                         .font(Font.swiftUICustomFont(customFont: .SF_UI_SemiBold, size: 14))
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                         .padding()
                 }.clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                     .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
-                        .stroke(QUIZTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
+                        .stroke(MOLTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
                 
             }.frame(maxWidth: .infinity)
-                .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+                .background(MOLTheme.getColor(named: .QSDK_0A0A61))
         }
         
     }
@@ -436,12 +436,12 @@ struct MlScoreBoard: View {
                 if !self.viewLoginModel.isLogin{
                     Button(action: {
                         if  NetworkWrapper.isInternerConnected(){
-                            GamingHubCards.login(QUIZTheme.currentGameID ?? "uclquiz")
+                            GamingHubCards.login(MOLTheme.currentGameID ?? "uclmoreorless")
                             
                             //                                            Track.shared.event(event:  cardData?.quiztypeid != 2 ? .scorelogintoplayfun : .scorelogintoplaydaily, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
                             
                             
-                            let G4A = QuizzerAnalyticsLoginOrRegister(quizType: QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
+                            let G4A = QuizzerAnalyticsLoginOrRegister(quizType: MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
                             Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                             
                         }
@@ -453,8 +453,8 @@ struct MlScoreBoard: View {
                                 .padding()
                             
                         }
-                        .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                        .background(QUIZTheme.getColor(named: .QPSDKPrimary))
+                        .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                        .background(MOLTheme.getColor(named: .QPSDKPrimary))
                         .cornerRadius(14)
                     }.frame(maxWidth: .infinity)
                     Button(action: {
@@ -462,9 +462,9 @@ struct MlScoreBoard: View {
                             playAgain =  true
                             self.isActive = false
                             //                                            Track.shared.event(event:  cardData?.quiztypeid != 2 ? .gotoarenafunlogout : .gotoarenadailylogout, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
-                            QuizzGameSDk.game.store.setGuestData(data: nil)
-                            UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (QUIZTheme.currentGameID ?? "uclquiz"))
-                            let G4A = QuizzerAnalyticsGoToQuizArena(quizType: QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
+                            MolGameSDk.game.store.setGuestData(data: nil)
+                            UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
+                            let G4A = QuizzerAnalyticsGoToQuizArena(quizType: MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
                             Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                             
                         }
@@ -473,14 +473,14 @@ struct MlScoreBoard: View {
                             Text(AppStrings.result_go_back_button_text_3.getTranslationValue(default: "Go to Quiz Arena"))
                                 .font(Font.swiftUICustomFont(customFont: .SF_UI_SemiBold, size: 14))
                                 .frame(maxWidth: .infinity)
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                                 .padding()
                         }.clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                             .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                .stroke(QUIZTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
+                                .stroke(MOLTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
                         
                     }.frame(maxWidth: .infinity)
-                        .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+                        .background(MOLTheme.getColor(named: .QSDK_0A0A61))
                 }
             }else{
                 Button(action: {
@@ -488,9 +488,9 @@ struct MlScoreBoard: View {
                         playAgain =  true
                         self.isActive = false
                         //                                        Track.shared.event(event:  cardData?.quiztypeid != 2 ? .gotoarenafunlogin : .gotoarenadailylogin, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
-                        QuizzGameSDk.game.store.setGuestData(data: nil)
-                        UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (QUIZTheme.currentGameID ?? "uclquiz"))
-                        let G4A = QuizzerAnalyticsGoToQuizArena(quizType:QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
+                        MolGameSDk.game.store.setGuestData(data: nil)
+                        UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
+                        let G4A = QuizzerAnalyticsGoToQuizArena(quizType:MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
                         Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                         
                     }
@@ -500,8 +500,8 @@ struct MlScoreBoard: View {
                             .font(Font.swiftUICustomFont(customFont: .SF_UI_SemiBold, size: 14))
                             .frame(maxWidth: .infinity)
                             .padding()
-                    }.foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                        .background(QUIZTheme.getColor(named: .QPSDKPrimary))
+                    }.foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                        .background(MOLTheme.getColor(named: .QPSDKPrimary))
                         .cornerRadius(14)
                 }.frame(maxWidth: .infinity)
             }
@@ -515,11 +515,11 @@ struct MlScoreBoard: View {
                 if !self.viewLoginModel.isLogin{
                     Button(action: {
                         if  NetworkWrapper.isInternerConnected(){
-                            GamingHubCards.login(QUIZTheme.currentGameID ?? "uclquiz")
+                            GamingHubCards.login(MOLTheme.currentGameID ?? "uclmoreorless")
                             //                                            Track.shared.event(event:  cardData?.quiztypeid != 2 ? .scorelogintoplayfun : .scorelogintoplaydaily, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
                             
                             
-                            let G4A = QuizzerAnalyticsLoginOrRegister(quizType:QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
+                            let G4A = QuizzerAnalyticsLoginOrRegister(quizType:MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"))
                             Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                             
                         }
@@ -531,8 +531,8 @@ struct MlScoreBoard: View {
                                 .padding()
                             
                         }
-                        .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                        .background(QUIZTheme.getColor(named: .QPSDKPrimary))
+                        .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                        .background(MOLTheme.getColor(named: .QPSDKPrimary))
                         .cornerRadius(14)
                     }.frame(maxWidth: .infinity)
                 }
@@ -541,9 +541,9 @@ struct MlScoreBoard: View {
                         playAgain =  true
                         self.isActive = false
                         //                                        Track.shared.event(event:  cardData?.quiztypeid != 2 ? .gotoarenafunlogout : .gotoarenadailylogout, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
-                        QuizzGameSDk.game.store.setGuestData(data: nil)
-                        UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (QUIZTheme.currentGameID ?? "uclquiz"))
-                        let G4A = QuizzerAnalyticsGoToQuizArena(quizType:QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
+                        MolGameSDk.game.store.setGuestData(data: nil)
+                        UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
+                        let G4A = QuizzerAnalyticsGoToQuizArena(quizType:MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
                         
                         Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                         
@@ -553,23 +553,23 @@ struct MlScoreBoard: View {
                         Text(AppStrings.result_go_back_button_text_3.getTranslationValue(default: "Go to Quiz Arena"))
                             .font(Font.swiftUICustomFont(customFont: .SF_UI_SemiBold, size: 14))
                             .frame(maxWidth: .infinity)
-                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKPrimary))
+                            .foregroundColor(MOLTheme.getColor(named: .QPSDKPrimary))
                             .padding()
                     }.clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                         .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous)
-                            .stroke(QUIZTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
+                            .stroke(MOLTheme.getColor(named: .QPSDKPrimary), lineWidth: 1))
                     
                 }
-                .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+                .background(MOLTheme.getColor(named: .QSDK_0A0A61))
             }else{
                 Button(action: {
                     if  NetworkWrapper.isInternerConnected(){
                         playAgain =  true
                         self.isActive = false
                         //                                    Track.shared.event(event:  cardData?.quiztypeid != 2 ? .gotoarenafunlogin : .gotoarenadailylogin, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID)
-                        QuizzGameSDk.game.store.setGuestData(data: nil)
-                        UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (QUIZTheme.currentGameID ?? "uclquiz"))
-                        let G4A = QuizzerAnalyticsGoToQuizArena(quizType:QUIZTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
+                        MolGameSDk.game.store.setGuestData(data: nil)
+                        UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
+                        let G4A = QuizzerAnalyticsGoToQuizArena(quizType:MOLTheme.eventTypeData(title:cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
                         Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                     }
                 }) {
@@ -578,8 +578,8 @@ struct MlScoreBoard: View {
                             .font(Font.swiftUICustomFont(customFont: .SF_UI_SemiBold, size: 14))
                             .frame(maxWidth: .infinity)
                             .padding()
-                    }.foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
-                        .background(QUIZTheme.getColor(named: .QPSDKPrimary))
+                    }.foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
+                        .background(MOLTheme.getColor(named: .QPSDKPrimary))
                         .cornerRadius(14)
                 }.frame(maxWidth: .infinity)
             }
@@ -589,10 +589,10 @@ struct MlScoreBoard: View {
     var BackgroundView: some View{
         ZStack{
             
-            //            Image(uiImage:QUIZTheme.getImage(named:QuizImageName.scoreBg.name) ?? UIImage()).resizable()
+            //            Image(uiImage:MOLTheme.getImage(named:MolImageName.scoreBg.name) ?? UIImage()).resizable()
             backgroundImageView
             if let isShow = viewModel.QuizResultCalucate, isShow.showConfetti {
-                if QUIZTheme.isIpad{
+                if MOLTheme.isIpad{
                     if viewModel.isHiddenLottie{
                         
                     }else{
@@ -618,12 +618,12 @@ struct MlScoreBoard: View {
     }
     
     private var backgroundImageView: Image {
-        if !QUIZTheme.isIpad {
-            return Image(uiImage:QUIZTheme.getImage(named:QuizImageName.scoreBg.name) ?? UIImage()).resizable()
+        if !MOLTheme.isIpad {
+            return Image(uiImage:MOLTheme.getImage(named:MolImageName.scoreBg.name) ?? UIImage()).resizable()
         } else if orientation.isLandscape {
-            return Image(uiImage:QUIZTheme.getImage(named:QuizImageName.scoreBglandscape.name) ?? UIImage()).resizable()
+            return Image(uiImage:MOLTheme.getImage(named:MolImageName.scoreBglandscape.name) ?? UIImage()).resizable()
         } else {
-            return Image(uiImage:QUIZTheme.getImage(named:QuizImageName.scoreBg.name) ?? UIImage()).resizable()
+            return Image(uiImage:MOLTheme.getImage(named:MolImageName.scoreBg.name) ?? UIImage()).resizable()
         }
     }
     
@@ -635,11 +635,11 @@ struct MlScoreBoard: View {
             let Descriptiontext = viewModel.QuizResultCalucate?.description.replacingOccurrences(of: NetworkConstants().urlKeys.quizType, with: "\(self.cardData?.quiztypeid ?? 0)")
             
             Text((hedline ?? "" ).getTranslationValue(default: "")).textCase(.uppercase)
-                .font((QUIZTheme.currentGameID  == "euroquiz") ? .customFont(customFont:  .UEFAEuro_HeavyNarrow, size: 40) : .customFont(customFont: .Champions_Display, size: 48) )
-                .foregroundColor(QUIZTheme.getColor(named: .QSDK_FF16FF))
+                .font((MOLTheme.currentGameID  == "euromoreorless") ? .customFont(customFont:  .UEFAEuro_HeavyNarrow, size: 40) : .customFont(customFont: .Champions_Display, size: 48) )
+                .foregroundColor(MOLTheme.getColor(named: .QSDK_FF16FF))
             Text((Descriptiontext ?? "").getTranslationValue(default: "")).multilineTextAlignment(.center)
                 .font(.swiftUICustomFont(customFont: .SF_UI_Medium, size: 16))
-                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
         }
         
     }
@@ -648,7 +648,7 @@ struct MlScoreBoard: View {
         VStack(alignment:.leading){
             Text(AppStrings.result_your_score_3.getTranslationValue(default:"Your score"))
                 .font(.swiftUICustomFont(customFont: .SF_UI_Medium, size: 20))
-                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                 .padding(.all,16)
             
             HStack(spacing:16){
@@ -658,11 +658,11 @@ struct MlScoreBoard: View {
                         VStack(alignment: .leading){
                             Text(AppStrings.result_correct_answer_3.getTranslationValue(default:"Correct answers"))
                                 .font(.swiftUICustomFont(customFont: .SF_UI_Medium, size: 14))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                             HStack{
                                 Text(AppStrings.correct_ans_desc_quiz.getTranslationValue(default:"x {point} points").replacingOccurrences(of: "{point}", with: "\(viewModel.perquestionpoint)"))
                                     .font(.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.7))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.7))
                                 Spacer()
                                 
                             }
@@ -670,22 +670,22 @@ struct MlScoreBoard: View {
                         Spacer()
                         Text("\(viewModel.MLResultScore?.rightans ?? 0)")
                             .font(.swiftUICustomFont(customFont: .SF_UI_SemiBold, size: 20))
-                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                     }
-                    Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.3))
+                    Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.3))
                     
                 }
                 
             }.padding([.horizontal],16)
             
             
-        }.background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+        }.background(MOLTheme.getColor(named: .QSDK_0A0A61))
             .cornerRadius(14)
     }
     
     var RankCardview: some View{
         ZStack{
-            QUIZTheme.getColor(named: .QSDK_0A0A61).ignoresSafeArea()
+            MOLTheme.getColor(named: .QSDK_0A0A61).ignoresSafeArea()
             HStack(spacing:0){
                 
                 VStack{
@@ -693,7 +693,7 @@ struct MlScoreBoard: View {
                         Button(action: {
                             if  NetworkWrapper.isInternerConnected(){
                                 showLeaderBoardView =  true
-                                let G4A = QuizzerAnalyticsViewRanking(quizType:  QUIZTheme.eventTypeData(title: cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
+                                let G4A = QuizzerAnalyticsViewRanking(quizType:  MOLTheme.eventTypeData(title: cardData?.gatitle ?? "-", gameType: cardData?.gaPageTitle ?? "-"), isLoggedIn: GamingHubCards.isLoggedIn)
                                 Track.shared.event(G4A: G4A, name: current_screen_name, params: nil,replaceString:(Constants.configData?.quizTypeTrackingKey?["\(self.cardData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId: viewModel.quizID, quizTitle: cardData?.gatitle, gaPageTitle: cardData?.gaPageTitle)
                             }
                         }, label: {
@@ -703,11 +703,11 @@ struct MlScoreBoard: View {
                                     Spacer()
                                     Text("\(viewModel.MLResultScore?.rank ?? .zero)")
                                 }.font(.swiftUICustomFont(customFont: .SF_UI_Medium, size: 16))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                 
                                 Text(AppStrings.result_your_rank_at_quiz_3.getTranslationValue(default: "You’re in the top {userPercentage}% of all players!").replacingOccurrences(of: NetworkConstants().urlKeys.userPercentage, with: "\(viewModel.MLResultScore?.pctl ?? .zero)")).multilineTextAlignment(.leading)
                                     .font(.swiftUICustomFont(customFont: .SF_UI_Regular, size: 14))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.7))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.7))
                             }.padding(.all,20)
                             
                         })
@@ -715,11 +715,11 @@ struct MlScoreBoard: View {
                         VStack(alignment:.leading,spacing: 4){
                             Text(AppStrings.result_guest_rank_message_3.getTranslationValue(default: "Want to see where you ranked?"))
                                 .font(.swiftUICustomFont(customFont: .SF_UI_Medium, size: 16))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                             
                             Text(AppStrings.result_guest_position_message_3.getTranslationValue(default: "Log in or create an account to save your score and challenge your friends!")).multilineTextAlignment(.leading)
                                 .font(.swiftUICustomFont(customFont: .SF_UI_Regular, size: 14))
-                                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.7))
+                                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.7))
                         }.padding(.all,20)
                     }
                 }
@@ -754,12 +754,12 @@ struct MlScoreBoard: View {
                     }
                 }
             }
-            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
             .frame(maxWidth: .infinity, alignment: .center)
             .padding(.all, 16)
             //            }
         }
-        .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+        .background(MOLTheme.getColor(named: .QSDK_0A0A61))
         .cornerRadius(14)
         
     }
@@ -780,4 +780,37 @@ struct MlScoreBoard: View {
     }
 }
 
+struct TimmerView: View {
+    let totalScore: Int
+    let currentScore: Int
+
+    var body: some View {
+        let percentage = Double(currentScore) / Double(totalScore) // Calculate the completion percentage
+
+        return HStack(spacing: 10) {
+            ZStack {
+                Circle()
+                    .stroke(MOLTheme.getColor(named: .QPSDKWhite), lineWidth: 2.5)
+                    .opacity(0.3)
+                Circle()
+                    .trim(from: 0, to: CGFloat(percentage)) // Trim the circle based on the completion percentage
+                    .stroke(MOLTheme.getColor(named: MOLTheme.currentGameID  == "euromoreorless" ? .QSDK_CB333B : MOLTheme.currentGameID  == "weuromoreorless" ? .QSDK_FFAF4E : .QPSDKPrimary), lineWidth: 2.5)
+                    .rotationEffect(.degrees(-90))
+                VStack{
+                    Text("\(currentScore)")
+                        .font(.swiftUICustomFont(customFont: MOLTheme.currentGameID  == "euromoreorless" ? .UEFAEuro_MediumNarrow : .SF_UI_Medium, size: 32))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
+                    Text( AppStrings.result_score_out_of.getTranslationValue(default: " Out of") + " " + "\(totalScore)")
+                        .font(.swiftUICustomFont(customFont: MOLTheme.currentGameID  == "euromoreorless" ? .UEFAEuro_MediumNarrow : .SF_UI_Regular, size: 14))
+                        .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.7))
+                }
+            }
+            .frame(width: 124, height: 124)
+        }
+        .foregroundColor(.white)
+
+        .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
+
+    }
+}
 

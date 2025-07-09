@@ -10,8 +10,8 @@ import SwiftyJSON
 import GamesLib
 class HomeLandingViewModel:ObservableObject{
     
-    @Published var cardSelection:QuizCardListData? =  nil
-    @Published var cardList:[QuizCardListData]? = []
+    @Published var cardSelection:MolCardListData? =  nil
+    @Published var cardList:[MolCardListData]? = []
     @Published var LeaderboardList:[Leaderboard]? = []
     @Published var LeaderBoardMenu:[leaderboardMenuValue] = []
     @Published var selectedLeaderBoardType:leaderboardMenuValue? =  nil
@@ -77,16 +77,16 @@ class HomeLandingViewModel:ObservableObject{
     
     func cardListdata(){
         self.cardList = nil
-        QuizOtherApi.shared.quizCardList { staus, QuizCardListData2 in
+        MolOtherApi.shared.molCardList { staus, MolCardListData2 in
             if staus{
                 DispatchQueue.main.async {
-                    self.cardList =  QuizCardListData2?.quizcard
+                    self.cardList =  MolCardListData2?.quizcard
                     if GamingHubCards.isLoggedIn {
                         self.rankpointupdate()
                     }
 //                    if GamingHubCards.environment.environment == GamingHubEnvironment.integration{
 //                        
-//                        self.cardList?.append(QuizCardListData(title: "More or Less", quiztype: "3", subtitle: "Play for fun", isdisable: 0, description: "Guess 10 UCL-themed questions which players have more or less goals, appearances or saves", qzQuizMasterid: "123", quiztypeid: 3, bgimage: "", cta: "open", rank: 0, points: 0))
+//                        self.cardList?.append(MolCardListData(title: "More or Less", quiztype: "3", subtitle: "Play for fun", isdisable: 0, description: "Guess 10 UCL-themed questions which players have more or less goals, appearances or saves", qzQuizMasterid: "123", quiztypeid: 3, bgimage: "", cta: "open", rank: 0, points: 0))
 //                    }
                     self.isLoading =  false
                     for obj in Constants.configData?.landingPageItems ?? []{
@@ -107,14 +107,14 @@ class HomeLandingViewModel:ObservableObject{
     }
     
     func rankpointupdate(){
-        QuizOtherApi.shared.quizCardListRankPointDisable { status, rankandpoint in
+        MolOtherApi.shared.quizCardListRankPointDisable { status, rankandpoint in
             if status{
                 self.mergeData(quizCards: self.cardList ?? [], quizStatuses: rankandpoint ?? [])
             }
         }
     }
     
-    func mergeData(quizCards: [QuizCardListData], quizStatuses: [RankPointDisable]) {
+    func mergeData(quizCards: [MolCardListData], quizStatuses: [RankPointDisable]) {
             // Map quizStatuses for quicker access
             let statusMap = Dictionary(uniqueKeysWithValues: quizStatuses.map { ($0.quizid, $0) })
             
@@ -133,7 +133,7 @@ class HomeLandingViewModel:ObservableObject{
     
     func LeaderboardListdata(){
         self.LeaderboardList = []
-        QuizOtherApi.shared.landingScreenLeaderboardList { Status, leaderboardValue in
+        MolOtherApi.shared.landingScreenLeaderboardList { Status, leaderboardValue in
             if Status {
                 
                 self.LeaderboardList =  leaderboardValue?.leaderboard?.filter { !($0.topranking?.isEmpty ?? true) }
@@ -161,7 +161,7 @@ class HomeLandingViewModel:ObservableObject{
     }
     
     func LeaderBoardMenufun(){
-        QuizOtherApi.shared.LeaderboardMenuList { Status, leaderboardMenu in
+        MolOtherApi.shared.LeaderboardMenuList { Status, leaderboardMenu in
             if Status {
                 self.LeaderBoardMenu = leaderboardMenu ?? []
             }
@@ -169,7 +169,7 @@ class HomeLandingViewModel:ObservableObject{
     }
     
     func LeaderBoardRankList(quizId: String?, offset: Int?, count: Int){
-        QuizOtherApi.shared.LeaderboardRankList(quizId: quizId, offset: offset, count: count) { Status, leaderboardRankValue in
+        MolOtherApi.shared.LeaderboardRankList(quizId: quizId, offset: offset, count: count) { Status, leaderboardRankValue in
             if Status {
                 
                 if let data  = leaderboardRankValue{
@@ -180,8 +180,8 @@ class HomeLandingViewModel:ObservableObject{
                         self.HideLoadMore =  false
                     }
                     let  userinfo = data.userInfo ?? []
-                    let selfrank  =  userinfo.first(where: {$0.guid == QuizzGameSDk.game.store.QuizUser?.userGUID})
-                    if selfrank?.guid == QuizzGameSDk.game.store.QuizUser?.userGUID{
+                    let selfrank  =  userinfo.first(where: {$0.guid == MolGameSDk.game.store.QuizUser?.userGUID})
+                    if selfrank?.guid == MolGameSDk.game.store.QuizUser?.userGUID{
                         self.HideSelfRank = true
                     }
                     self.arrayleaderboardRanking = data.userInfo ?? []
@@ -201,7 +201,7 @@ class HomeLandingViewModel:ObservableObject{
     }
     
     func LeaderBoardSelfRankList(quizId: String?){
-        QuizOtherApi.shared.LeaderboardSelfRankList(quizId: quizId) { Status, leaderboardRankValue in
+        MolOtherApi.shared.LeaderboardSelfRankList(quizId: quizId) { Status, leaderboardRankValue in
             if Status {
                 
                 if let data  = leaderboardRankValue{
@@ -212,7 +212,7 @@ class HomeLandingViewModel:ObservableObject{
     }
     
     func SettlementData(quizId: String?, attempt: Int?,GamedayId:Int?,isExit:Int,onSuccess: @escaping((Bool) -> ())){
-        QuizOtherApi.shared.SettlementData(quizID: quizId, QuAttemptId: attempt,GamedayId:GamedayId, isExit: isExit) { Status in
+        MolOtherApi.shared.SettlementData(quizID: quizId, QuAttemptId: attempt,GamedayId:GamedayId, isExit: isExit) { Status in
             if Status {
                 BusterHelper.shared.updateBuster(type: .LEADERBOARD)
                 onSuccess(Status)
@@ -223,7 +223,7 @@ class HomeLandingViewModel:ObservableObject{
     }
     
     func GameStatustData(quizId: String?,onSuccess: @escaping((GameStatus?) -> ())){
-        QuizOtherApi.shared.GameStatus(quizID: quizId ?? "") { gamedata in
+        MolOtherApi.shared.GameStatus(quizID: quizId ?? "") { gamedata in
             if (gamedata != nil) {
                 
                 onSuccess(gamedata)
