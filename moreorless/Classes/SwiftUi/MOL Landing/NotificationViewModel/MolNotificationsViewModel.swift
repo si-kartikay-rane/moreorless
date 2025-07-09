@@ -1,5 +1,5 @@
 //
-//  QuizNotificationsViewModel.swift
+//  MolNotificationsViewModel.swift
 //  quiz
 //
 //  Created by Milind Trivedi on 21/05/25.
@@ -9,7 +9,7 @@ import Foundation
 import GamesLib
 
 
-class QuizNotificationsViewModel : ObservableObject {
+class MolNotificationsViewModel : ObservableObject {
     
     @Published var showLoader = false
     @Published var showNotificationCard: Bool = false

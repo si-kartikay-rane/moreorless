@@ -17,7 +17,7 @@ struct MLQuestionAnsView: View {
     @State var secondcardHiden:Bool =  true
     @StateObject var MLViewModel:MLGameViewModel = MLGameViewModel()
     @State private var isQuizCompleted = false
-    @State var cardData:QuizCardListData? =  nil
+    @State var cardData:MolCardListData? =  nil
     @State private var orientation = UIDeviceOrientation.unknown
     @State private var PasstoAnotherView = false
     @Binding var Observer : Bool
@@ -41,7 +41,7 @@ struct MLQuestionAnsView: View {
                     ScoreTimerView.blur(radius: MLViewModel.timeUP ? 7.0 : 0.0 )
                     if MLViewModel.timeUP{
                         Text(AppStrings.TIME_S_UP.getTranslationValue(default: "TIME’S UP!"))
-                            .font((MOLTheme.currentGameID  == "euroquiz") ? .customFont(customFont:  .UEFAEuro_HeavyExtended, size: 20) : .customFont(customFont: .Champions_Display, size: 24) )
+                            .font((MOLTheme.currentGameID  == "euromoreorless") ? .customFont(customFont:  .UEFAEuro_HeavyExtended, size: 20) : .customFont(customFont: .Champions_Display, size: 24) )
                             .foregroundColor(MOLTheme.getColor(named: .QSDK_FF16FF))
                     }
                 }
@@ -93,9 +93,9 @@ struct MLQuestionAnsView: View {
             ObserveNotifications = true
             self.MLViewModel.cardSelection = self.cardData
             
-             if MOLTheme.currentGameID == "uwclquiz" || MOLTheme.currentGameID == "uclquiz" || MOLTheme.currentGameID == "weuroquiz"{
+             if MOLTheme.currentGameID == "uwclmoreorless" || MOLTheme.currentGameID == "uclmoreorless" || MOLTheme.currentGameID == "weuromoreorless"{
                 MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
-            }else if MOLTheme.currentGameID == "euroquiz"{
+            }else if MOLTheme.currentGameID == "euromoreorless"{
                 MOLTheme.currentnavigation!.style(style: .withBgImageEuro(image: MOLTheme.getImage(named: QuizImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
             } else {
                 MOLTheme.currentnavigation!.style(style: .blue())
@@ -129,7 +129,7 @@ struct MLQuestionAnsView: View {
                 BusterHelper.shared.updateBuster(type: .LEADERBOARD)
             }
 //            if self.PasstoNavigationView{
-//                if MOLTheme.currentGameID == "uclquiz"{
+//                if MOLTheme.currentGameID == "uclmoreorless"{
 //                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
 //                }else{
 //                    
@@ -228,7 +228,7 @@ struct MLQuestionAnsView: View {
                     .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.7)
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 12))
                 Text(String(describing: MLViewModel.totalPoints) + " " + AppStrings.Pts.getTranslationValue(default: "Pts"))
-                    .foregroundColor(MOLTheme.getColor(named: MOLTheme.currentGameID  == "euroquiz" ? .QSDK_CB333B : .QPSDKPrimary))
+                    .foregroundColor(MOLTheme.getColor(named: MOLTheme.currentGameID  == "euromoreorless" ? .QSDK_CB333B : .QPSDKPrimary))
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
             }.frame(minWidth: 80)
                 .padding(.all,16)

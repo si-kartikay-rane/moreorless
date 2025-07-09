@@ -216,7 +216,7 @@ class NetworkWrapper: NSObject {
     }
     
     func getURL(url:String, type: URLType = .BASE_URL) -> URL?{
-        var urls = url.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
+        var urls = url.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
         urls =  urls.replacingOccurrences(of: NetworkConstants().urlKeys.platformId, with: "\(Constants.appData.platformID)")
         urls = urls.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
         switch type {

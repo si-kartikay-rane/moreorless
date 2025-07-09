@@ -44,7 +44,7 @@ struct QuizStarterView: View {
     
     @State var MOlDeepLink:Bool = false
     @StateObject var quizViewModel = HomeLandingViewModel()
-    @StateObject var notificationvm = QuizNotificationsViewModel()
+    @StateObject var notificationvm = MolNotificationsViewModel()
     @State private var PasstoNavigationView = false
     var passnillGameplaydetail : Gameplaydetail? =  nil
     
@@ -178,13 +178,13 @@ extension QuizStarterView{
                     
                     if  GamingHubCards.isLoggedIn{
                         if  detailModel?.gametype == "mol"{
-                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid:  MOLTheme.quizID ?? quizID, quiztypeid: Int(self.quizIDType) ?? 3, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil, gametype: "mol", gatitle: nil, isMediaQuiz: nil, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
+                            self.quizViewModel.cardSelection = MolCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid:  MOLTheme.quizID ?? quizID, quiztypeid: Int(self.quizIDType) ?? 3, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil, gametype: "mol", gatitle: nil, isMediaQuiz: nil, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
                             
                             MOlDeepLink  =  true
                             
                         }else{
                             
-                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid: MOLTheme.quizID ?? quizID, quiztypeid: detailModel?.quiztypeid, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil, gametype: "quiz", gatitle: nil, isMediaQuiz: detailModel?.isMediaQuiz, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
+                            self.quizViewModel.cardSelection = MolCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid: MOLTheme.quizID ?? quizID, quiztypeid: detailModel?.quiztypeid, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil, gametype: "quiz", gatitle: nil, isMediaQuiz: detailModel?.isMediaQuiz, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
                             // self.quizID = .empty
                             isDeepLinkGame  =  true
                             
@@ -193,14 +193,14 @@ extension QuizStarterView{
                         }
                     }else{
                         if  UserDefaults.standard.string(forKey:(MOLTheme.quizID ?? quizID)) !=  (MOLTheme.quizID ?? quizID)  && detailModel?.gametype == "quiz"{
-                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid:MOLTheme.quizID ?? quizID, quiztypeid: nil, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil,gametype: "quiz", gatitle: nil, isMediaQuiz: detailModel?.isMediaQuiz, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
+                            self.quizViewModel.cardSelection = MolCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid:MOLTheme.quizID ?? quizID, quiztypeid: nil, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil,gametype: "quiz", gatitle: nil, isMediaQuiz: detailModel?.isMediaQuiz, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
                             //self.quizID = .empty
                             isDeepLinkGame  =  true
                             
                         }else if UserDefaults.standard.string(forKey:(MOLTheme.quizID ?? quizID)) !=  (MOLTheme.quizID ?? quizID) && detailModel?.gametype == "mol"{
                             
                             
-                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid: MOLTheme.quizID ?? quizID, quiztypeid: Int(MOLTheme.quizIDType ?? self.quizIDType) ?? 3, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil,gametype: "mol", gatitle: nil, isMediaQuiz: nil, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
+                            self.quizViewModel.cardSelection = MolCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid: MOLTheme.quizID ?? quizID, quiztypeid: Int(MOLTheme.quizIDType ?? self.quizIDType) ?? 3, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil,gametype: "mol", gatitle: nil, isMediaQuiz: nil, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
                             //self.quizID = .empty
                             MOlDeepLink  =  true
                             

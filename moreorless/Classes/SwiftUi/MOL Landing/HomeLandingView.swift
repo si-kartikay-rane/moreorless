@@ -31,7 +31,7 @@ struct HomeLandingView: View {
     @State private var showFloatingMenu: Bool = false
     @State var notificationPopUp = false
     @State var notificationAlertPopUp = false
-    @StateObject var notificationvm = QuizNotificationsViewModel()
+    @StateObject var notificationvm = MolNotificationsViewModel()
     @State var analyticsDomainName: String = ""
     @State var analyticsData: TrackingParameters = TrackingParameters([:] as [String: Any?]?)
     
@@ -60,20 +60,20 @@ struct HomeLandingView: View {
                                 VStack(spacing: 20){
                                     ForEach(0..<(quizViewModel.cardList?.count ?? 0), id: \.self) { index in
                                         if let cardIndex = quizViewModel.cardList?[safe:index]{
-                                            CardListLandingView(QuizCardListData: cardIndex, tag: index, current_screen_name: self.current_screen_name){ login in
+                                            CardListLandingView(MolCardListData: cardIndex, tag: index, current_screen_name: self.current_screen_name){ login in
                                                 self.quizViewModel.cardSelection = cardIndex
                                                 if cardIndex.gametype == "mol"{
                                                     if login{
                                                         showMoreLessView = true
                                                     }else{
-                                                        GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
+                                                        GamingHubCards.login(MOLTheme.currentGameID ?? "uclmoreorless")
                                                     }
                                                 }else{
                                                     
                                                     if login{
                                                         showQuetionAnsView = true
                                                     }else{
-                                                        GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
+                                                        GamingHubCards.login(MOLTheme.currentGameID ?? "uclmoreorless")
                                                     }
                                                 }
                                             }
@@ -130,20 +130,20 @@ struct HomeLandingView: View {
                                 
                                 ForEach(0..<(quizViewModel.cardList?.count ?? 0), id: \.self) { index in
                                     if let cardIndex = quizViewModel.cardList?[safe:index]{
-                                        CardListLandingView(QuizCardListData: cardIndex, tag: index, current_screen_name: current_screen_name){ login in
+                                        CardListLandingView(MolCardListData: cardIndex, tag: index, current_screen_name: current_screen_name){ login in
                                             self.quizViewModel.cardSelection = cardIndex
                                             if cardIndex.gametype == "mol"{
                                                 if login{
                                                     showMoreLessView = true
                                                 }else{
-                                                    GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
+                                                    GamingHubCards.login(MOLTheme.currentGameID ?? "uclmoreorless")
                                                 }
                                             }else{
                                                 
                                                 if login{
                                                     showQuetionAnsView = true
                                                 }else{
-                                                    GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
+                                                    GamingHubCards.login(MOLTheme.currentGameID ?? "uclmoreorless")
                                                 }
                                             }
                                         }
@@ -198,20 +198,20 @@ struct HomeLandingView: View {
                         VStack(spacing:16){
                             ForEach(0..<(quizViewModel.cardList?.count ?? 0), id: \.self) { index in
                                 if let cardIndex = quizViewModel.cardList?[safe:index] {
-                                    CardListLandingView(QuizCardListData: cardIndex, tag: index, current_screen_name: self.current_screen_name){ login in
+                                    CardListLandingView(MolCardListData: cardIndex, tag: index, current_screen_name: self.current_screen_name){ login in
                                         self.quizViewModel.cardSelection = cardIndex
                                         if cardIndex.gametype == "mol"{
                                             if login{
                                                 showMoreLessView = true
                                             }else{
-                                                GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
+                                                GamingHubCards.login(MOLTheme.currentGameID ?? "uclmoreorless")
                                             }
                                         }else{
                                             
                                             if login{
                                                 showQuetionAnsView = true
                                             }else{
-                                                GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
+                                                GamingHubCards.login(MOLTheme.currentGameID ?? "uclmoreorless")
                                             }
                                         }
                                         
@@ -350,7 +350,7 @@ struct HomeLandingView: View {
                 }
                 
                 let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:], replace: nil)
-                GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+                GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                 self.analyticsDomainName = analyticsDomainName
                 self.analyticsData = analyticsData
                 Track.shared.screen(screen: current_screen_name, params: [:], replace: nil)

@@ -141,19 +141,19 @@ extension UserDefaultsData{
     
     var isDayliQuizPlay: Bool{
         get{
-            return UserDefaults.standard.bool(forKey: "isDayliQuizPlay\(MOLTheme.currentGameID ?? "uclquiz")")
+            return UserDefaults.standard.bool(forKey: "isDayliQuizPlay\(MOLTheme.currentGameID ?? "uclmoreorless")")
         }
         set{
-            UserDefaults.standard.set(newValue, forKey: "isDayliQuizPlay\(MOLTheme.currentGameID ?? "uclquiz")")
+            UserDefaults.standard.set(newValue, forKey: "isDayliQuizPlay\(MOLTheme.currentGameID ?? "uclmoreorless")")
         }
     }
     
     var isMoreLessPlay: Bool{
         get{
-            return UserDefaults.standard.bool(forKey: "isMoreLessPlay\(MOLTheme.currentGameID ?? "uclquiz")")
+            return UserDefaults.standard.bool(forKey: "isMoreLessPlay\(MOLTheme.currentGameID ?? "uclmoreorless")")
         }
         set{
-            UserDefaults.standard.set(newValue, forKey: "isMoreLessPlay\(MOLTheme.currentGameID ?? "uclquiz")")
+            UserDefaults.standard.set(newValue, forKey: "isMoreLessPlay\(MOLTheme.currentGameID ?? "uclmoreorless")")
         }
     }
 }

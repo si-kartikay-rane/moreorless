@@ -37,7 +37,7 @@ struct InviteView: View {
                         }).popover(isPresented: $isIpadpresentActivity) {
                         
                             
-                            MNTCustSimplyShareViewController(activityItems: [sharedata?.loadText?.getTranslationValue(default: "") as Any ,URL(string: shareURls.invitefrnd + (MOLTheme.currentGameID ?? "uclquiz"))!]) { completed, returnedItems, activityError in
+                            MNTCustSimplyShareViewController(activityItems: [sharedata?.loadText?.getTranslationValue(default: "") as Any ,URL(string: shareURls.invitefrnd + (MOLTheme.currentGameID ?? "uclmoreorless"))!]) { completed, returnedItems, activityError in
                                 isIpadpresentActivity = false
                         }
                                 
@@ -59,17 +59,17 @@ struct InviteView: View {
                 }.padding([.bottom,.top,.leading],MOLTheme.isIpad ? 16 : 16)
                 Spacer()
                 VStack {
-                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_InviteFrnd.name : "") ?? UIImage())
+                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_InviteFrnd.name : "") ?? UIImage())
                         .resizable()
                         //.scaledToFill()
                 }.frame(maxWidth:  72, maxHeight:  72)
-                    .padding([.bottom,.top,.leading],  MOLTheme.currentGameID == "euroquiz" ? 0 : MOLTheme.isIpad ? 16 : 16)
+                    .padding([.bottom,.top,.leading],  MOLTheme.currentGameID == "euromoreorless" ? 0 : MOLTheme.isIpad ? 16 : 16)
                     
             }.background(HStack{Spacer()
-                Image(uiImage: MOLTheme.getImage(named:   MOLTheme.currentGameID == "euroquiz" ? QuizImageName.QSDK_InviteFrnd.name : "") ?? UIImage()).resizable().frame(width: 216,alignment: .trailing)
+                Image(uiImage: MOLTheme.getImage(named:   MOLTheme.currentGameID == "euromoreorless" ? QuizImageName.QSDK_InviteFrnd.name : "") ?? UIImage()).resizable().frame(width: 216,alignment: .trailing)
             })
-            .padding(.trailing, MOLTheme.currentGameID == "euroquiz" ? 0 :  MOLTheme.isIpad ? 20 : 16)
-        }.background(ActivityViewPresenter(isPresented: $presentActivity, items: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.invitefrnd + (MOLTheme.currentGameID ?? "uclquiz"))!]){ completed, returnedItems, activityError in
+            .padding(.trailing, MOLTheme.currentGameID == "euromoreorless" ? 0 :  MOLTheme.isIpad ? 20 : 16)
+        }.background(ActivityViewPresenter(isPresented: $presentActivity, items: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.invitefrnd + (MOLTheme.currentGameID ?? "uclmoreorless"))!]){ completed, returnedItems, activityError in
             presentActivity = false
                      }
         

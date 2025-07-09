@@ -50,7 +50,7 @@ class QuizViewModel: ObservableObject {
     @Published var isFromBackGround: Bool = false
     @Published var isDissabpper:Bool  =  false
     @Published var showShareView:Bool = false
-    @Published var cardSelection:QuizCardListData? =  nil
+    @Published var cardSelection:MolCardListData? =  nil
     @Published var timerData: timerData? = nil
     @Published var isButtonActive: Bool = false
     @Published var trackEvent: Bool? = false
@@ -584,7 +584,7 @@ extension QuizViewModel{
                    }
                    let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + (self.cardSelection?.gametype ?? "quiz"), params: [:], replace: "1",replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.GameAttemptConfigData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                    
-                   GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+                   GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                    
                    self.analyticsDomainName = analyticsDomainName
                    self.analyticsData = analyticsData 
@@ -612,7 +612,7 @@ extension QuizViewModel{
                
                let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + "\(self.cardSelection?.gametype ?? "quiz")", params: [:], replace: "1",replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.GameAttemptConfigData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                
-               GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+               GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                
                self.analyticsDomainName = analyticsDomainName
                self.analyticsData = analyticsData
@@ -641,7 +641,7 @@ extension QuizViewModel{
                     
                     let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + "\(self.cardSelection?.gametype ?? "quiz")", params: [:], replace: String(questionAnsData?.quNo ?? .zero),replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.GameAttemptConfigData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                     
-                    GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+                    GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                     
                     self.analyticsDomainName = analyticsDomainName
                     self.analyticsData = analyticsData

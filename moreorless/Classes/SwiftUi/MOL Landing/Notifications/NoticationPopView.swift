@@ -152,7 +152,7 @@ struct NoticationPopView: View {
    }
    
    func getRemoteChannels() {
-       GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "uclquiz") { result in
+       GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "uclmoreorless") { result in
            DispatchQueue.main.async {
                switch result {
                case .success(let remoteChannels):
@@ -236,7 +236,7 @@ struct ToggleRow: View {
                 }
             }
         } else {
-            GameNotificationsManager.enableSystemNotifications(gameId: MOLTheme.currentGameID ?? "weuroquiz") { result in
+            GameNotificationsManager.enableSystemNotifications(gameId: MOLTheme.currentGameID ?? "weuromoreorless") { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let status):

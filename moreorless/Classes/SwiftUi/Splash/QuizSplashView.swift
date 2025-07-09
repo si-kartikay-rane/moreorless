@@ -1,6 +1,6 @@
 //
-//  uclquizSplashView.swift
-//  uclquiz
+//  uclmoreorlessSplashView.swift
+//  uclmoreorless
 //
 //  Created by Vishal Vijayvargiya on 21/09/23.
 //
@@ -24,7 +24,7 @@ struct QuizSplashView: View {
      var body: some View {
        
             ZStack {
-                if MOLTheme.currentGameID == "weuroquiz" && orientation.isLandscape{
+                if MOLTheme.currentGameID == "weuromoreorless" && orientation.isLandscape{
                     backgroundImageView
                         .resizable()
                         .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -37,10 +37,10 @@ struct QuizSplashView: View {
                     
                 VStack(alignment: .center) {
                     
-                    if MOLTheme.currentGameID == "uwclquiz"{
+                    if MOLTheme.currentGameID == "uwclmoreorless"{
                         Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashLogo.name) ?? UIImage())
                             .resizable()
-                            .frame(width: MOLTheme.currentGameID == "euroquiz" ? 100.83: 211, height: 149)
+                            .frame(width: MOLTheme.currentGameID == "euromoreorless" ? 100.83: 211, height: 149)
                             .scaledToFit()
                             .padding(.top, (MOLTheme.isIpad && !orientation.isLandscape) ? 205 : 133)
                             .padding(.bottom,55)
@@ -53,13 +53,13 @@ struct QuizSplashView: View {
                         
                     }
                     
-//                    if MOLTheme.currentGameID != "uclquiz"{
+//                    if MOLTheme.currentGameID != "uclmoreorless"{
 //                        Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashLogo.name) ?? UIImage())
 //                            .resizable()
-//                            .frame(width: MOLTheme.currentGameID == "euroquiz" ? 100.83: 211, height: 149)
+//                            .frame(width: MOLTheme.currentGameID == "euromoreorless" ? 100.83: 211, height: 149)
 //                            .scaledToFit()
 //                        let value =  AppStrings.TitleApp.getTranslationValue(default: "Quiz Arena").components(separatedBy: " ")
-//                        if  (MOLTheme.currentGameID  == "euroquiz"){
+//                        if  (MOLTheme.currentGameID  == "euromoreorless"){
 //                            VStack{
 //                                Text(value.first ?? "")
 //                                Text(value.last ?? "")
@@ -71,22 +71,22 @@ struct QuizSplashView: View {
 //                                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
 //                        }
 //                        
-//                        if MOLTheme.currentGameID == "euroquiz"{
-//                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.euroQuizView.name) ?? UIImage())
+//                        if MOLTheme.currentGameID == "euromoreorless"{
+//                            Image(uiImage: MOLTheme.getImage(named: QuizImageName.euromoreorlessView.name) ?? UIImage())
 //                                .resizable()
 //                                .frame(width: 210,height: 210)
 //                            
 //                        }
 //                        
 //                    }
-                    if !MOLTheme.isIpad && MOLTheme.currentGameID != "uclquiz" && MOLTheme.currentGameID != "weuroquiz"{
+                    if !MOLTheme.isIpad && MOLTheme.currentGameID != "uclmoreorless" && MOLTheme.currentGameID != "weuromoreorless"{
                         if GamingHubCards.environment.environment != GamingHubEnvironment.production {
                             Text("v" + String(describing:(PodBundle.version)) + "-" + String(describing: GamingHubCards.environment.environment))
                                 .foregroundColor(.white)
                                 .font(.caption)
                         }
                     }
-                    if MOLTheme.currentGameID == "uclquiz"{
+                    if MOLTheme.currentGameID == "uclmoreorless"{
                         if MOLTheme.isIpad{
                             Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashLogo.name) ?? UIImage())
                                 .resizable()
@@ -111,7 +111,7 @@ struct QuizSplashView: View {
                                 .padding(.bottom, /*(MOLTheme.isIpad && !orientation.isLandscape && UIScreen.screenHeight > 1180) ? 35 : */0)
                         }
                     }
-                    if MOLTheme.currentGameID == "weuroquiz"{
+                    if MOLTheme.currentGameID == "weuromoreorless"{
                             
                         if MOLTheme.isIpad{
                             Image(uiImage: MOLTheme.getImage(named: QuizImageName.quizspashIpadLogo.name) ?? UIImage())
@@ -148,14 +148,14 @@ struct QuizSplashView: View {
                     
                     
                     
-                    if MOLTheme.currentGameID != "weuroquiz"{
+                    if MOLTheme.currentGameID != "weuromoreorless"{
                         if addShow{
                             AdsPresentedbyView(VerticaleEnable: true, analyticsDomainName: self.analyticsDomainName, analyticsData: self.analyticsData, backgroundColor: MOLTheme.getColor(named: .QSDKSponsorBG00439C), SponsorClickDisabled:true)
                             
                           
                         }
                     }
-                    if MOLTheme.currentGameID == "uwclquiz"{
+                    if MOLTheme.currentGameID == "uwclmoreorless"{
                         Spacer()
                     }
                     
@@ -175,7 +175,7 @@ struct QuizSplashView: View {
                 isNavigationHiden =  true
                 
                 let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:], replace: nil)
-                GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+                GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                 
                 self.analyticsDomainName = analyticsDomainName
                 self.analyticsData = analyticsData

@@ -89,7 +89,7 @@ struct AdsPresentedbyView: View {
                                 .frame(width: 67, height: 40, alignment: .center)
                                 .scaledToFit()
                                 
-                        }.padding(.trailing,(MOLTheme.currentGameID  == "euroquiz") ? -8 : 0)
+                        }.padding(.trailing,(MOLTheme.currentGameID  == "euromoreorless") ? -8 : 0)
                         .padding(20)
                     }
                 }

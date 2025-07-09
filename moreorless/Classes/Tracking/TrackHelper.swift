@@ -16,12 +16,12 @@ class Track {
     func event(G4A : QuizzerAnalyticsEvent, name: String?, params: [String:Any]?, replaceString: String? = nil,quizId:String? = nil, quizTitle: String? = nil, gaPageTitle:String? = nil, gaPageSubType: String? = nil){
 
         var eventParams: [String:Any] = ["section_reference" : G4A.eventLabel.rawValue,
-                                         String(describing: MOLTheme.currentGameID ?? "uclquiz") + "_interaction" : G4A.eventAction ,
+                                         String(describing: MOLTheme.currentGameID ?? "uclmoreorless") + "_interaction" : G4A.eventAction ,
                                          "ua_event_category" : "Click",
                                          "ua_event_label" : G4A.eventLabel.rawValue ,   
                                          "ua_event_action": G4A.eventAction ,
                                          "ua_event_name" : "gaEvent"]
-                                         //"screen_name": screenname] //"\(GAMEID)_interaction" : name ?? "-", //"uclquiz",
+                                         //"screen_name": screenname] //"\(GAMEID)_interaction" : name ?? "-", //"uclmoreorless",
                
         if let name = QuizzGameSDk.game.sponsorModel?.code {
             eventParams["partners"] = name
@@ -81,7 +81,7 @@ class Track {
                 if let name = QuizzGameSDk.game.sponsorModel?.code {
                     eventParams["partners"] = name
                 }
-                GamingHubCards.trackScreen(screenName, parameters: eventParams, domain: screen, gameId: MOLTheme.currentGameID ?? "uclquiz")
+                GamingHubCards.trackScreen(screenName, parameters: eventParams, domain: screen, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
             }else{
                 var eventParams = partners[screen] ?? [:]
                 eventParams["page_language"] = lang
@@ -90,7 +90,7 @@ class Track {
                     eventParams["sponsor"] = name
                 }
                 eventParams["screen_name"] = screenName
-                GamingHubCards.trackScreen(screenName, parameters: eventParams, domain: screen, gameId: MOLTheme.currentGameID ?? "uclquiz")
+                GamingHubCards.trackScreen(screenName, parameters: eventParams, domain: screen, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
             }
         }
         
@@ -102,13 +102,13 @@ class Track {
 extension Track{
     func trackSponsor(slot: String,analyticsDomainName: String, analyticsData: TrackingParameters){
         if let sponsor = QuizzGameSDk.game.sponsorModel{
-            GamingHubCards.trackSponsor(name: sponsor.code ?? .empty, creativeName: "exclusive-section" , slot: slot, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+            GamingHubCards.trackSponsor(name: sponsor.code ?? .empty, creativeName: "exclusive-section" , slot: slot, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
 
         }
     }
     func trackSponsorClick(analyticsDomainName: String, analyticsData: TrackingParameters){
         if let sponsor = QuizzGameSDk.game.sponsorModel{
-            GamingHubCards.trackSponsor(name: sponsor.code ?? .empty, creativeName: "exclusive-section" , domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+            GamingHubCards.trackSponsor(name: sponsor.code ?? .empty, creativeName: "exclusive-section" , domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
         }
     }
     

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NotificationsView: View {
-    @ObservedObject var notificationsvm : QuizNotificationsViewModel
+    @ObservedObject var notificationsvm : MolNotificationsViewModel
     
     var body: some View {
             ZStack {
@@ -33,11 +33,11 @@ struct NotificationsView: View {
                     Spacer()
                     ZStack(alignment: .top){
                         VStack {
-                            Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_Notification.name : "") ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_Notification.name : "") ?? UIImage())
                                 .resizable()
                             //.scaledToFill()
                         }.frame(width:  96, height:  96)
-                            .padding(.trailing, MOLTheme.currentGameID == "euroquiz" ? 0 :  MOLTheme.isIpad ? 20 : 16)
+                            .padding(.trailing, MOLTheme.currentGameID == "euromoreorless" ? 0 :  MOLTheme.isIpad ? 20 : 16)
                     }
                     .overlay(
                         VStack{
@@ -45,7 +45,7 @@ struct NotificationsView: View {
                                 Spacer()
                                 Button(action: { notificationsvm.didCloseNotificationCard() }) {
                                     VStack{
-                                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euromoreorless" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                                             .resizable()
                                             .frame(width: 15, height: 15)
                                     }

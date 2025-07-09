@@ -114,7 +114,7 @@ public struct FeaturedCardSwiftUI: View {
     }
     
     private func trackingImpression() {
-        GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclquiz", variant: nil, list: list, brand: brand, index: index)
+        GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclmoreorless", variant: nil, list: list, brand: brand, index: index)
     }
     
     
@@ -131,10 +131,10 @@ public struct FeaturedCardSwiftUI: View {
                     .resizable()
                     .scaledToFill()
                     .ignoresSafeArea()
-                    .offset(y: MOLTheme.currentGameID == "uclquiz" ? 2 : 0)
-                    .clipShape(RoundedCorner(radius:MOLTheme.currentGameID == "uclquiz" ? 13 : 0, corners: [.topLeft,.topRight]))
+                    .offset(y: MOLTheme.currentGameID == "uclmoreorless" ? 2 : 0)
+                    .clipShape(RoundedCorner(radius:MOLTheme.currentGameID == "uclmoreorless" ? 13 : 0, corners: [.topLeft,.topRight]))
 //                    .overlay(
-//                        LinearGradient(gradient: Gradient(colors: MOLTheme.currentGameID == "euroquiz" ? [.clear,.clear] : [.clear, .black]),
+//                        LinearGradient(gradient: Gradient(colors: MOLTheme.currentGameID == "euromoreorless" ? [.clear,.clear] : [.clear, .black]),
 //                                       startPoint: .top,
 //                                       endPoint: .bottom).opacity(0.8)
 //                    )
@@ -158,13 +158,13 @@ public struct FeaturedCardSwiftUI: View {
                     Button(action: {
                         if  NetworkWrapper.isInternerConnected(){
                             GamingHubCards.open(gameId ?? "quiz", data: nil)
-                            GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclquiz", variant: nil, list: list, brand: brand, index: index)
+                            GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclmoreorless", variant: nil, list: list, brand: brand, index: index)
                         }
             
                     }, label: {
                         //Text("Browse quizzes")
                         Text(viewModel.cardData?.cardButton?.getTranslationValue(default: "Browse quizzes") ?? "Browse quizzes")
-                            .font(Font.swiftUICustomFont(customFont: MOLTheme.currentGameID == "weuroquiz" ? .SF_UI_SemiBold : .SF_UI_Bold, size: 14))
+                            .font(Font.swiftUICustomFont(customFont: MOLTheme.currentGameID == "weuromoreorless" ? .SF_UI_SemiBold : .SF_UI_Bold, size: 14))
                            // .frame(height: 32)
                             .padding([.top,.bottom],9)
                             .padding([.leading,.trailing],16)
@@ -180,12 +180,12 @@ public struct FeaturedCardSwiftUI: View {
             .padding(.all,16)
             .background(MOLTheme.getColor(named: .QSDK_0A0A61))
         }
-        .background( MOLTheme.currentGameID == "uclquiz" ? LinearGradient(
+        .background( MOLTheme.currentGameID == "uclmoreorless" ? LinearGradient(
             stops: stops,
             startPoint: .topLeading,
             endPoint: .topTrailing
         ) : LinearGradient(gradient: Gradient(colors: [MOLTheme.getColor(named: .QSDK_0A0A61)]), startPoint: .top, endPoint: .bottom))
-        .clipShape(RoundedCorner(radius: MOLTheme.currentGameID == "uclquiz" ? 10 : 0, corners: [.topLeft,.topRight]))
+        .clipShape(RoundedCorner(radius: MOLTheme.currentGameID == "uclmoreorless" ? 10 : 0, corners: [.topLeft,.topRight]))
     }
     
     private var featureCardIpad: some View {
@@ -206,7 +206,7 @@ public struct FeaturedCardSwiftUI: View {
                                        startPoint: .top,
                                        endPoint: .bottom).opacity(0.8)
                     )
-                    .offset(y:  MOLTheme.currentGameID == "uclquiz" ? 2 : 0)
+                    .offset(y:  MOLTheme.currentGameID == "uclmoreorless" ? 2 : 0)
                     .clipShape(RoundedCorner(radius: 16, corners: [.topLeft,.topRight]))
       
             
@@ -228,7 +228,7 @@ public struct FeaturedCardSwiftUI: View {
                         
                         if  NetworkWrapper.isInternerConnected(){
                             GamingHubCards.open(gameId ?? "quiz", data: nil)
-                            GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclquiz", variant: nil, list: list, brand: brand, index: index)
+                            GamingHubCards.trackProductImpression("", name: "Quiz Arena - Browse quizzes", category: MOLTheme.currentGameID ?? "uclmoreorless", variant: nil, list: list, brand: brand, index: index)
                         }
                         
                     }, label: {
@@ -249,12 +249,12 @@ public struct FeaturedCardSwiftUI: View {
                 .padding(.all,32)
             
         }
-        .background( MOLTheme.currentGameID == "uclquiz" ? LinearGradient(
+        .background( MOLTheme.currentGameID == "uclmoreorless" ? LinearGradient(
             stops: stops,
             startPoint: .topLeading,
             endPoint: .topTrailing
         ) : LinearGradient(gradient: Gradient(colors: [MOLTheme.getColor(named: .QSDK_0A0A61)]), startPoint: .top, endPoint: .bottom))
-        .clipShape(RoundedCorner(radius: MOLTheme.currentGameID == "uclquiz" ? 10 : 0, corners: [.topLeft,.topRight]))
+        .clipShape(RoundedCorner(radius: MOLTheme.currentGameID == "uclmoreorless" ? 10 : 0, corners: [.topLeft,.topRight]))
     }
     
     func urlavtra(url:String) -> String{

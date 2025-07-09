@@ -36,7 +36,7 @@ class InitAPIs {
             }, headerType: .NONE)
         }
     func guestuserdata() -> [Gameplaydetail]?{
-        return UserDefaultsData.shared.getCodableDataFromUserDefaults(forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclquiz"))
+        return UserDefaultsData.shared.getCodableDataFromUserDefaults(forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
     }
     func userLogin(onSuccess: @escaping((QUserLoginResponseModel?) -> ()), onFailure: ((String) -> ())?=nil){
         let user = GamingHubCards.user
@@ -47,7 +47,7 @@ class InitAPIs {
       
         var loginURL = (configData.endpoints?.loginURL ?? String.empty) //+ "?backdoor={backdoor}"
         loginURL = loginURL.replacingOccurrences(of: NetworkConstants().urlKeys.backdoor, with: "sanzensekai")
-       // loginURL = loginURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
+       // loginURL = loginURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
         let request = QUserLoginRequestModel()
         request.optType = 0
         request.userId = user.userId ?? 0
@@ -83,7 +83,7 @@ class InitAPIs {
             
             let data: GenericResponseModel<QUserLoginResponseModel> = NetworkHelper.getDecodedData(from: responseJSON)
             QuizzGameSDk.game.store.setGuestData(data: nil)
-            UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclquiz"))
+            UserDefaultsData.shared.setCodableDataToUserDefaults(codableData:self.passnillGameplaydetail , forKey: "GuestData" + (MOLTheme.currentGameID ?? "uclmoreorless"))
             LocalDataHelper().deleteDataFromLocal(type: .GuestData)
             Constants.isLogin =  GamingHubCards.isLoggedIn
             Constants.guid = data.Data.Value?.userGUID ?? ""

@@ -17,14 +17,14 @@ class MlGamePlayApi {
             onFailure?("Couldnt fetch config data")
             return
         }
-        var quizCardURL = Constants.configData?.endpoints?.molStartGameCardUrl ?? "/quiz/services/mol/gameplay/v1/{competitionType}/attempt?quizId={quizId}&langCode={languageCode}&isGuestUser={isGuestUser}"
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizid ?? "")
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
-       // quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
+        var molCardURL = Constants.configData?.endpoints?.molStartGameCardUrl ?? "/quiz/services/mol/gameplay/v1/{competitionType}/attempt?quizId={quizId}&langCode={languageCode}&isGuestUser={isGuestUser}"
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizid ?? "")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+       // molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
        
-        quizCardURL =  quizCardURL + "&buster=" + Date().timeIntervalSince1970.rounded().toString()
-        NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: quizCardURL, onSuccess: { responseJSON in
+        molCardURL =  molCardURL + "&buster=" + Date().timeIntervalSince1970.rounded().toString()
+        NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: molCardURL, onSuccess: { responseJSON in
             let data:GenericResponseModel<MLQuestionModel> = NetworkHelper.getDecodedData(from: responseJSON)
             if let value = data.Data.Value{
                 onSuccess(value)
@@ -44,16 +44,16 @@ class MlGamePlayApi {
             return
         }
         
-        var quizCardURL = configData.endpoints?.molQuestionGameCardUrl ?? "/quiz/services/mol/gameplay/v1/{competitionType}/questions?langCode={languageCode}&isGuestUser={isGuestUser}" 
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
-      //  quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
+        var molCardURL = configData.endpoints?.molQuestionGameCardUrl ?? "/quiz/services/mol/gameplay/v1/{competitionType}/questions?langCode={languageCode}&isGuestUser={isGuestUser}" 
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+      //  molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
         let request:MlQuestionAnsrequestModel?
 
             request = MlQuestionAnsrequestModel(quizID: qid ?? "", attemptid: attemptid ?? 0, player1ID: player1ID ?? 0, player2ID: player2ID ?? 0, answer: ans ?? -1, timetaken: 5, isskipped: 0, addedtime: 0)
    
         
-        NetworkWrapper.shared.POST(type: .BASE_URL, url: quizCardURL, params: request, onSuccess: { responseJSON in
+        NetworkWrapper.shared.POST(type: .BASE_URL, url: molCardURL, params: request, onSuccess: { responseJSON in
             
             let data: GenericResponseModel<MLQuestionModel> = NetworkHelper.getDecodedData(from: responseJSON)
             onSuccess(data.Data.Value)
@@ -69,15 +69,15 @@ class MlGamePlayApi {
             return
         }
    
-        var quizCardURL =  configData.endpoints?.molScoreCardUrl ??  "/quiz/services/mol/gameplay/v1/{competitionType}/scorecard?quizId={quizId}&langCode={languageCode}&isGuestUser={isGuestUser}&attemptId={attemptId}"
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.attemptId, with: "\(attemptid ?? 0)")
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizid ?? "")
-        quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
-       // quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
+        var molCardURL =  configData.endpoints?.molScoreCardUrl ??  "/quiz/services/mol/gameplay/v1/{competitionType}/scorecard?quizId={quizId}&langCode={languageCode}&isGuestUser={isGuestUser}&attemptId={attemptId}"
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.attemptId, with: "\(attemptid ?? 0)")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizid ?? "")
+        molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
+       // molCardURL = molCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclmoreorless")
        
-        quizCardURL =  quizCardURL + "&buster=" + Date().timeIntervalSince1970.rounded().toString()
-        NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: quizCardURL, onSuccess: { responseJSON in
+        molCardURL =  molCardURL + "&buster=" + Date().timeIntervalSince1970.rounded().toString()
+        NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: molCardURL, onSuccess: { responseJSON in
             let data:GenericResponseModel<MLResultScore> = NetworkHelper.getDecodedData(from: responseJSON)
             if let value = data.Data.Value{
                 onSuccess(value)

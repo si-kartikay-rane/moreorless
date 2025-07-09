@@ -19,7 +19,7 @@ struct LeaderBoardsMenuView: View {
     @State var analyticsData: TrackingParameters = TrackingParameters([:] as [String: Any?]?)
     var body: some View {
         ZStack(alignment:.top){
-            if MOLTheme.currentGameID == "weuroquiz"
+            if MOLTheme.currentGameID == "weuromoreorless"
             {
                 MOLTheme.getColor(named: .QSDKEuroBG).ignoresSafeArea()
             }
@@ -89,7 +89,7 @@ struct LeaderBoardsMenuView: View {
             let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:], replace: nil)
             self.analyticsDomainName = analyticsDomainName
             self.analyticsData = analyticsData
-            GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+            GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
             Track.shared.screen(screen: current_screen_name, params: [:], replace: nil)
             Track.shared.trackSponsor(slot: "header", analyticsDomainName: analyticsDomainName, analyticsData: analyticsData)
             self.quizViewModel.LeaderBoardMenufun()

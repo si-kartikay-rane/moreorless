@@ -42,7 +42,7 @@ struct LeaderboardView: View {
                     AdsPresentedbyView(VerticaleEnable: false, analyticsDomainName: self.analyticsDomainName, analyticsData: self.analyticsData)
                     VStack
                     {
-                        if MOLTheme.currentGameID != "weuroquiz" {
+                        if MOLTheme.currentGameID != "weuromoreorless" {
                             VStack{
                                 HStack{
                                     Text(self.quizViewModel.typeTitle ?? .empty).font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 24))
@@ -69,7 +69,7 @@ struct LeaderboardView: View {
                                     .frame(maxWidth:40 ,alignment: .leading)
                             }
                             Spacer()
-                            if MOLTheme.currentGameID == "weuroquiz"{
+                            if MOLTheme.currentGameID == "weuromoreorless"{
                                 Button {
                                     
                                 } label: {
@@ -87,15 +87,15 @@ struct LeaderboardView: View {
                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 12))
                                     .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                     .opacity(0.7)
-                                    .frame(maxWidth:75 ,alignment: MOLTheme.currentGameID == "weuroquiz" ? .center : .trailing)
+                                    .frame(maxWidth:75 ,alignment: MOLTheme.currentGameID == "weuromoreorless" ? .center : .trailing)
                             }
                             
                         }
-                        .padding(.top, MOLTheme.currentGameID == "weuroquiz" ? 20 : 10)
+                        .padding(.top, MOLTheme.currentGameID == "weuromoreorless" ? 20 : 10)
                         .padding([.leading,.trailing, .bottom],10)
                         
                         Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.3))
-                    }.padding([.leading,.trailing], MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0)
+                    }.padding([.leading,.trailing], MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0)
                     
                     ListRankview
                     
@@ -134,14 +134,14 @@ struct LeaderboardView: View {
                     
                 }.popover(isPresented: $isPresentingiPadActivityView) {
                     //                MNTCustSimplyShareViewController(activityItems: [sharedata?.modalTitle?.getTranslationValue(default: ""),sharedata?.modalDesc?.getTranslationValue(default: ""),sharedata?.loadText?.getTranslationValue(default: ""),URL(string: shareURls.leaderBoard + "/\(self.quizViewModel.quizType ?? 0)" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!])
-                    MNTCustSimplyShareViewController(activityItems: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.leaderBoard + (MOLTheme.currentGameID ?? "uclquiz") + screenName.leaderboard
+                    MNTCustSimplyShareViewController(activityItems: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.leaderBoard + (MOLTheme.currentGameID ?? "uclmoreorless") + screenName.leaderboard
                                                                                                                                       + "/\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(MOLTheme.quizIDType ?? "") ?? 0 )" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!])
                     
                 }
                                      
                                      
                 ).navigationBarBackButtonHidden()
-                    .navigationBarTitle(MOLTheme.currentGameID == "weuroquiz" ? "\(self.quizViewModel.typeTitle ?? "")" : AppStrings.Leaderboards.getTranslationValue(default: "Leaderboards"), displayMode: MOLTheme.currentGameID == "weuroquiz" ? .large : .inline)
+                    .navigationBarTitle(MOLTheme.currentGameID == "weuromoreorless" ? "\(self.quizViewModel.typeTitle ?? "")" : AppStrings.Leaderboards.getTranslationValue(default: "Leaderboards"), displayMode: MOLTheme.currentGameID == "weuromoreorless" ? .large : .inline)
 //                    .navigationTitle(AppStrings.leaderboard_ranking_title.getTranslationValue(default: "Leaderboard"))
                 
             }
@@ -153,7 +153,7 @@ struct LeaderboardView: View {
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
         //        .background(ActivityViewPresenter(isPresented: $isPresentingiPhoneActivityView, items: [sharedata?.modalTitle?.getTranslationValue(default: ""),sharedata?.modalDesc?.getTranslationValue(default: ""),sharedata?.loadText?.getTranslationValue(default: ""),URL(string: shareURls.leaderBoard + "/\(self.quizViewModel.quizType ?? 0)" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!]))
-        .background(ActivityViewPresenter(isPresented: $isPresentingiPhoneActivityView, items: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.leaderBoard + (MOLTheme.currentGameID ?? "uclquiz") + screenName.leaderboard + "/\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(MOLTheme.quizIDType ?? "") ?? 0 )" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!]))
+        .background(ActivityViewPresenter(isPresented: $isPresentingiPhoneActivityView, items: [sharedata?.loadText?.getTranslationValue(default: "") as Any,URL(string: shareURls.leaderBoard + (MOLTheme.currentGameID ?? "uclmoreorless") + screenName.leaderboard + "/\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? Int(MOLTheme.quizIDType ?? "") ?? 0 )" + "/\(self.selectedLeaderBoardType?.quizid ?? quizId)")!]))
         .navigationBarHidden(false)
         .onAppear{
             self.quizViewModel.LeaderBoardRankList(quizId: self.selectedLeaderBoardType?.quizid ?? quizId  , offset: maxOffset, count: GamingHubCards.isLoggedIn ? Constants.configData?.leaderBoardPagingPerPage ?? 10 : Constants.configData?.leaderBoardPagingPerPageForGuest ?? 50)
@@ -175,7 +175,7 @@ struct LeaderboardView: View {
                         
                         
                         
-                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                         self.analyticsDomainName = analyticsDomainName
                         self.analyticsData = analyticsData
                         
@@ -190,7 +190,7 @@ struct LeaderboardView: View {
                         
                         let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:], replace2: (Constants.configData?.quizTypeTrackingKey?["\(self.quizViewModel.quizType ?? self.selectedLeaderBoardType?.quiztypeid ?? Int(self.quizIdType) ?? 0)"]  as? String ?? ""),quizId:self.selectedLeaderBoardType?.quizid ?? quizId, quizTitle: self.quizViewModel.gaTitlePassed, gaPageTitle: self.quizViewModel.gaPageTitle, gaPageSubType: self.quizViewModel.gaPageSubType)
                         
-                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
+                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclmoreorless")
                         self.analyticsDomainName = analyticsDomainName
                         self.analyticsData = analyticsData
                         
@@ -202,11 +202,11 @@ struct LeaderboardView: View {
                 
                 orientation = UIDevice.current.orientation
                 oldorientation = UIDevice.current.orientation
-                if MOLTheme.currentGameID == "uclquiz" || MOLTheme.currentGameID == "weuroquiz"{
+                if MOLTheme.currentGameID == "uclmoreorless" || MOLTheme.currentGameID == "weuromoreorless"{
                     MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
-                }else if MOLTheme.currentGameID == "uwclquiz" {
+                }else if MOLTheme.currentGameID == "uwclmoreorless" {
                     MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
-                }else if MOLTheme.currentGameID == "euroquiz"{
+                }else if MOLTheme.currentGameID == "euromoreorless"{
                     MOLTheme.currentnavigation!.style(style: .withBgImageEuro(image: MOLTheme.getImage(named: QuizImageName.QSDK_EurosTopNavigationBar.name) ?? UIImage()))
                 } else {
                     MOLTheme.currentnavigation!.style(style: .blue())
@@ -300,7 +300,7 @@ struct LeaderboardView: View {
                                             }
                                             
                                         }.frame(maxWidth:.infinity ,alignment: .leading)
-                                        if MOLTheme.currentGameID == "weuroquiz"{
+                                        if MOLTheme.currentGameID == "weuromoreorless"{
                                             Button {
                                                 
                                             } label: {
@@ -315,7 +315,7 @@ struct LeaderboardView: View {
                                             
                                         } label: {
                                             if let overpo = item.overallpoints{
-                                                if MOLTheme.currentGameID != "weuroquiz"{
+                                                if MOLTheme.currentGameID != "weuromoreorless"{
                                                     Spacer()
                                                 }
                                                 Text(MOLTheme.isIpad ? String(overpo) : String(overpo).prefix(Constants.configData?.leaderboardMaxPointLength ?? 6) + (String(overpo).count > (Constants.configData?.leaderboardMaxPointLength ?? 6) ? ".." : ""))
@@ -334,7 +334,7 @@ struct LeaderboardView: View {
                                 Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.3))
                             }
                             .background((item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ? (MOLTheme.getColor(named: .LD_Select_BG)) : Color.clear).ignoresSafeArea()
-                            .padding([.leading,.trailing],(item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ? MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0 : MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0)
+                            .padding([.leading,.trailing],(item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ? MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0 : MOLTheme.isIpad ? (MOLTheme.isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0)
                             
                         }
                     }
@@ -354,7 +354,7 @@ struct LeaderboardView: View {
                 
                 
             }
-            if MOLTheme.currentGameID == "weuroquiz"{
+            if MOLTheme.currentGameID == "weuromoreorless"{
                 Spacer()
                 AdsSponsorsView()
                     .frame(width: 320)
@@ -445,7 +445,7 @@ struct SelfUserRank : View {
                                 
                                 fullNameView(item: item)
                                 
-                                if MOLTheme.currentGameID == "weuroquiz"{
+                                if MOLTheme.currentGameID == "weuromoreorless"{
                                     Button {
                                         
                                     } label: {
@@ -477,7 +477,7 @@ struct SelfUserRank : View {
                         Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.3))
                     }
                     .background((item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ? (MOLTheme.getColor(named: .QSDK_151573)) : Color.clear).ignoresSafeArea()
-                    .padding([.leading,.trailing],(item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ?MOLTheme.isIpad ? (isLandscape && MOLTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0 : MOLTheme.isIpad ? (isLandscape && MOLTheme.currentGameID == "weuroquiz" ? 232 : 52) : 0)
+                    .padding([.leading,.trailing],(item.guid == QuizzGameSDk.game.store.QuizUser?.userGUID) ?MOLTheme.isIpad ? (isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0 : MOLTheme.isIpad ? (isLandscape && MOLTheme.currentGameID == "weuromoreorless" ? 232 : 52) : 0)
                 }
             }
         }
