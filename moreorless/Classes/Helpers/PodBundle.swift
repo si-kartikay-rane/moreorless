@@ -14,7 +14,7 @@ class PodBundle {
     static var bundle: Bundle = {
         GamingHubCards.gameBundle(for: GAME__ID) ?? Bundle.main
 //        let podBundle =  Bundle(for: FeaturedCard.self)
-//        let data = podBundle.url(forResource: "uclmoreorless", withExtension: "bundle")!
+//        let data = podBundle.url(forResource: "uclquiz", withExtension: "bundle")!
 //        return Bundle(url: data) ?? Bundle.main
     }()
     

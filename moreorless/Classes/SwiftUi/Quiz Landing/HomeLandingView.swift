@@ -38,7 +38,7 @@ struct HomeLandingView: View {
     var body: some View {
         
         ZStack{
-            QUIZTheme.getColor(named: .QSDKBackGround_000040).ignoresSafeArea()
+            MOLTheme.getColor(named: .QSDKBackGround_000040).ignoresSafeArea()
             if showFloatingMenu {
                 Color.black.opacity(0.001) // Invisible overlay to catch taps
                     .onTapGesture {
@@ -49,12 +49,12 @@ struct HomeLandingView: View {
                
                 ActivityIndicator(isAnimating:$isLoading, style: .large)
             }else{
-            if QUIZTheme.isIpad{
+            if MOLTheme.isIpad{
                 VStack(spacing: 0.0){
                     AdsPresentedbyView(VerticaleEnable: false, analyticsDomainName: self.analyticsDomainName, analyticsData: self.analyticsData)
-                    Spacer(minLength: QUIZTheme.isIpad ? 0 : 16)
+                    Spacer(minLength: MOLTheme.isIpad ? 0 : 16)
                     
-                    if orientation.isLandscape || QUIZTheme.sizeChnage{
+                    if orientation.isLandscape || MOLTheme.sizeChnage{
                         HStack(spacing:32){
                             ScrollView(showsIndicators: false) {
                                 VStack(spacing: 20){
@@ -66,14 +66,14 @@ struct HomeLandingView: View {
                                                     if login{
                                                         showMoreLessView = true
                                                     }else{
-                                                        GamingHubCards.login(QUIZTheme.currentGameID ?? "uclquiz")
+                                                        GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
                                                     }
                                                 }else{
                                                     
                                                     if login{
                                                         showQuetionAnsView = true
                                                     }else{
-                                                        GamingHubCards.login(QUIZTheme.currentGameID ?? "uclquiz")
+                                                        GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
                                                     }
                                                 }
                                             }
@@ -136,14 +136,14 @@ struct HomeLandingView: View {
                                                 if login{
                                                     showMoreLessView = true
                                                 }else{
-                                                    GamingHubCards.login(QUIZTheme.currentGameID ?? "uclquiz")
+                                                    GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
                                                 }
                                             }else{
                                                 
                                                 if login{
                                                     showQuetionAnsView = true
                                                 }else{
-                                                    GamingHubCards.login(QUIZTheme.currentGameID ?? "uclquiz")
+                                                    GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
                                                 }
                                             }
                                         }
@@ -204,14 +204,14 @@ struct HomeLandingView: View {
                                             if login{
                                                 showMoreLessView = true
                                             }else{
-                                                GamingHubCards.login(QUIZTheme.currentGameID ?? "uclquiz")
+                                                GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
                                             }
                                         }else{
                                             
                                             if login{
                                                 showQuetionAnsView = true
                                             }else{
-                                                GamingHubCards.login(QUIZTheme.currentGameID ?? "uclquiz")
+                                                GamingHubCards.login(MOLTheme.currentGameID ?? "uclquiz")
                                             }
                                         }
                                         
@@ -294,7 +294,7 @@ struct HomeLandingView: View {
             if !PasstoAnotherView {
                 
                 orientation = newOrientation
-                QUIZTheme.updateViewLayout()
+                MOLTheme.updateViewLayout()
             }
         }
         
@@ -304,24 +304,24 @@ struct HomeLandingView: View {
             leading:
                 Button(action: {
                     if  NetworkWrapper.isInternerConnected(){
-                        if QUIZTheme.restore_old_navigation {
+                        if MOLTheme.restore_old_navigation {
                             //MARK: - Restore nav bar
-                            if let originalNavStyle = QUIZTheme.originalNavBarStoredStyle {
+                            if let originalNavStyle = MOLTheme.originalNavBarStoredStyle {
                                
-                                QUIZTheme.currentnavigation?.onExitQuizzerGame_restore_old_style(style: originalNavStyle, appearance:  QUIZTheme.originalNavBarAppearance)
+                                MOLTheme.currentnavigation?.onExitQuizzerGame_restore_old_style(style: originalNavStyle, appearance:  MOLTheme.originalNavBarAppearance)
                             }
                         } else {
                             //MARK: - Handle empty state
-                            QUIZTheme.currentnavigation?.style(style: .clear())
-                            QUIZTheme.currentnavigation?.onExitQuizzerGame_restore_old_style(style: .eraseallstyles())
+                            MOLTheme.currentnavigation?.style(style: .clear())
+                            MOLTheme.currentnavigation?.onExitQuizzerGame_restore_old_style(style: .eraseallstyles())
                         }
                             GamingHubCards.openMenu()
                     }
                 }) {
-                    if QUIZTheme.isGamingHubHost {
-                        Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDK_Menu.name) ?? UIImage())
+                    if MOLTheme.isGamingHubHost {
+                        Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDK_Menu.name) ?? UIImage())
                     } else {
-                        Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDK_NavBack.name) ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDK_NavBack.name) ?? UIImage())
                     }
                     
                 },
@@ -340,7 +340,7 @@ struct HomeLandingView: View {
                     notificationvm.checkNotificationsPermission()
                 }
                 DispatchQueue.main.async {
-                    QUIZTheme.currentnavigation!.style(style: .withBgImage(image: QUIZTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(QUIZTheme.getColor(named: .QSDK_NavImage051139))))
+                    MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
                 }
            
                 if (GamingHubCards.isLoggedIn) {
@@ -350,7 +350,7 @@ struct HomeLandingView: View {
                 }
                 
                 let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:], replace: nil)
-                GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
                 self.analyticsDomainName = analyticsDomainName
                 self.analyticsData = analyticsData
                 Track.shared.screen(screen: current_screen_name, params: [:], replace: nil)
@@ -400,14 +400,14 @@ struct HomeLandingView: View {
                 //MARK: - Notification flow
                 
                 GameNotificationsManager.isNotificationsGranted { status in
-                    QUIZTheme.oldNotifcationPermisstion = status.rawValue
+                    MOLTheme.oldNotifcationPermisstion = status.rawValue
                 }
                 
                 NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { _ in
                     notificationvm.appDidBecomeActive()
                 }
                 
-                NotificationCenter.default.addObserver(forName: QUIZTheme.QuizNotificationChannelStatusChanged, object: nil, queue: .main) { _ in
+                NotificationCenter.default.addObserver(forName: MOLTheme.QuizNotificationChannelStatusChanged, object: nil, queue: .main) { _ in
                     notificationvm.notificationsChannelStatusChanged()
                     if GamingHubCards.isLoggedIn{
                         notificationvm.checkNotificationsPermission()
@@ -422,17 +422,17 @@ struct HomeLandingView: View {
                     stopObserver = true
                 }
             }
-            .popup(isPresented: $notificationvm.showNotificationChannelPopUp, type: !QUIZTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: true) : .default, position: .bottom, dragToDismiss: false,closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
+            .popup(isPresented: $notificationvm.showNotificationChannelPopUp, type: !MOLTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: true) : .default, position: .bottom, dragToDismiss: false,closeOnTap: false, closeOnTapOutside: true, backgroundColor: .black.opacity(0.4)) {
                 NoticationPopView(notificationPopUp: $notificationvm.showNotificationChannelPopUp)
             }
-            .popup(isPresented: $notificationvm.notificationPopUp, type: !QUIZTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: true) : .default, position: .bottom,dragToDismiss: false ,closeOnTap: false, closeOnTapOutside: false, backgroundColor: .black.opacity(0.4)) {
+            .popup(isPresented: $notificationvm.notificationPopUp, type: !MOLTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: true) : .default, position: .bottom,dragToDismiss: false ,closeOnTap: false, closeOnTapOutside: false, backgroundColor: .black.opacity(0.4)) {
                 
                 NotificationAlertView(
-                    title: NotificationStrings.notificationCardAlertTitle.getTranslationValue(default: "Never miss a quiz!"), description: NotificationStrings.notificationCardAlertdesc.getTranslationValue(default: "Turn on notifications to get quiz reminders and leaderboard updates."), attributedDescription: nil, icon:  Image(uiImage:QUIZTheme.getImage(named:QuizImageName.QSDK_Alert.name) ?? UIImage()), btnHighlightedText: NotificationStrings.notificationalertbuttonOne.getTranslationValue(default: "Turn on notification"), btnNormalText: NotificationStrings.notificationalertbuttonTne.getTranslationValue(default: "Not now"),
+                    title: NotificationStrings.notificationCardAlertTitle.getTranslationValue(default: "Never miss a quiz!"), description: NotificationStrings.notificationCardAlertdesc.getTranslationValue(default: "Turn on notifications to get quiz reminders and leaderboard updates."), attributedDescription: nil, icon:  Image(uiImage:MOLTheme.getImage(named:QuizImageName.QSDK_Alert.name) ?? UIImage()), btnHighlightedText: NotificationStrings.notificationalertbuttonOne.getTranslationValue(default: "Turn on notification"), btnNormalText: NotificationStrings.notificationalertbuttonTne.getTranslationValue(default: "Not now"),
                     notificationAlertPopUp: $notificationvm.notificationPopUp, notificationPopUp: $notificationvm.showNotificationChannelPopUp, showToast: $notificationvm.showToast)
             }
         
-            .popup(isPresented: $notificationvm.showToast, type: !QUIZTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: QUIZTheme.isGamingHubHost ? false : true) : .floater(verticalPadding: 0, useSafeAreaInset: false), position: .bottom, autohideIn: 2.5,dragToDismiss: true, closeOnTap: false, closeOnTapOutside: false, backgroundColor: .black.opacity(0.0)) {
+            .popup(isPresented: $notificationvm.showToast, type: !MOLTheme.isIpad ? .floater(verticalPadding: 0, useSafeAreaInset: MOLTheme.isGamingHubHost ? false : true) : .floater(verticalPadding: 0, useSafeAreaInset: false), position: .bottom, autohideIn: 2.5,dragToDismiss: true, closeOnTap: false, closeOnTapOutside: false, backgroundColor: .black.opacity(0.0)) {
                 NotificationToastView(showToast: $notificationvm.showToast)
             }
     }

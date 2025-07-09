@@ -146,7 +146,7 @@ final class quiztypeTracking{
 final class shareURls{
     static let invitefrnd = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/"
     static let leaderBoard = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/"
-    static let gamePlay = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/\(QUIZTheme.currentGameID ?? "uclquiz")"
+    static let gamePlay = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/\(MOLTheme.currentGameID ?? "uclquiz")"
     static let scorescreen  = AppBaseURLs.shareDomin + "/\(QuizzGameSDk.game.getAppLanguage())/"
     
 }

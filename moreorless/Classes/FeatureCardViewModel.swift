@@ -18,7 +18,7 @@ class QSDKFeatureCardViewModel:ObservableObject{
     func getFeatureCardData(){
         let group = DispatchGroup()
         QuizzGameSDk.game.sponsorModel =  nil
-        QuizzGameSDk.game.getSponsorsForGame(gameid: QUIZTheme.currentGameID, competitionid: QUIZTheme.competitionId)
+        QuizzGameSDk.game.getSponsorsForGame(gameid: MOLTheme.currentGameID, competitionid: MOLTheme.competitionId)
         initAPIs.getConfigData { configData in
             Constants.configData = configData
             group.enter()

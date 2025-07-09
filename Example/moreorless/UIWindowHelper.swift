@@ -1,6 +1,6 @@
 //
 //  UIWindowHelper.swift
-//  quiz_Example
+//  moreorless_Example
 //
 //  Created by Milind Trivedi on 18/03/24.
 //  Copyright © 2024 CocoaPods. All rights reserved.

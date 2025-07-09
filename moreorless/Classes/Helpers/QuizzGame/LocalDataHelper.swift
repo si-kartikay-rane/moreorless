@@ -36,8 +36,8 @@ class LocalDataHelper{
         case .Translation:
             JSONFileHelper().writeToJSONFile(type: type.rawValue, model: QuizzGameSDk.game.store.getTranslations())
         case .GuestData:
-            UserDefaultsData.shared.setCodableDataToUserDefaults(codableData: QuizzGameSDk.game.store.getGuestData(), forKey: type.rawValue + (QUIZTheme.currentGameID ?? "uclquiz"))
-            JSONFileHelper().writeToJSONFile(type: type.rawValue + (QUIZTheme.currentGameID ?? "uclquiz"), model: QuizzGameSDk.game.store.getGuestData())
+            UserDefaultsData.shared.setCodableDataToUserDefaults(codableData: QuizzGameSDk.game.store.getGuestData(), forKey: type.rawValue + (MOLTheme.currentGameID ?? "uclquiz"))
+            JSONFileHelper().writeToJSONFile(type: type.rawValue + (MOLTheme.currentGameID ?? "uclquiz"), model: QuizzGameSDk.game.store.getGuestData())
         }
     }
     

@@ -65,7 +65,7 @@ class MLGameViewModel: ObservableObject {
                         
                         let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + (self.cardSelection?.gametype ?? "mol"), params: [:], replace: "\(self.baseCard.count+1)",replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.quizType)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                         
-                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
                         
                         self.analyticsDomainName = analyticsDomainName
                         self.analyticsData = analyticsData
@@ -89,7 +89,7 @@ class MLGameViewModel: ObservableObject {
                         
                         let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + (self.cardSelection?.gametype ?? "mol"), params: [:], replace: "\(self.baseCard.count+1)",replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.quizType)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                         
-                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                        GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
                         
                         self.analyticsDomainName = analyticsDomainName
                         self.analyticsData = analyticsData

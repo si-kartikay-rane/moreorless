@@ -21,7 +21,7 @@ class SplashVM:ObservableObject{
         UserDefaultsData.shared.homeScreenVisitedCount = 0
         GamingHubCards.logout()
         let defaults = UserDefaults.standard
-        guard let gameId = QUIZTheme.currentGameID else { return }
+        guard let gameId = MOLTheme.currentGameID else { return }
         QuizzGameSDk.game.store.QuizUser =  nil
         QuizzGameSDk.game.store.cardData = nil
         QuizzGameSDk.game.store.guestData = []

@@ -18,7 +18,7 @@ struct NoticationPopView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            if !QUIZTheme.isIpad {
+            if !MOLTheme.isIpad {
                 VStack{
                 Spacer()
                 VStack(spacing: 0) {
@@ -26,7 +26,7 @@ struct NoticationPopView: View {
                         HStack {
                             Spacer()
                             Button(action: { notificationPopUp = false }) {
-                                QUIZTheme.getImage(named:QuizImageName.QSDK_NotificationPopUpClose.name)?
+                                MOLTheme.getImage(named:QuizImageName.QSDK_NotificationPopUpClose.name)?
                                     .foregroundColor(.white)
                                     .frame(width: 24, height: 24)
                                     .background(Color.white.opacity(0.2))
@@ -37,12 +37,12 @@ struct NoticationPopView: View {
                         
                         Text(NotificationStrings.notificationalertChannelPopupTitle.getTranslationValue(default: "Push notifications"))
                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 20))
-                            .foregroundColor(QUIZTheme.getColor(named: .QSDK_boosterWhiteColor))
+                            .foregroundColor(MOLTheme.getColor(named: .QSDK_boosterWhiteColor))
                             .padding(.bottom, 24)
                     }
                     
                     VStack(spacing: 24) {
-                        Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.75))
+                        Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.75))
                         ForEach(channels, id: \.id) { channel in
                             ToggleRow(
                                 isGranted: isGranted,
@@ -51,7 +51,7 @@ struct NoticationPopView: View {
                                 completion: {
                                     refreshNotifications()
                                 })
-                            Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.75))
+                            Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.75))
                         }
                         .padding(.bottom, 3)
                     }
@@ -59,7 +59,7 @@ struct NoticationPopView: View {
                     .padding(.bottom, 32)
                 }
                 .frame(maxWidth: .infinity)
-                .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+                .background(MOLTheme.getColor(named: .QSDK_0A0A61))
                 .quizCornerRadius(24.0, corners: [.topLeft,.topRight])
                 .shadow(radius: 20)
                 
@@ -71,7 +71,7 @@ struct NoticationPopView: View {
                             HStack {
                                 Spacer()
                                 Button(action: { notificationPopUp = false }) {
-                                    QUIZTheme.getImage(named:QuizImageName.QSDK_NotificationPopUpClose.name)?
+                                    MOLTheme.getImage(named:QuizImageName.QSDK_NotificationPopUpClose.name)?
                                         .foregroundColor(.white)
                                         .frame(width: 24, height: 24)
                                         .background(Color.white.opacity(0.2))
@@ -82,12 +82,12 @@ struct NoticationPopView: View {
                             
                             Text(NotificationStrings.notificationalertChannelPopupTitle.getTranslationValue(default: "Push notifications"))
                                 .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 20))
-                                .foregroundColor(QUIZTheme.getColor(named: .QSDK_boosterWhiteColor))
+                                .foregroundColor(MOLTheme.getColor(named: .QSDK_boosterWhiteColor))
                                 .padding(.bottom, 24)
                         }
                         
                         VStack(spacing: 24) {
-                            Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.75))
+                            Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.75))
                             ForEach(channels, id: \.id) { channel in
                                 ToggleRow(
                                     isGranted: isGranted,
@@ -96,7 +96,7 @@ struct NoticationPopView: View {
                                     completion: {
                                         refreshNotifications()
                                     })
-                                Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.75))
+                                Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.75))
                             }
                             .padding(.bottom, 3)
                         }
@@ -104,7 +104,7 @@ struct NoticationPopView: View {
                         .padding(.bottom, 32)
                     }
                     .frame(width: UIScreen.screenWidth * 0.50)
-                    .background(QUIZTheme.getColor(named: .QSDK_0A0A61))
+                    .background(MOLTheme.getColor(named: .QSDK_0A0A61))
                     .quizCornerRadius(24.0, corners: .allCorners)
                     .shadow(radius: 20)
 
@@ -112,7 +112,7 @@ struct NoticationPopView: View {
                 .padding(.horizontal, 8)
             }
         }
-        .quizconditionalSafeArea( QUIZTheme.isGamingHubHost)
+        .quizconditionalSafeArea( MOLTheme.isGamingHubHost)
 //        .edgesIgnoringSafeArea(.bottom)
         .onAppear {
             Track.shared.screen(screen: "/push-notification-dialog", params: nil)
@@ -141,8 +141,8 @@ struct NoticationPopView: View {
    
    func fetchChannels() {
        if isFromRefreshView {
-           if !QUIZTheme.channels.isEmpty {
-               channels = QUIZTheme.channels.sorted { $0.id < $1.id }
+           if !MOLTheme.channels.isEmpty {
+               channels = MOLTheme.channels.sorted { $0.id < $1.id }
            } else {
                getRemoteChannels()
            }
@@ -152,7 +152,7 @@ struct NoticationPopView: View {
    }
    
    func getRemoteChannels() {
-       GameNotificationsManager.channels(for: QUIZTheme.currentGameID ?? "uclquiz") { result in
+       GameNotificationsManager.channels(for: MOLTheme.currentGameID ?? "uclquiz") { result in
            DispatchQueue.main.async {
                switch result {
                case .success(let remoteChannels):
@@ -168,7 +168,7 @@ struct NoticationPopView: View {
        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { _ in
            initialSetup()
        }
-       NotificationCenter.default.addObserver(forName: QUIZTheme.RefreshNotificationsChannelSubViews, object: nil, queue: .main) { _ in
+       NotificationCenter.default.addObserver(forName: MOLTheme.RefreshNotificationsChannelSubViews, object: nil, queue: .main) { _ in
            isFromRefreshView = true
 //           initialSetup()
        }
@@ -189,11 +189,11 @@ struct ToggleRow: View {
             HStack {
                 Text(channel.title)
                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 16))
-                    .foregroundColor(QUIZTheme.getColor(named: .QSDK_boosterWhiteColor))
+                    .foregroundColor(MOLTheme.getColor(named: .QSDK_boosterWhiteColor))
                 Spacer()
                 Toggle("", isOn: $isOn)
                     .labelsHidden()
-                    .toggleStyle(SwitchToggleStyle(tint: QUIZTheme.getColor(named: .QPSDKPrimary)))
+                    .toggleStyle(SwitchToggleStyle(tint: MOLTheme.getColor(named: .QPSDKPrimary)))
                     
             }
             .onChange(of: isOn) { newValue in
@@ -208,12 +208,12 @@ struct ToggleRow: View {
         .onAppear {
             initializeToggleState()
         }
-        .quizconditionalSafeArea( QUIZTheme.isGamingHubHost)
+        .quizconditionalSafeArea( MOLTheme.isGamingHubHost)
     }
     
     
      func initializeToggleState() {
-        if QUIZTheme.isChannelChangedFromBG && isGranted {
+        if MOLTheme.isChannelChangedFromBG && isGranted {
             isOn = true
         } else if isGranted {
             isOn = channel.status
@@ -236,7 +236,7 @@ struct ToggleRow: View {
                 }
             }
         } else {
-            GameNotificationsManager.enableSystemNotifications(gameId: QUIZTheme.currentGameID ?? "weuroquiz") { result in
+            GameNotificationsManager.enableSystemNotifications(gameId: MOLTheme.currentGameID ?? "weuroquiz") { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(let status):
@@ -253,7 +253,7 @@ struct ToggleRow: View {
             }
         }
         
-        NotificationCenter.default.post(name: QUIZTheme.QuizNotificationChannelStatusChanged, object: nil)
+        NotificationCenter.default.post(name: MOLTheme.QuizNotificationChannelStatusChanged, object: nil)
     }
 
 }

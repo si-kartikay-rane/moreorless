@@ -47,7 +47,7 @@ enum QSDKColorName:String {
     var name: String { self.rawValue }
 }
 
- class QUIZTheme {
+ class MOLTheme {
      static var currentnavigation: UINavigationController?
      static var currentBundle: Bundle?
      static var isIpad:Bool = UIDevice.current.userInterfaceIdiom == .pad
@@ -92,43 +92,43 @@ enum QSDKColorName:String {
      static let QuizNotificationChannelStatusChanged = Notification.Name("quizNotificationChannelStatusChanged")
      
      static  func updateViewLayout() {
-         if QUIZTheme.isIpad == true && QUIZTheme.isLandscape ==  true{
+         if MOLTheme.isIpad == true && MOLTheme.isLandscape ==  true{
              let screenWidth = UIScreen.screenWidth
              print(screenWidth)
              switch screenWidth {
              case 744...1023:
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 480
+                 MOLTheme.constranWidthLandingViewLeaderbord = 480
              case 1024...1111:
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 480
+                 MOLTheme.constranWidthLandingViewLeaderbord = 480
              case 1112...1226:
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 320
+                 MOLTheme.constranWidthLandingViewLeaderbord = 320
              case 1227...3000:
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 480
+                 MOLTheme.constranWidthLandingViewLeaderbord = 480
              default:
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 400
+                 MOLTheme.constranWidthLandingViewLeaderbord = 400
              }
-         }else if QUIZTheme.isIpad == true && QUIZTheme.isLandscape ==  false{
+         }else if MOLTheme.isIpad == true && MOLTheme.isLandscape ==  false{
              let screenWidth = UIScreen.screenWidth
              print(screenWidth)
              switch screenWidth {
              case 744...1023:
-                 QUIZTheme.sizeChnage =  false
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 280
+                 MOLTheme.sizeChnage =  false
+                 MOLTheme.constranWidthLandingViewLeaderbord = 280
              case 1024:
-                 QUIZTheme.sizeChnage =  false
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 350
+                 MOLTheme.sizeChnage =  false
+                 MOLTheme.constranWidthLandingViewLeaderbord = 350
              case 1032:
-                 QUIZTheme.sizeChnage =  true
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 400
+                 MOLTheme.sizeChnage =  true
+                 MOLTheme.constranWidthLandingViewLeaderbord = 400
              case 1112...1226:
-                 QUIZTheme.sizeChnage =  false
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 320
+                 MOLTheme.sizeChnage =  false
+                 MOLTheme.constranWidthLandingViewLeaderbord = 320
              case 1366:
-                 QUIZTheme.sizeChnage =  true
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 350
+                 MOLTheme.sizeChnage =  true
+                 MOLTheme.constranWidthLandingViewLeaderbord = 350
              default:
-                 QUIZTheme.sizeChnage =  false
-                 QUIZTheme.constranWidthLandingViewLeaderbord = 400
+                 MOLTheme.sizeChnage =  false
+                 MOLTheme.constranWidthLandingViewLeaderbord = 400
              }
          }
      }
@@ -165,17 +165,17 @@ enum QSDKColorName:String {
         
         switch routeToGo{
         case ConfigModel.DeeplinkRoute.home.rawValue:
-            QUIZTheme.navigateTo = .home
+            MOLTheme.navigateTo = .home
         case ConfigModel.DeeplinkRoute.leaderboard.rawValue:
-            QUIZTheme.navigateTo = .leaderboard
-                QUIZTheme.quizID = linkArray[safe: 7]
-                QUIZTheme.quizIDType = linkArray[safe: 6]
+            MOLTheme.navigateTo = .leaderboard
+                MOLTheme.quizID = linkArray[safe: 7]
+                MOLTheme.quizIDType = linkArray[safe: 6]
         case ConfigModel.DeeplinkRoute.game.rawValue:
-            QUIZTheme.navigateTo = .game
-            QUIZTheme.quizID = linkArray[safe: 7]
-            QUIZTheme.quizIDType = linkArray[safe: 6]
+            MOLTheme.navigateTo = .game
+            MOLTheme.quizID = linkArray[safe: 7]
+            MOLTheme.quizIDType = linkArray[safe: 6]
         default:
-            QUIZTheme.navigateTo = .none
+            MOLTheme.navigateTo = .none
         }
     }
      
@@ -229,16 +229,16 @@ enum QSDKColorName:String {
      
      static func QuizzerNotificationsyncmanager(completion: @escaping () -> Void) {
          
-         let operationArray = QUIZTheme.channels
+         let operationArray = MOLTheme.channels
          
-         if QUIZTheme.isChannelChangedFromBG {
+         if MOLTheme.isChannelChangedFromBG {
              
-             guard let newChannelStatus = QUIZTheme.QuizzersetChannelFromBGTo else { return }
-                 QUIZTheme.updateChannelStatuses(channels: operationArray, newStatus: newChannelStatus) { result in
+             guard let newChannelStatus = MOLTheme.QuizzersetChannelFromBGTo else { return }
+                 MOLTheme.updateChannelStatuses(channels: operationArray, newStatus: newChannelStatus) { result in
                      if result {
-                         QUIZTheme.channels.removeAll()
-                         QUIZTheme.isChannelChangedFromBG = false
-                         QUIZTheme.QuizzersetChannelFromBGTo = nil
+                         MOLTheme.channels.removeAll()
+                         MOLTheme.isChannelChangedFromBG = false
+                         MOLTheme.QuizzersetChannelFromBGTo = nil
                          completion()
                      }
                  }
@@ -402,7 +402,7 @@ extension UINavigationController {
             navigationBar.isTranslucent = true
         }
         
-        navigationBar.prefersLargeTitles = QUIZTheme.originalNavBarprefersLargeTitles ?? false
+        navigationBar.prefersLargeTitles = MOLTheme.originalNavBarprefersLargeTitles ?? false
         navigationBar.standardAppearance = app
         navigationBar.scrollEdgeAppearance = app
         navigationBar.compactAppearance =  app
@@ -421,8 +421,8 @@ extension UINavigationController {
         static func clear() -> NavigationBarStyle {
             var style = NavigationBarStyle()
            // style.font = UIFont.customFont(customFont: .SF_UI_Bold, size: 18)
-            style.textColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
-            style.tintColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
+            style.textColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
+            style.tintColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
 //            style.backgroundImage = UIImage()
             style.shadowImage = UIImage()
             style.isTranslucent = false
@@ -433,31 +433,31 @@ extension UINavigationController {
         static func blue() -> NavigationBarStyle {
             var style = NavigationBarStyle()
             style.font =  UIFont.systemFont(ofSize: 14.0, weight: .regular)
-            style.textColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
-            style.tintColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
+            style.textColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
+            style.tintColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
             //style.backgroundImage = UIImage()
             //style.shadowImage = UIImage()
             style.isTranslucent = false
-            style.backgroundColor = UIColor(QUIZTheme.getColor(named: .QSDK_000FAA))
+            style.backgroundColor = UIColor(MOLTheme.getColor(named: .QSDK_000FAA))
             return style
         }
         
         static func customColor(color: UIColor) -> NavigationBarStyle {
             var style = NavigationBarStyle()
            // style.font = UIFont.customFont(customFont: .SF_UI_Bold, size: 18)
-            style.textColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
-            style.tintColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
+            style.textColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
+            style.tintColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
             //style.shadowImage = UIImage()
             style.isTranslucent = false
-            style.backgroundColor = UIColor(QUIZTheme.getColor(named: .QSDK_000FAA))
+            style.backgroundColor = UIColor(MOLTheme.getColor(named: .QSDK_000FAA))
             return style
         }
         
         static func darkColor(color: UIColor) -> NavigationBarStyle {
             var style = NavigationBarStyle()
             //style.font = UIFont.customFont(customFont: .SF_UI_Bold, size: 18)
-            style.textColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
-            style.tintColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
+            style.textColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
+            style.tintColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
             //style.backgroundImage = UIImage()
             //style.shadowImage = UIImage()
             style.isTranslucent = false
@@ -468,8 +468,8 @@ extension UINavigationController {
         static func withBgImage(image: UIImage,color: UIColor) -> NavigationBarStyle {
             var style = NavigationBarStyle()
             style.font =  UIFont.systemFont(ofSize: 24.0, weight: .regular)
-            style.textColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
-            style.tintColor = UIColor(QUIZTheme.getColor(named: .QPSDKWhite))
+            style.textColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
+            style.tintColor = UIColor(MOLTheme.getColor(named: .QPSDKWhite))
             style.backgroundImage = image
            // style.shadowImage = UIImage()
             style.isTranslucent = false
@@ -485,7 +485,7 @@ extension UINavigationController {
             style.backgroundImage = image
             //style.shadowImage = UIImage()
             style.isTranslucent = false
-            style.backgroundColor = UIColor(QUIZTheme.getColor(named: .QSDK_143CDB))
+            style.backgroundColor = UIColor(MOLTheme.getColor(named: .QSDK_143CDB))
             return style
         }
         

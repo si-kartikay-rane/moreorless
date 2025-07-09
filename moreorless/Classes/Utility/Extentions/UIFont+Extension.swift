@@ -145,7 +145,7 @@ extension Font {
     
     static func QSDKregisterFonts() {
         CustomFontsNew.allCases.forEach { font in
-            let _ = Font.QSDkregisterFont(bundle: QUIZTheme.currentBundle ?? .main, fontName: font.name, fontExtension: "ttf")
+            let _ = Font.QSDkregisterFont(bundle: MOLTheme.currentBundle ?? .main, fontName: font.name, fontExtension: "ttf")
         }
     }
 }

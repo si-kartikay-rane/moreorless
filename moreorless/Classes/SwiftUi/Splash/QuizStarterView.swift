@@ -57,7 +57,7 @@ struct QuizStarterView: View {
                 HomeLandingView(stopObserver: $stopObserver)
             }
             
-            NavigationLink("", destination: LeaderboardView(quizId:QUIZTheme.quizID ?? self.quizID,quizIdType: self.quizIDType).navigationBarTitleDisplayMode(.inline),isActive:$isDeepLinkLeaderboard)
+            NavigationLink("", destination: LeaderboardView(quizId:MOLTheme.quizID ?? self.quizID,quizIdType: self.quizIDType).navigationBarTitleDisplayMode(.inline),isActive:$isDeepLinkLeaderboard)
             
 //            NavigationLink("", destination:  QuetionAnsView(notificationsvm: notificationvm, cardData: self.quizViewModel.cardSelection, Observer: $stopObserver, PasstoNavigationView: $PasstoNavigationView, isActive: $isDeepLinkGame).navigationBarHidden(false).navigationBarTitleDisplayMode(.inline), isActive: $isDeepLinkGame)
             NavigationLink("", destination: MLQuestionAnsView(cardData: self.quizViewModel.cardSelection,Observer: $stopObserver,PasstoNavigationView: $PasstoNavigationView, isActive: $MOlDeepLink).navigationBarHidden(false).navigationBarTitleDisplayMode(.inline),isActive:$MOlDeepLink)//4
@@ -66,7 +66,7 @@ struct QuizStarterView: View {
         .quizOnRotate { newOrientation in
             if !stopObserver {
                 orientation = newOrientation
-                QUIZTheme.updateViewLayout()
+                MOLTheme.updateViewLayout()
             }
         }
         
@@ -87,7 +87,7 @@ struct QuizStarterView: View {
                 
                 
                 QuizzGameSDk.game.sponsorModel =  nil
-                QuizzGameSDk.game.getSponsorsForGame(gameid: QUIZTheme.currentGameID, competitionid: QUIZTheme.competitionId)
+                QuizzGameSDk.game.getSponsorsForGame(gameid: MOLTheme.currentGameID, competitionid: MOLTheme.competitionId)
             }
             BusterHelper.shared.updateBuster(type: .LEADERBOARD)
             //Track.shared.screen(screen: screenName.splashScreen, params: [:], replace: nil)
@@ -152,13 +152,13 @@ struct QuizStarterView: View {
             MoveToHomeView =  true
             self.viewModel.isLogin =  false
         }
-        if QUIZTheme.navigateTo == .leaderboard {
+        if MOLTheme.navigateTo == .leaderboard {
             self.isDeepLinkLeaderboard =  true
             
         }
         
-        if QUIZTheme.navigateTo == .game{
-            self.quizcehckDeepLink(quizid: QUIZTheme.quizID ?? quizID)
+        if MOLTheme.navigateTo == .game{
+            self.quizcehckDeepLink(quizid: MOLTheme.quizID ?? quizID)
         }
         navBarHidden = false
     }
@@ -178,13 +178,13 @@ extension QuizStarterView{
                     
                     if  GamingHubCards.isLoggedIn{
                         if  detailModel?.gametype == "mol"{
-                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid:  QUIZTheme.quizID ?? quizID, quiztypeid: Int(self.quizIDType) ?? 3, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil, gametype: "mol", gatitle: nil, isMediaQuiz: nil, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
+                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid:  MOLTheme.quizID ?? quizID, quiztypeid: Int(self.quizIDType) ?? 3, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil, gametype: "mol", gatitle: nil, isMediaQuiz: nil, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
                             
                             MOlDeepLink  =  true
                             
                         }else{
                             
-                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid: QUIZTheme.quizID ?? quizID, quiztypeid: detailModel?.quiztypeid, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil, gametype: "quiz", gatitle: nil, isMediaQuiz: detailModel?.isMediaQuiz, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
+                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid: MOLTheme.quizID ?? quizID, quiztypeid: detailModel?.quiztypeid, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil, gametype: "quiz", gatitle: nil, isMediaQuiz: detailModel?.isMediaQuiz, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
                             // self.quizID = .empty
                             isDeepLinkGame  =  true
                             
@@ -192,15 +192,15 @@ extension QuizStarterView{
                             
                         }
                     }else{
-                        if  UserDefaults.standard.string(forKey:(QUIZTheme.quizID ?? quizID)) !=  (QUIZTheme.quizID ?? quizID)  && detailModel?.gametype == "quiz"{
-                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid:QUIZTheme.quizID ?? quizID, quiztypeid: nil, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil,gametype: "quiz", gatitle: nil, isMediaQuiz: detailModel?.isMediaQuiz, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
+                        if  UserDefaults.standard.string(forKey:(MOLTheme.quizID ?? quizID)) !=  (MOLTheme.quizID ?? quizID)  && detailModel?.gametype == "quiz"{
+                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid:MOLTheme.quizID ?? quizID, quiztypeid: nil, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil,gametype: "quiz", gatitle: nil, isMediaQuiz: detailModel?.isMediaQuiz, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
                             //self.quizID = .empty
                             isDeepLinkGame  =  true
                             
-                        }else if UserDefaults.standard.string(forKey:(QUIZTheme.quizID ?? quizID)) !=  (QUIZTheme.quizID ?? quizID) && detailModel?.gametype == "mol"{
+                        }else if UserDefaults.standard.string(forKey:(MOLTheme.quizID ?? quizID)) !=  (MOLTheme.quizID ?? quizID) && detailModel?.gametype == "mol"{
                             
                             
-                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid: QUIZTheme.quizID ?? quizID, quiztypeid: Int(QUIZTheme.quizIDType ?? self.quizIDType) ?? 3, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil,gametype: "mol", gatitle: nil, isMediaQuiz: nil, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
+                            self.quizViewModel.cardSelection = QuizCardListData(title: detailModel?.quiztitle ?? "", quiztype: nil, subtitle: nil, isdisable: nil, description: nil, qzQuizMasterid: MOLTheme.quizID ?? quizID, quiztypeid: Int(MOLTheme.quizIDType ?? self.quizIDType) ?? 3, bgimage: nil, cta: nil,rank: nil,points: nil,cardState: nil,showWinner: nil,quizStartDate: nil,quizEndDate: nil,winnerName:nil,gametype: "mol", gatitle: nil, isMediaQuiz: nil, difficultyLevels: nil, isDifficultyApplied: false, defaultDifficulty: nil, difficultyTimer: nil, gaPageTitle: nil, gaPageName: nil, gaPageSubType: nil)
                             //self.quizID = .empty
                             MOlDeepLink  =  true
                             
@@ -222,14 +222,14 @@ extension QuizStarterView{
         if  let GAME_DATA =  notification.userInfo{
             
             if let restoreOld = GAME_DATA["restoreOldNavigationBarStyleOnClose"] as? Bool {
-                QUIZTheme.restore_old_navigation = restoreOld
+                MOLTheme.restore_old_navigation = restoreOld
             }
             
             if let navigationController = GAME_DATA["navigationController"] as? UINavigationController {
-                QUIZTheme.currentnavigation = navigationController
-                QUIZTheme.gaming_pushed_navigation = navigationController
-                QUIZTheme.originalNavBarAppearance = navigationController.navigationBar.standardAppearance.copy()
-                QUIZTheme.originalNavBarprefersLargeTitles = navigationController.navigationBar.prefersLargeTitles
+                MOLTheme.currentnavigation = navigationController
+                MOLTheme.gaming_pushed_navigation = navigationController
+                MOLTheme.originalNavBarAppearance = navigationController.navigationBar.standardAppearance.copy()
+                MOLTheme.originalNavBarprefersLargeTitles = navigationController.navigationBar.prefersLargeTitles
                 let font: UIFont? = navigationController.navigationBar.titleTextAttributes?[.font] as? UIFont
                 let textColor: UIColor? = navigationController.navigationBar.titleTextAttributes?[.foregroundColor] as? UIColor
                 let tintColor: UIColor? = navigationController.navigationBar.tintColor
@@ -245,11 +245,11 @@ extension QuizStarterView{
                 style.shadowImage = shadowImage
                 style.isTranslucent = isTranslucent
                 style.backgroundColor = backgroundColor
-                QUIZTheme.originalNavBarStoredStyle = style
+                MOLTheme.originalNavBarStoredStyle = style
             }
             
             if let embededInNavigationController = GAME_DATA["embededInNavigationController"] as? Bool {
-                QUIZTheme.embeded_In_NavigationController = embededInNavigationController
+                MOLTheme.embeded_In_NavigationController = embededInNavigationController
                 
             }
             
@@ -286,23 +286,23 @@ extension QuizStarterView{
             navigateTo = .home
             MoveToHomeView =  true
         case ConfigModel.DeeplinkRoute.leaderboard.rawValue:
-            QUIZTheme.navigateTo = .leaderboard
+            MOLTheme.navigateTo = .leaderboard
             
             quizID = linkArray[safe: 7] ?? ""
             quizIDType = linkArray[safe: 6] ?? ""
-            QUIZTheme.quizID = linkArray[safe: 7]
-            QUIZTheme.quizIDType = linkArray[safe: 6]
+            MOLTheme.quizID = linkArray[safe: 7]
+            MOLTheme.quizIDType = linkArray[safe: 6]
             
             
             isDeepLinkLeaderboard =  true
             
         case ConfigModel.DeeplinkRoute.game.rawValue:
             
-            QUIZTheme.navigateTo = .game
+            MOLTheme.navigateTo = .game
             quizID = linkArray[safe: 7] ?? ""
             quizIDType = linkArray[safe: 6] ?? ""
-            QUIZTheme.quizID = linkArray[safe: 7]
-            QUIZTheme.quizIDType = linkArray[safe: 6]
+            MOLTheme.quizID = linkArray[safe: 7]
+            MOLTheme.quizIDType = linkArray[safe: 6]
             
             quizcehckDeepLink(quizid:quizID)
         default:

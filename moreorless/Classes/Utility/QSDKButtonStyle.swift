@@ -28,18 +28,18 @@ struct QSDKCustomButtonStyle<Content: View>: View {
         case .primary:
             return AnyView(content
                 .padding()
-                .background(QUIZTheme.getColor(named: .QPSDKPrimary))
-                .foregroundColor(QUIZTheme.getColor(named: .QSDKButtonTitle00004B))
+                .background(MOLTheme.getColor(named: .QPSDKPrimary))
+                .foregroundColor(MOLTheme.getColor(named: .QSDKButtonTitle00004B))
                 .cornerRadius(14)
             )
         case .secondary(let borderWidth):
             return AnyView(content
                 .padding()
-                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                 .cornerRadius(14)
                 .overlay(
                     RoundedRectangle(cornerRadius: 14)
-                        .stroke(QUIZTheme.getColor(named: .QPSDKPrimary), lineWidth: borderWidth)
+                        .stroke(MOLTheme.getColor(named: .QPSDKPrimary), lineWidth: borderWidth)
                 )
             )
         case .custom(let borderColor, let borderWidth):

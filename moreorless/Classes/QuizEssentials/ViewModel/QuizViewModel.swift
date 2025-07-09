@@ -106,39 +106,39 @@ class QuizViewModel: ObservableObject {
 //                    if isuserSelectedAns {
 //                        return AnsView(mediaType: MediaViewType(rawValue: currentQuestionData?.mediaViewType ?? ""), mediaFormat: MediaType(rawValue: currentQuestionData?.quMediaType ?? ""), Ans: ( (optionNode.value ?? "")),isCorrectNot: true)
 ////                            .multilineTextAlignment(.center)
-//                            .background(RoundedRectangle(cornerRadius: 14).foregroundColor(QUIZTheme.getColor(named: .QSDK_32A72C)))
+//                            .background(RoundedRectangle(cornerRadius: 14).foregroundColor(MOLTheme.getColor(named: .QSDK_32A72C)))
 //                    } else {
 //                        return AnsView(mediaType: MediaViewType(rawValue: currentQuestionData?.mediaViewType ?? ""), mediaFormat: MediaType(rawValue: currentQuestionData?.quMediaType ?? ""),Ans: ( (optionNode.value ?? "")),isCorrectNot: false)
 ////                            .multilineTextAlignment(.center)
-//                            .background(RoundedRectangle(cornerRadius: 14).foregroundColor(QUIZTheme.getColor(named: .QSDK_CB333B)))
+//                            .background(RoundedRectangle(cornerRadius: 14).foregroundColor(MOLTheme.getColor(named: .QSDK_CB333B)))
 //                    }
 //                }else{
 //                    return AnsView(mediaType: MediaViewType(rawValue: currentQuestionData?.mediaViewType ?? ""), mediaFormat: MediaType(rawValue: currentQuestionData?.quMediaType ?? ""),Ans: ( (optionNode.value ?? "")))
 ////                        .multilineTextAlignment(.center)
 //                        
-//                        .background(RoundedRectangle(cornerRadius: 14).foregroundColor(QUIZTheme.getColor(named: .QSDK_0A0A61)))
+//                        .background(RoundedRectangle(cornerRadius: 14).foregroundColor(MOLTheme.getColor(named: .QSDK_0A0A61)))
 //                }
 //            } else if isAnswerCorrect(userAnswer: optionNode.option ?? "") {
 //                return (showCorrectAns ? AnsView(mediaType: MediaViewType(rawValue: currentQuestionData?.mediaViewType ?? ""), mediaFormat: MediaType(rawValue: currentQuestionData?.quMediaType ?? ""),Ans: ( (optionNode.value ?? "")))
 ////                        .multilineTextAlignment(.center)
 //        
-//                        .background(RoundedRectangle(cornerRadius: 14).foregroundColor(QUIZTheme.getColor(named: .QSDK_32A72C)))
+//                        .background(RoundedRectangle(cornerRadius: 14).foregroundColor(MOLTheme.getColor(named: .QSDK_32A72C)))
 //                        : AnsView(mediaType: MediaViewType(rawValue: currentQuestionData?.mediaViewType ?? ""), mediaFormat: MediaType(rawValue: currentQuestionData?.quMediaType ?? ""),Ans: ( (optionNode.value ?? "") ))
 ////                        .multilineTextAlignment(.center)
 //                        
-//                        .background(RoundedRectangle(cornerRadius: 14).foregroundColor(QUIZTheme.getColor(named: .QSDK_0A0A61)))
+//                        .background(RoundedRectangle(cornerRadius: 14).foregroundColor(MOLTheme.getColor(named: .QSDK_0A0A61)))
 //                )
 //            } else if disabledOptionsFiftyFifty.contains(optionNode.option ?? "") {
 //                return AnsView(mediaType: MediaViewType(rawValue: currentQuestionData?.mediaViewType ?? ""), mediaFormat: MediaType(rawValue: currentQuestionData?.quMediaType ?? ""),Ans: ( (optionNode.value ?? "")),opacity: 0.5)
 ////                    .multilineTextAlignment(.center)
 //                   
 //                    
-//                    .background(RoundedRectangle(cornerRadius: 14).foregroundColor(QUIZTheme.getColor(named: .QSDK_0A0A61).opacity(0.5)))
+//                    .background(RoundedRectangle(cornerRadius: 14).foregroundColor(MOLTheme.getColor(named: .QSDK_0A0A61).opacity(0.5)))
 //            } else {
 //                return AnsView(mediaType: MediaViewType(rawValue: currentQuestionData?.mediaViewType ?? ""), mediaFormat: MediaType(rawValue: currentQuestionData?.quMediaType ?? ""),Ans: ( (optionNode.value ?? "")))
 ////                    .multilineTextAlignment(.center)
 //                    
-//                    .background(RoundedRectangle(cornerRadius: 14).foregroundColor(QUIZTheme.getColor(named: .QSDK_0A0A61)))
+//                    .background(RoundedRectangle(cornerRadius: 14).foregroundColor(MOLTheme.getColor(named: .QSDK_0A0A61)))
 //            }
 //        }
 //    }
@@ -584,7 +584,7 @@ extension QuizViewModel{
                    }
                    let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + (self.cardSelection?.gametype ?? "quiz"), params: [:], replace: "1",replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.GameAttemptConfigData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                    
-                   GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                   GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
                    
                    self.analyticsDomainName = analyticsDomainName
                    self.analyticsData = analyticsData 
@@ -612,7 +612,7 @@ extension QuizViewModel{
                
                let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + "\(self.cardSelection?.gametype ?? "quiz")", params: [:], replace: "1",replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.GameAttemptConfigData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                
-               GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+               GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
                
                self.analyticsDomainName = analyticsDomainName
                self.analyticsData = analyticsData
@@ -641,7 +641,7 @@ extension QuizViewModel{
                     
                     let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: self.current_screen_name + "\(self.cardSelection?.gametype ?? "quiz")", params: [:], replace: String(questionAnsData?.quNo ?? .zero),replace2:(Constants.configData?.quizTypeTrackingKey?["\(self.GameAttemptConfigData?.quiztypeid ?? 0)"]  as? String ?? ""),quizId:self.quizID, quizTitle: self.cardSelection?.gatitle, gaPageTitle: self.cardSelection?.gaPageTitle)
                     
-                    GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+                    GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
                     
                     self.analyticsDomainName = analyticsDomainName
                     self.analyticsData = analyticsData

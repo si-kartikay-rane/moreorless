@@ -19,7 +19,7 @@ class QSDKFeatureCardAPIs {
            onFailure?("Couldnt fetch config data")
            return
        }
-       var gamerCardURL = (configData.baseDomain ?? .empty) + "/quiz/feeds/config/\(QUIZTheme.currentGameID ?? "uclquiz")-gh-card.json?buster=1701411978363"
+       var gamerCardURL = (configData.baseDomain ?? .empty) + "/quiz/feeds/config/\(MOLTheme.currentGameID ?? "uclquiz")-apps.json?buster=1701411978363"
       
         NetworkWrapper.shared.GET(type: .None, url: gamerCardURL, onSuccess: { responseJSON in
             do {

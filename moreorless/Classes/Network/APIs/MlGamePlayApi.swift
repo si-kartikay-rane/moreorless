@@ -21,7 +21,7 @@ class MlGamePlayApi {
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizid ?? "")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
-       // quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+       // quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
        
         quizCardURL =  quizCardURL + "&buster=" + Date().timeIntervalSince1970.rounded().toString()
         NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: quizCardURL, onSuccess: { responseJSON in
@@ -47,7 +47,7 @@ class MlGamePlayApi {
         var quizCardURL = configData.endpoints?.molQuestionGameCardUrl ?? "/quiz/services/mol/gameplay/v1/{competitionType}/questions?langCode={languageCode}&isGuestUser={isGuestUser}" 
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
-      //  quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+      //  quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
         let request:MlQuestionAnsrequestModel?
 
             request = MlQuestionAnsrequestModel(quizID: qid ?? "", attemptid: attemptid ?? 0, player1ID: player1ID ?? 0, player2ID: player2ID ?? 0, answer: ans ?? -1, timetaken: 5, isskipped: 0, addedtime: 0)
@@ -74,7 +74,7 @@ class MlGamePlayApi {
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.attemptId, with: "\(attemptid ?? 0)")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizid ?? "")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
-       // quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+       // quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
        
         quizCardURL =  quizCardURL + "&buster=" + Date().timeIntervalSince1970.rounded().toString()
         NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: quizCardURL, onSuccess: { responseJSON in

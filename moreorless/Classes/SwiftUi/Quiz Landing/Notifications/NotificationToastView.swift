@@ -14,21 +14,21 @@ struct NotificationToastView: View {
     @Binding var showToast: Bool
     
     var body: some View {
-        if !QUIZTheme.isIpad {
+        if !MOLTheme.isIpad {
         HStack(alignment: .center, spacing: 12) {
             VStack{
                 Spacer()
                 Divider()
                 Spacer()
             }
-            .background(QUIZTheme.getColor(named: .QSDK_465AEE))
+            .background(MOLTheme.getColor(named: .QSDK_465AEE))
             .frame(width: 3)
             Circle()
-                .fill(QUIZTheme.getColor(named: .QSDK_465AEE))
+                .fill(MOLTheme.getColor(named: .QSDK_465AEE))
                 .frame(width: 48, height: 48)
                 .padding(.top, 4)
                 .overlay(
-                    Image(uiImage: QUIZTheme.getImage(named: QUIZTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NotificationClose.name : "") ?? UIImage())
+                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NotificationClose.name : "") ?? UIImage())
                         .resizable()
                         .frame(width: 24, height: 24)
                 )
@@ -45,14 +45,14 @@ struct NotificationToastView: View {
                     showToast = false
                 }) {
                     VStack{
-                        Image(uiImage: QUIZTheme.getImage(named: QUIZTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                             .renderingMode(.template)
                             .resizable()
-                            .foregroundColor(QUIZTheme.getColor(named: .QSDK_9E9AA5))
+                            .foregroundColor(MOLTheme.getColor(named: .QSDK_9E9AA5))
                             .frame(width: 15, height: 15)
                     }
                     .frame(width: 24, height: 24)
-                    .background(QUIZTheme.getColor(named: .QSDK_boosterWhiteColor))
+                    .background(MOLTheme.getColor(named: .QSDK_boosterWhiteColor))
                     .clipShape(Circle())
                 }
                 Spacer()
@@ -72,14 +72,14 @@ struct NotificationToastView: View {
                     Divider()
                     Spacer()
                 }
-                .background(QUIZTheme.getColor(named: .QSDK_465AEE))
+                .background(MOLTheme.getColor(named: .QSDK_465AEE))
                 .frame(width: 3)
                 Circle()
-                    .fill(QUIZTheme.getColor(named: .QSDK_465AEE))
+                    .fill(MOLTheme.getColor(named: .QSDK_465AEE))
                     .frame(width: 48, height: 48)
                     .padding(.top, 4)
                     .overlay(
-                        Image(uiImage: QUIZTheme.getImage(named: QUIZTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NotificationClose.name : "") ?? UIImage())
+                        Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NotificationClose.name : "") ?? UIImage())
                             .resizable()
                             .frame(width: 24, height: 24)
                     )
@@ -96,14 +96,14 @@ struct NotificationToastView: View {
                         showToast = false
                     }) {
                         VStack{
-                            Image(uiImage: QUIZTheme.getImage(named: QUIZTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                            Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                                 .renderingMode(.template)
                                 .resizable()
-                                .foregroundColor(QUIZTheme.getColor(named: .QSDK_9E9AA5))
+                                .foregroundColor(MOLTheme.getColor(named: .QSDK_9E9AA5))
                                 .frame(width: 15, height: 15)
                         }
                         .frame(width: 24, height: 24)
-                        .background(QUIZTheme.getColor(named: .QSDK_boosterWhiteColor))
+                        .background(MOLTheme.getColor(named: .QSDK_boosterWhiteColor))
                         .clipShape(Circle())
                     }
                     Spacer()

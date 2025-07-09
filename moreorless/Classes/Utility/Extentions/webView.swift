@@ -23,11 +23,11 @@ struct CommonWebView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }
             }) {
-                Image(uiImage:QUIZTheme.getImage(named:QuizImageName.QSDK_NavBack.name) ?? UIImage())
+                Image(uiImage:MOLTheme.getImage(named:QuizImageName.QSDK_NavBack.name) ?? UIImage())
                     .imageScale(.large)
             })
             .onAppear{
-                QUIZTheme.currentnavigation?.style(style: .withBgImage(image: QUIZTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(QUIZTheme.getColor(named: .QSDK_NavImage051139))))
+                MOLTheme.currentnavigation?.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(),color:UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
             }
     }
 }

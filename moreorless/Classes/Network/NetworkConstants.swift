@@ -66,7 +66,7 @@ struct WSEndPoints {
     }
     
     struct APIs {
-        static let config                   = "quiz/feeds/config/\(QUIZTheme.currentGameID ?? "")-apps.json?buster=" + Date().timeIntervalSince1970.rounded().toString()
+        static let config                   = "quiz/feeds/config/\(MOLTheme.currentGameID ?? "")-apps.json?buster=" + Date().timeIntervalSince1970.rounded().toString()
         static let service                  = "services/"
         static let feeds                    = "services/feeds/"
         static let login                    = "api/Session/login"

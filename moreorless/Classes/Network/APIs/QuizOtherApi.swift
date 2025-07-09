@@ -17,13 +17,13 @@ class QuizOtherApi {
         }
         var quizCardURL1 =  ""
         if GamingHubCards.environment.environment == .integration{
-            quizCardURL1 = configData.endpoints?.landingPageQuizCardUrl2 ?? "/quiz/services/card/v1/\(QUIZTheme.currentGameID ?? "uclquiz")/gamelist?langCode=\(QuizzGameSDk.game.getAppLanguage())&isGuestUser=\(!GamingHubCards.isLoggedIn)"
+            quizCardURL1 = configData.endpoints?.landingPageQuizCardUrl2 ?? "/quiz/services/card/v1/\(MOLTheme.currentGameID ?? "uclquiz")/gamelist?langCode=\(QuizzGameSDk.game.getAppLanguage())&isGuestUser=\(!GamingHubCards.isLoggedIn)"
         }else{
             quizCardURL1 = configData.endpoints?.landingPageQuizCardUrl2 ?? ""
         }
         quizCardURL1 = quizCardURL1.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
         quizCardURL1 = quizCardURL1.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
-      //  quizCardURL1 = quizCardURL1.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+      //  quizCardURL1 = quizCardURL1.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
         
         quizCardURL1 = quizCardURL1 + "&buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD)
 
@@ -44,11 +44,11 @@ class QuizOtherApi {
             onFailure?("Couldnt fetch config data")
             return
         }
-        var quizCardURL = configData.endpoints?.landingPageQuizCardPointUrl ?? "/quiz/services/card/v2/\(QUIZTheme.currentGameID ?? "uclquiz")/pending-attempt?langCode=\(QuizzGameSDk.game.getAppLanguage())&platformId={platformId}"
+        var quizCardURL = configData.endpoints?.landingPageQuizCardPointUrl ?? "/quiz/services/card/v2/\(MOLTheme.currentGameID ?? "uclquiz")/pending-attempt?langCode=\(QuizzGameSDk.game.getAppLanguage())&platformId={platformId}"
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.isGuestUser, with: "\(!GamingHubCards.isLoggedIn)")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.platformId, with: Constants.appData.platformID.description)
-       // quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+       // quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
         
         quizCardURL = quizCardURL + "&buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD)
         
@@ -77,7 +77,7 @@ class QuizOtherApi {
        }else{
            quizCardURL =  (configData.endpoints?.guestUserLeaderBoardTopRankingUrlV2 ?? "") + "?buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD)
        }
-        //quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+        //quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
 //        eotScoreURL = eotScoreURL.replacingOccurrences(of: NetworkConstants().urlKeys.tourId, with: Constants.appData.tourId.toString())
         
@@ -107,7 +107,7 @@ class QuizOtherApi {
             quizCardURL = (configData.endpoints?.guestUserOverViewLeaderBoardUrlV2 ?? "") + ("?buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD))
         }
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.languageCode, with: "\(QuizzGameSDk.game.getAppLanguage())")
-        //quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+        //quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
 //        eotScoreURL = eotScoreURL.replacingOccurrences(of: NetworkConstants().urlKeys.tourId, with: Constants.appData.tourId.toString())
         
         NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: quizCardURL, onSuccess: { responseJSON in
@@ -133,7 +133,7 @@ class QuizOtherApi {
         }else{
             quizCardURL = (configData.endpoints?.guestUserLeaderBoardRankingUrlV2 ?? "") + ("?buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD))
         }
-        //quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+        //quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizId ?? "")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.offSet, with: "\(offset ?? 0)")
         quizCardURL = quizCardURL.replacingOccurrences(of: NetworkConstants().urlKeys.totalCount, with: "\(count ?? 0)")
@@ -158,7 +158,7 @@ class QuizOtherApi {
         }
         leaderboardSelfUserRankingURL =   leaderboardSelfUserRankingURL + "&buster=" + BusterHelper.shared.getBusterFor(type: .LEADERBOARD)
         leaderboardSelfUserRankingURL = leaderboardSelfUserRankingURL.replacingOccurrences(of: NetworkConstants().urlKeys.quizId, with: quizId ?? "")
-       // leaderboardSelfUserRankingURL = leaderboardSelfUserRankingURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: QUIZTheme.currentGameID ?? "uclquiz")
+       // leaderboardSelfUserRankingURL = leaderboardSelfUserRankingURL.replacingOccurrences(of: NetworkConstants().urlKeys.competitionType, with: MOLTheme.currentGameID ?? "uclquiz")
         NetworkWrapper.shared.GET(type:.DETAIL_BASE_URL, url: leaderboardSelfUserRankingURL, onSuccess: { responseJSON in
             let data:GenericResponseModel<selfRankDataValue> = NetworkHelper.getDecodedData(from: responseJSON)
             if let value = data.Data.Value{

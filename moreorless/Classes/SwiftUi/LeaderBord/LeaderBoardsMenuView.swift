@@ -19,12 +19,12 @@ struct LeaderBoardsMenuView: View {
     @State var analyticsData: TrackingParameters = TrackingParameters([:] as [String: Any?]?)
     var body: some View {
         ZStack(alignment:.top){
-            if QUIZTheme.currentGameID == "weuroquiz"
+            if MOLTheme.currentGameID == "weuroquiz"
             {
-                QUIZTheme.getColor(named: .QSDKEuroBG).ignoresSafeArea()
+                MOLTheme.getColor(named: .QSDKEuroBG).ignoresSafeArea()
             }
             else{
-                QUIZTheme.getColor(named: .QSDKBackGround_000040).ignoresSafeArea()
+                MOLTheme.getColor(named: .QSDKBackGround_000040).ignoresSafeArea()
             }
             ScrollView{
                 VStack(spacing:16.0){
@@ -38,7 +38,7 @@ struct LeaderBoardsMenuView: View {
                             } label: {
                                 Text(AppStrings.Leaderboard.getTranslationValue(default: "Leaderboard"))
                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 14))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                     .opacity(0.7)
                             }
                             
@@ -49,14 +49,14 @@ struct LeaderBoardsMenuView: View {
                             } label: {
                                 Text(AppStrings.Rank.getTranslationValue(default: "Rank"))
                                     .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 14))
-                                    .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                    .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                     .opacity(0.7)
                             }
                             
                         }.frame(height: 36)
                         .padding([.leading,.trailing],18)
                         
-                        Divider().background(QUIZTheme.getColor(named: .QPSDKWhite).opacity(0.75)).padding([.leading,.trailing],16)
+                        Divider().background(MOLTheme.getColor(named: .QPSDKWhite).opacity(0.75)).padding([.leading,.trailing],16)
                         
                         ListView
                         
@@ -64,11 +64,11 @@ struct LeaderBoardsMenuView: View {
                     }.padding(.bottom,10)
                     .padding([.top,.bottom],10)
                     
-                }.background(QUIZTheme.getColor(named: .QSDK_0A0A61))
-                    .frame(width: QUIZTheme.isIpad ? 400 : UIScreen.screenWidth-32)
+                }.background(MOLTheme.getColor(named: .QSDK_0A0A61))
+                    .frame(width: MOLTheme.isIpad ? 400 : UIScreen.screenWidth-32)
                     .cornerRadius(14)
                    
-                    AdsSponsorsView().frame(width: QUIZTheme.isIpad ? 320 : UIScreen.screenWidth-32)
+                    AdsSponsorsView().frame(width: MOLTheme.isIpad ? 320 : UIScreen.screenWidth-32)
             }
                 NavigationLink("", destination: LeaderboardView( selectedLeaderBoardType: self.quizViewModel.selectedLeaderBoardType).navigationBarTitleDisplayMode(.inline),isActive:$showLeaderBoardView)
             }.padding([.top,.bottom], QuizzGameSDk.game.sponsorModel?.imageUrl == nil ? 16 : 0)
@@ -78,7 +78,7 @@ struct LeaderBoardsMenuView: View {
                     self.presentationMode.wrappedValue.dismiss()
                 }
         }) {
-            Image(uiImage:QUIZTheme.getImage(named:QuizImageName.QSDK_NavBack.name) ?? UIImage())
+            Image(uiImage:MOLTheme.getImage(named:QuizImageName.QSDK_NavBack.name) ?? UIImage())
                 .imageScale(.large)
                
         }
@@ -89,11 +89,11 @@ struct LeaderBoardsMenuView: View {
             let (analyticsDomainName, analyticsData) = Track.shared.get_screen_domain_params(screen: current_screen_name, params: [:], replace: nil)
             self.analyticsDomainName = analyticsDomainName
             self.analyticsData = analyticsData
-            GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: QUIZTheme.currentGameID ?? "uclquiz")
+            GamingHubCards.registerTrackingDefaults(analyticsData, domain: analyticsDomainName, gameId: MOLTheme.currentGameID ?? "uclquiz")
             Track.shared.screen(screen: current_screen_name, params: [:], replace: nil)
             Track.shared.trackSponsor(slot: "header", analyticsDomainName: analyticsDomainName, analyticsData: analyticsData)
             self.quizViewModel.LeaderBoardMenufun()
-            QUIZTheme.currentnavigation!.style(style: .withBgImage(image: QUIZTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(QUIZTheme.getColor(named: .QSDK_NavImage051139))))
+            MOLTheme.currentnavigation!.style(style: .withBgImage(image: MOLTheme.getImage(named: QuizImageName.QSDKNavigationBG.name) ?? UIImage(), color: UIColor(MOLTheme.getColor(named: .QSDK_NavImage051139))))
         }
     }
     
@@ -114,7 +114,7 @@ struct LeaderBoardsMenuView: View {
                             
                             KFImage(URL(string: (item.avatar ?? "")))
                                 .placeholder {
-                                    QUIZTheme.getImage(named: imageName(quiztype: item.quiztypeid ?? 0))?
+                                    MOLTheme.getImage(named: imageName(quiztype: item.quiztypeid ?? 0))?
                                         .resizable()
                                 }
                                 .retry(maxCount: 3, interval: .seconds(5))
@@ -140,18 +140,18 @@ struct LeaderBoardsMenuView: View {
                                 }else{
                                     Text(Constants.isLogin ? "\("")" : "")
                                 }
-                                Image(uiImage: QUIZTheme.getImage(named: QuizImageName.QSDK_RightArrow.name) ?? UIImage()).frame(width:24,height: 24)
+                                Image(uiImage: MOLTheme.getImage(named: QuizImageName.QSDK_RightArrow.name) ?? UIImage()).frame(width:24,height: 24)
                             }
                             if(index !=  self.quizViewModel.LeaderBoardMenu.count - 1)
                             {
-                                Divider().background(QUIZTheme.getColor(named: .QPSDKWhite)).opacity(0.75).padding(.top,5)
+                                Divider().background(MOLTheme.getColor(named: .QPSDKWhite)).opacity(0.75).padding(.top,5)
                             }
                         }
                     }
                 }
                 
                 .padding([.top,.bottom],2).padding([.leading,.trailing],16)
-                .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
             }
         }
     }

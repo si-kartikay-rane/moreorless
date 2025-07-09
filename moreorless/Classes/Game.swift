@@ -251,14 +251,14 @@ extension Game: CompetitionGameCard {
         if  let GAME_DATA =  data{
             
             if let restoreOld = GAME_DATA["restoreOldNavigationBarStyleOnClose"] as? Bool {
-                QUIZTheme.restore_old_navigation = restoreOld
+                MOLTheme.restore_old_navigation = restoreOld
             }
             
             if let navigationController = GAME_DATA["navigationController"] as? UINavigationController {
-                QUIZTheme.currentnavigation = navigationController
-                QUIZTheme.gaming_pushed_navigation = navigationController
-                QUIZTheme.originalNavBarAppearance = navigationController.navigationBar.standardAppearance.copy()
-                QUIZTheme.originalNavBarprefersLargeTitles = navigationController.navigationBar.prefersLargeTitles
+                MOLTheme.currentnavigation = navigationController
+                MOLTheme.gaming_pushed_navigation = navigationController
+                MOLTheme.originalNavBarAppearance = navigationController.navigationBar.standardAppearance.copy()
+                MOLTheme.originalNavBarprefersLargeTitles = navigationController.navigationBar.prefersLargeTitles
                 let font: UIFont? = navigationController.navigationBar.titleTextAttributes?[.font] as? UIFont
                 let textColor: UIColor? = navigationController.navigationBar.titleTextAttributes?[.foregroundColor] as? UIColor
                 let tintColor: UIColor? = navigationController.navigationBar.tintColor
@@ -274,29 +274,29 @@ extension Game: CompetitionGameCard {
                 style.shadowImage = shadowImage
                 style.isTranslucent = isTranslucent
                 style.backgroundColor = backgroundColor
-                QUIZTheme.originalNavBarStoredStyle = style
+                MOLTheme.originalNavBarStoredStyle = style
             }
             
             if let embededInNavigationController = GAME_DATA["embededInNavigationController"] as? Bool {
-                QUIZTheme.embeded_In_NavigationController = embededInNavigationController
+                MOLTheme.embeded_In_NavigationController = embededInNavigationController
                 
             }
             
             if let dataURL = GAME_DATA["url"] as? URL {
-                QUIZTheme.checkDeeplinkURlAndData(url: dataURL.absoluteString)
+                MOLTheme.checkDeeplinkURlAndData(url: dataURL.absoluteString)
             }
             if let dataString = GAME_DATA["url"] as? String {
                 if let url = URL(string: dataString) {
-                    QUIZTheme.checkDeeplinkURlAndData(url: dataString)
+                    MOLTheme.checkDeeplinkURlAndData(url: dataString)
                 }
             }
             // Handle other cases as needed
             if let dataLinkURL = GAME_DATA["link"] as? URL {
-                QUIZTheme.checkDeeplinkURlAndData(url: dataLinkURL.absoluteString)
+                MOLTheme.checkDeeplinkURlAndData(url: dataLinkURL.absoluteString)
             }
             
             if let dataLinkString = GAME_DATA["link"] as? String {
-                QUIZTheme.checkDeeplinkURlAndData(url: dataLinkString)
+                MOLTheme.checkDeeplinkURlAndData(url: dataLinkString)
             }
         }
         
@@ -304,21 +304,21 @@ extension Game: CompetitionGameCard {
         let podBundle = Bundle(for: FeaturedCard.self)
         let data1 = podBundle.url(forResource: gameId, withExtension: "bundle")!
         let theme_bundle = Bundle(url: data1) ?? Bundle.main
-        QUIZTheme.currentBundle = theme_bundle
-        QUIZTheme.currentGameID =  gameId
-        QUIZTheme.competitionId = competition
-        QUIZTheme.updateViewLayout()
+        MOLTheme.currentBundle = theme_bundle
+        MOLTheme.currentGameID =  gameId
+        MOLTheme.competitionId = competition
+        MOLTheme.updateViewLayout()
         let game = Game() // Create an instance of Game
         
-        if QUIZTheme.embeded_In_NavigationController {
+        if MOLTheme.embeded_In_NavigationController {
             let QuizInitialView = UIHostingController(rootView: QuizStarterView().environment(\.bundle, theme_bundle).navigationViewStyle(.stack))
                     game.nc = UINavigationController(rootViewController: QuizInitialView)
-                    QUIZTheme.currentnavigation = game.nc
+                    MOLTheme.currentnavigation = game.nc
             return game.nc
         } else {
             let QuizInitialPresentedScreen = UIHostingController(rootView: QuizStarterView().environment(\.bundle, theme_bundle).navigationViewStyle(.stack))
             
-            QUIZTheme.currentnavigation = QUIZTheme.gaming_pushed_navigation
+            MOLTheme.currentnavigation = MOLTheme.gaming_pushed_navigation
             return QuizInitialPresentedScreen
         }
         

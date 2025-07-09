@@ -16,13 +16,13 @@ struct AdsPresentedbyView: View {
     var VerticaleEnable:Bool = true
     var analyticsDomainName: String
     var analyticsData: TrackingParameters
-    var backgroundColor: Color = QUIZTheme.getColor(named: .QSDKSponsorBG00439C)
+    var backgroundColor: Color = MOLTheme.getColor(named: .QSDKSponsorBG00439C)
     var SponsorClickDisabled:Bool =  false
     var textprestcolor:Color = .white
     @State var openWebView:Bool =  false
     @State var height : CGFloat = 0
     var buttonAction: ((Bool) -> Void)?
-    init(VerticaleEnable: Bool,analyticsDomainName:String ,analyticsData : TrackingParameters, backgroundColor: Color = QUIZTheme.getColor(named: .QSDKSponsorBG00439C),SponsorClickDisabled:Bool = false,buttonAction: ((Bool) -> Void)? = nil) {
+    init(VerticaleEnable: Bool,analyticsDomainName:String ,analyticsData : TrackingParameters, backgroundColor: Color = MOLTheme.getColor(named: .QSDKSponsorBG00439C),SponsorClickDisabled:Bool = false,buttonAction: ((Bool) -> Void)? = nil) {
         self.viewModel = PresentedByViewModel()
         self.VerticaleEnable = VerticaleEnable
         self.backgroundColor = Color(hex: viewModel.colorcode ?? "")
@@ -60,7 +60,7 @@ struct AdsPresentedbyView: View {
                             HStack(spacing: 10){
                                 KFImage(URL(string: viewModel.ImageUrl ?? ""))
                                     .placeholder {
-                                        QUIZTheme.getImage(named:QuizImageName.QPSDKAdsImage.name)?
+                                        MOLTheme.getImage(named:QuizImageName.QPSDKAdsImage.name)?
                                             .resizable()
                                     }
                                     .retry(maxCount: 3, interval: .seconds(5))
@@ -80,7 +80,7 @@ struct AdsPresentedbyView: View {
                             
                             KFImage(URL(string: viewModel.ImageUrl ?? ""))
                                 .placeholder {
-                                    QUIZTheme.getImage(named:QuizImageName.QPSDKAdsImage.name)?
+                                    MOLTheme.getImage(named:QuizImageName.QPSDKAdsImage.name)?
                                         .resizable()
                                 }
                                 .retry(maxCount: 3, interval: .seconds(5))
@@ -89,7 +89,7 @@ struct AdsPresentedbyView: View {
                                 .frame(width: 67, height: 40, alignment: .center)
                                 .scaledToFit()
                                 
-                        }.padding(.trailing,(QUIZTheme.currentGameID  == "euroquiz") ? -8 : 0)
+                        }.padding(.trailing,(MOLTheme.currentGameID  == "euroquiz") ? -8 : 0)
                         .padding(20)
                     }
                 }
@@ -99,7 +99,7 @@ struct AdsPresentedbyView: View {
         }
     }
     var PlaceHolder:some View{
-        Image(uiImage:QUIZTheme.getImage(named:QuizImageName.QPSDKAdsImage.name) ?? UIImage())
+        Image(uiImage:MOLTheme.getImage(named:QuizImageName.QPSDKAdsImage.name) ?? UIImage())
             .resizable()
         .frame(width: 70, height: 50)
         .scaledToFit()

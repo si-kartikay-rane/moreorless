@@ -22,7 +22,7 @@ struct NotificationAlertView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             
-            if !QUIZTheme.isIpad {
+            if !MOLTheme.isIpad {
                 VStack{
                     Spacer()
                     VStack(spacing: 0) {
@@ -33,14 +33,14 @@ struct NotificationAlertView: View {
                                 showToast = true
                             }) {
                                 VStack{
-                                    Image(uiImage: QUIZTheme.getImage(named: QUIZTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
+                                    Image(uiImage: MOLTheme.getImage(named: MOLTheme.currentGameID != "euroquiz" ? QuizImageName.QSDK_NavigationClose.name : "") ?? UIImage())
                                         .renderingMode(.template)
                                         .resizable()
-                                        .foregroundColor(QUIZTheme.getColor(named: .QSDK_9E9AA5))
+                                        .foregroundColor(MOLTheme.getColor(named: .QSDK_9E9AA5))
                                         .frame(width: 15, height: 15)
                                 }
                                 .frame(width: 24, height: 24)
-                                .background(QUIZTheme.getColor(named: .QSDK_boosterWhiteColor))
+                                .background(MOLTheme.getColor(named: .QSDK_boosterWhiteColor))
                                 .clipShape(Circle())
                             }
                             .padding(12)
@@ -56,12 +56,12 @@ struct NotificationAlertView: View {
                                     Text(title)
                                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 20))
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(QUIZTheme.getColor(named: .QSDK_1A313C))
+                                        .foregroundColor(MOLTheme.getColor(named: .QSDK_1A313C))
                                     
                                     Text(description)
                                         .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 16))
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(QUIZTheme.getColor(named: .QSDK_1A313C))
+                                        .foregroundColor(MOLTheme.getColor(named: .QSDK_1A313C))
                                     
                                 }
                             }
@@ -80,11 +80,11 @@ struct NotificationAlertView: View {
                                             .padding(.vertical,15)
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
                                             .multilineTextAlignment(.leading)
-                                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                         
                                         Spacer()
                                     }
-                                    .background(QUIZTheme.getColor(named: .QSDK_D91D41))
+                                    .background(MOLTheme.getColor(named: .QSDK_D91D41))
                                     .cornerRadius(15)
                                 }
                                 
@@ -98,11 +98,11 @@ struct NotificationAlertView: View {
                                         Text(btnNormalText)
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
                                             .multilineTextAlignment(.leading)
-                                            .foregroundColor(QUIZTheme.getColor(named: .QSDK_CB333B))
+                                            .foregroundColor(MOLTheme.getColor(named: .QSDK_CB333B))
                                             .padding(.vertical,15)
                                         Spacer()
                                     }
-                                    .overlay(RoundedRectangle(cornerRadius: 15).stroke(QUIZTheme.getColor(named: .QSDK_D91D41)))
+                                    .overlay(RoundedRectangle(cornerRadius: 15).stroke(MOLTheme.getColor(named: .QSDK_D91D41)))
                                 }
                             }
                             .padding(.horizontal, 24)
@@ -110,7 +110,7 @@ struct NotificationAlertView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .background(QUIZTheme.getColor(named: .QSDK_EEF7F9))
+                    .background(MOLTheme.getColor(named: .QSDK_EEF7F9))
                     .quizCornerRadius(24.0, corners: [.topLeft,.topRight])
                     .shadow(radius: 20)
                     
@@ -128,12 +128,12 @@ struct NotificationAlertView: View {
                                         Text(title)
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Medium, size: 26))
                                             .multilineTextAlignment(.leading)
-                                            .foregroundColor(QUIZTheme.getColor(named: .QSDK_1A313C))
+                                            .foregroundColor(MOLTheme.getColor(named: .QSDK_1A313C))
                                         
                                         Text(description)
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Regular, size: 16))
                                             .multilineTextAlignment(.leading)
-                                            .foregroundColor(QUIZTheme.getColor(named: .QSDK_1A313C))
+                                            .foregroundColor(MOLTheme.getColor(named: .QSDK_1A313C))
                                     }
                                     
                                     Spacer()
@@ -151,17 +151,17 @@ struct NotificationAlertView: View {
                                 Spacer()
                                 Button {
                                     Track.shared.event(screen: "/gh_notifications_disabled")
-                                    NotificationCenter.default.post(name: QUIZTheme.QuizNotificationChannelStatusChanged, object: nil)
+                                    NotificationCenter.default.post(name: MOLTheme.QuizNotificationChannelStatusChanged, object: nil)
                                     notificationAlertPopUp = false
                                 } label: {
                                     HStack{
                                         Text(btnNormalText)
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
                                             .multilineTextAlignment(.leading)
-                                            .foregroundColor(QUIZTheme.getColor(named: .QSDK_CB333B))
+                                            .foregroundColor(MOLTheme.getColor(named: .QSDK_CB333B))
                                             .padding(.vertical,15)
                                     }.padding(.horizontal)
-                                    .overlay(RoundedRectangle(cornerRadius: 15).stroke(QUIZTheme.getColor(named: .QSDK_D91D41)))
+                                    .overlay(RoundedRectangle(cornerRadius: 15).stroke(MOLTheme.getColor(named: .QSDK_D91D41)))
                                 }
                                 
                                 Button {
@@ -176,10 +176,10 @@ struct NotificationAlertView: View {
                                             .padding(.vertical,15)
                                             .font(Font.swiftUICustomFont(customFont: .SF_UI_Bold, size: 16))
                                             .multilineTextAlignment(.leading)
-                                            .foregroundColor(QUIZTheme.getColor(named: .QPSDKWhite))
+                                            .foregroundColor(MOLTheme.getColor(named: .QPSDKWhite))
                                         
                                     }.padding(.horizontal)
-                                    .background(QUIZTheme.getColor(named: .QSDK_D91D41))
+                                    .background(MOLTheme.getColor(named: .QSDK_D91D41))
                                     .cornerRadius(15)
                                 }
                                 .padding(.leading, 8)
@@ -194,13 +194,13 @@ struct NotificationAlertView: View {
                     }
                 }
                 .frame(width: UIScreen.screenWidth * 0.65)
-                .background(QUIZTheme.getColor(named: .QSDK_EEF7F9))
+                .background(MOLTheme.getColor(named: .QSDK_EEF7F9))
                 .quizCornerRadius(24.0, corners: [.allCorners])
                 .shadow(radius: 20)
                 .padding(.horizontal, 8)
             }
         }
-        .quizconditionalSafeArea( QUIZTheme.isGamingHubHost)
+        .quizconditionalSafeArea( MOLTheme.isGamingHubHost)
         .onDisappear {
             NotificationCenter.default.removeObserver(self)
         }
